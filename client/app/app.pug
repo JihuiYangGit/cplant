@@ -1,0 +1,12 @@
+header
+  include nav/nav
+main(flex, layout='column')
+  md-content.cplant-user-content-container(layout-fill, layout-padding, layout-align='start center', layout='column')
+    include main/main
+div.hidden-dialog-container(style='visibility: hidden', ng-controller='newAppDialogCtrl as newAppDialogCtrl')
+  include nomination/proposal/app-form
+div.hidden-dialog-container(style='visibility: hidden', ng-controller='newReportCtrl as newReportCtrl')
+  include nomination/report/feature-form
+div.hidden-dialog-container(style='visibility: hidden', ng-controller='newReportCtrl as newReportCtrl')
+  include nomination/report/bug-form
+  

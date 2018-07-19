@@ -1,0 +1,81 @@
+// reset start
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin-bottom: 10px;
+}
+
+ol, ul, dl {
+  list-style-position: inside;
+}
+
+//reset end
+
+// vertical divider for md-divider
+.cplant-vertical-divider {
+  border-top-width: 0;
+  border-right: 1px solid;
+  height: 100%;
+}
+
+// load Roboto font
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+// Material theme start
+.cplant-primary {
+  color: #546e7a !important;
+}
+
+.cplant-primary-bg {
+  background-color: #546e7a !important;
+}
+
+.cplant-primary-dark {
+  color: #29434e !important;
+}
+
+.cplant-primary-bg-dark {
+  background-color: #29434e !important;
+}
+
+.cplant-primary-light {
+  color: #819ca9 !important;
+}
+
+.cplant-primary-bg-light {
+  background-color: #819ca9 !important;
+}
+
+.cplant-secondary {
+  color: #ffffff !important;
+}
+
+.cplant-secondary-bg {
+  background-color: #ffffff !important;
+}
+
+.cplant-text-white {
+  color: #ffffff !important;
+}
+
+.cplant-user-content-container {
+  //background-color: #00bfc5;
+  //background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 900'%3E%3Cpath fill='%23A0E2DB' d='M0 504 0 899 1600 899 1600 120z'/%3E%3Cpath fill='%23CBF2F3' d='M1600 567 1600 899 0 899 0 165z'/%3E%3Cpath fill='%23719D71' d='M0 680 0 899 1600 899 1600 300z'/%3E%3Cpath fill='%237EB67E' d='M1600 719 1600 899 0 899 0 353z'/%3E%3Cpath fill='%23004D66' d='M0 788 0 899 1600 899 1600 625z'/%3E%3C/svg%3E");
+  //background-attachment: fixed;
+  //background-size: cover;
+  //background-position: center;
+  background: #eee;
+}
+
+// Component styles are injected through grunt
+// injector
+@import 'main/main.scss';
+@import 'nav/nav.scss';
+@import 'nomination/nomination.scss';
+// endinjector

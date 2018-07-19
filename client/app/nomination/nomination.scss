@@ -1,0 +1,108 @@
+
+.hidden-dialog-container {
+  padding: 0 !important;
+}
+
+md-input-container.md-default-theme:not(.md-input-invalid).md-input-focused .md-input,
+md-input-container:not(.md-input-invalid).md-input-focused .md-input,
+md-input-container.md-default-theme:not(.md-input-invalid).md-input-resized .md-input,
+md-input-container:not(.md-input-invalid).md-input-resized .md-input {
+  border-color: #819ca9;
+}
+
+md-input-container.md-default-theme:not(.md-input-invalid).md-input-focused label,
+md-input-container:not(.md-input-invalid).md-input-focused label,
+md-input-container.md-default-theme:not(.md-input-invalid).md-input-focused md-icon,
+md-input-container:not(.md-input-invalid).md-input-focused md-icon {
+  color: #819ca9;
+}
+
+.cplant-dialog-form-container md-dialog {
+  width: 90vmin;
+
+  md-radio-button input {
+    pointer-events: all;
+  }
+
+  .md-subheader {
+    background: transparent;
+  }
+
+  .cplant-checkbox-container {
+    margin: 18px 0;
+
+    md-input-container {
+      margin: 0;
+    }
+  }
+
+  .md-toolbar-tools {
+    color: rgba(0, 0, 0, .54);
+  }
+}
+
+.cplant-dialog-detail-container md-dialog {
+  width: 90vmin;
+
+  h5 {
+    margin-top: 10px;
+    color: gray;
+  }
+
+  md-divider {
+    border-top-color: rgba(0, 0, 0, 0.06) !important;
+  }
+}
+
+.drop-box {
+  background: #F8F8F8;
+  border: 5px dashed #DDD;
+  width: 100%;
+  text-align: center;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  margin-top: 8px;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+
+.dragover {
+  border: 5px dashed gray;
+}
+
+.cplant-images-preview-subheader {
+  margin-bottom: 10px !important;
+}
+
+.cplant-preview-container {
+
+  div {
+    position: relative;
+    margin-right: 15px;
+
+    .md-button {
+      position: absolute;
+      top: -18px;
+      right: -26px;
+      z-index: 1;
+
+      md-icon {
+        background: #DDDDDD;
+      }
+    }
+
+    .cplant-image-preview {
+      border: 1px dashed #ccc;
+    }
+  }
+}
+
+.cplant-detail-attachments-container {
+  a {
+    display: inline-block;
+
+    img {
+      width: 100%;
+    }
+  }
+}

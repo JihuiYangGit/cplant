@@ -1,0 +1,29 @@
+.md-dialog-container.cplant-dialog-detail-container#featureDetailDialog
+  md-dialog(aria-label='Bug Detail')
+    md-toolbar.md-toolbar-tools
+      h2 Feature Detail
+      span(flex)
+      md-button.md-icon-button(ng-click='reportDetailCtrl.cancel()')
+        md-icon(md-svg-src='assets/images/ic-exit.svg')
+    md-dialog-content
+      .md-dialog-content
+        h5 App name
+        p {{reportDetailCtrl.report.app.name}}
+        md-divider
+        h5 Summary
+        p {{reportDetailCtrl.report.summary}}
+        md-divider
+        h5 Description
+        p {{reportDetailCtrl.report.desc}}
+        h5 Attachments
+        p(ng-if='!reportDetailCtrl.report.attachments || reportDetailCtrl.report.attachments.length === 0') No attachments contained
+        div.cplant-detail-attachments-container(layout='row')
+          a(ng-repeat='url in reportDetailCtrl.report.attachments', href='{{url}}', flex='20', target='_blank')
+            img(src='{{url}}')
+    md-dialog-actions(layout='row')
+      md-button(ng-click='reportDetailCtrl.edit($event)') Edit
+      md-button(ng-click='reportDetailCtrl.accept()') Accept
+      md-button(ng-click='reportDetailCtrl.reject()') Reject
+           
+    
+        

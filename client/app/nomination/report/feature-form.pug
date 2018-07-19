@@ -1,0 +1,39 @@
+.md-dialog-container.cplant-dialog-form-container#newFeatureDialog
+  md-dialog(aria-label='New Feature Proposal')
+    form(name='reportFeatureForm', ng-submit="$event.preventDefault()")
+      md-toolbar.md-toolbar-tools
+        h2 Request Feature
+        span(flex)
+        md-button.md-icon-button(ng-click='newReportCtrl.cancel()')
+          md-icon(md-svg-src='assets/images/ic-exit.svg')
+      md-dialog-content
+        .md-dialog-content
+          md-autocomplete(flex, ng-required='true', md-select-on-match='true', md-min-length="0", md-selected-item='newReportCtrl.report.app', md-search-text='newReportCtrl.searchText',
+          md-items='app in newReportCtrl.querySearch(newReportCtrl.searchText)', md-item-text='app.name', md-require-match='', md-input-name="appInput" md-floating-label="Labs App")
+            md-item-template
+              span(md-highlight-text="newReportCtrl.searchText" md-highlight-flags="ig") {{app.name}} ({{app.id}})
+            md-not-found No App matching "{{newReportCtrl.searchText}}" were found.
+            div(ng-messages='reportFeatureForm.appInput.$error' ng-if="reportFeatureForm.appInput.$touched")
+          md-input-container.md-block
+            label Summary
+            textarea(ng-model='newReportCtrl.report.summary', md-maxlength='60', ng-required='true')
+          md-input-container.md-block
+            label Description
+            textarea(ng-model='newReportCtrl.report.desc', md-maxlength='2000', ng-required='true')
+          .md-subheader Attachments:
+          .drop-box(ngf-drop, ngf-select, ngf-multiple="true", ng-model="newReportCtrl.files", ngf-keep="true", multiple, ngf-drag-over-class="'dragover'", accept="image/*", ngf-pattern="'image/*'", ngf-max-files="{{5 - newReportCtrl.attachmentsNumber()}}", ngf-max-size='1MB') Drop images here or click to upload
+          div(ngf-no-file-drop) File Drag/Drop is not supported for this browser
+          .md-subheader.cplant-images-preview-subheader Preview ({{newReportCtrl.attachmentsNumber() + newReportCtrl.uploadFileNumber()}}/5):
+          div.cplant-preview-container(layout='row')
+            div(ng-repeat="f in newReportCtrl.report.attachments", flex='20')
+              md-button.md-icon-button(ng-click="newReportCtrl.removeAttachment(f)")
+                md-icon(md-svg-src='assets/images/baseline-close.svg')
+              img.cplant-image-preview(src="{{f}}", flex='100')
+            div(ng-repeat="f in newReportCtrl.files", flex='20')
+              md-button.md-icon-button(ng-click="newReportCtrl.removeUploadFile(f)")
+                md-icon(md-svg-src='assets/images/baseline-close.svg')
+              img.cplant-image-preview(ngf-src="!f.$error && f", ngf-resize="{quality: 0.9}", flex='100')
+      md-dialog-actions(layout='row')
+        md-button(type='reset') Reset
+        md-button(type='submit', ng-click='newReportCtrl.submit(reportFeatureForm)') Submit
+     
