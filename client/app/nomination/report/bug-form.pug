@@ -34,7 +34,7 @@
                 md-icon(md-svg-src='assets/images/baseline-close.svg')
               img.cplant-image-preview(ngf-src="!f.$error && f", ngf-resize="{quality: 0.9}", flex='100')
       md-dialog-actions(layout='row')
-        md-button(type='reset') Reset
+        md-button(ng-click='newReportCtrl.reset(reportBugForm)') Reset
         md-button(type='submit', ng-click='newReportCtrl.submit(reportBugForm)') Submit
             
         

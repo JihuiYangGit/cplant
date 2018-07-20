@@ -80,7 +80,7 @@ angular.module('cplantApp').controller('newAppCtrl', ['$mdDialog', '$mdToast', '
 
   function init() {
     if (self.locals && self.locals.proposal) {
-      self.proposal = self.locals.proposal;
+      self.proposal = Object.assign({}, self.locals.proposal);
 
       self.proposal.optionalQuestions = self.proposal.optionalQuestions || {};
 

@@ -102,6 +102,6 @@
             textarea(ng-model='newAppDialogCtrl.proposal.requiredQuestions.contacts', ng-required='true')
 
       md-dialog-actions(layout='row')
-            md-button(type='reset', ng-click='newAppDialogCtrl.reset(proposalForm)') Reset
+            md-button(ng-click='newAppDialogCtrl.reset(proposalForm)') Reset
             md-button(type='submit', ng-click='newAppDialogCtrl.submit(proposalForm)' aria-label='Submit Proposal') Submit
     

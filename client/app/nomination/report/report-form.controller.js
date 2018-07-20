@@ -58,12 +58,12 @@ angular.module('cplantApp').controller('newBugCtrl', ['$mdDialog', '$mdToast', '
   });
 
   function init() {
-    self.selectedApp = null;
-    self.searchText = '';
-
     if(self.locals && self.locals.report) {
-      self.report = self.locals.report;
+      self.report = Object.assign({}, self.locals.report);
+      self.selectedApp = self.report.app;
     } else {
+      self.selectedApp = null;
+      self.searchText = '';
       self.report = {
         app: null,
         summary: '',
