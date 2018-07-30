@@ -1,4 +1,4 @@
-angular.module('cplantApp').factory('labsService', ['$http', '$cookies','$q', function ($http, $cookies, $q) {
+angular.module('cplantApp').factory('labsService', ['$http', '$cookies', '$q', function ($http, $cookies, $q) {
   'use strict';
   var apps = null;
 
@@ -9,7 +9,7 @@ angular.module('cplantApp').factory('labsService', ['$http', '$cookies','$q', fu
           return $q.reject(res.data.msg);
         }
 
-        if(apps) {
+        if (apps) {
           return $q.resolve(apps);
         }
 
@@ -18,17 +18,37 @@ angular.module('cplantApp').factory('labsService', ['$http', '$cookies','$q', fu
       });
   }
 
-  // TODO Pass data by cookie is a bad implementation, should be fix in the future.
+  // TODO pass data by cookie is a bad implementation, should to be fix in the future.
   function getUser() {
     return $cookies.get('red-hat-cplant-user');
   }
 
   function isAdmin() {
-    return !!$cookies.get('redhat-red-hat-cplant-admin');
+    return !!$cookies.get('red-hat-cplant-admin');
   }
-  
+
   function signOut() {
     window.location.href = 'api/labs/signOut';
+  }
+
+  function createTrello(nomination) {
+    if (nomination.type === 'PROPOSAL') {
+      return $http.post('api/labs/trello/proposal/' + nomination._id)
+        .then(function (res) {
+          if (res.data.err) {
+            return $q.reject(res.data.msg);
+          }
+          return res.data;
+        });
+    } else if (nomination.type === 'BUG' || nomination.type === 'FEATURE') {
+      return $http.post('api/labs/trello/report/' + nomination._id)
+        .then(function (res) {
+          if (res.data.err) {
+            return $q.reject(res.data.msg);
+          }
+          return res.data;
+        });
+    }
   }
 
   return {
@@ -36,5 +56,6 @@ angular.module('cplantApp').factory('labsService', ['$http', '$cookies','$q', fu
     getUser,
     isAdmin,
     signOut,
+    createTrello
   };
 }]);

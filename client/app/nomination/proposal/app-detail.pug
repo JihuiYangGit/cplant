@@ -62,7 +62,7 @@
           p {{appDetailCtrl.proposal.optionalQuestions.relatedKBaseRes}}
           md-divider
     md-dialog-actions(layout='row')
-      md-button(ng-click='appDetailCtrl.edit($event)') Edit
-      md-button Accept
-      md-button Reject
+      md-button(ng-click='appDetailCtrl.edit($event)', ng-disabled='appDetailCtrl.isCompletedAccept()') Edit
+      md-button(ng-click='appDetailCtrl.accept()', ng-if='appDetailCtrl.isAdmin()', ng-disabled='appDetailCtrl.isCompletedAccept()') Accept
+      md-button(ng-click='appDetailCtrl.reject()', ng-if='appDetailCtrl.isAdmin()', ng-disabled='appDetailCtrl.isCompletedAccept() || appDetailCtrl.isCompletedReject()') Reject
         

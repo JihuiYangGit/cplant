@@ -1,4 +1,4 @@
-angular.module('cplantApp').controller('appDetailCtrl', ['$mdDialog', '$mdToast', 'proposalService', function ($mdDialog, $mdToast, proposalService) {
+angular.module('cplantApp').controller('appDetailCtrl', ['$mdDialog', '$mdToast', 'proposalService', 'labsService', function ($mdDialog, $mdToast, proposalService, labsService) {
   'use strict';
   var self = this;
 
@@ -14,6 +14,35 @@ angular.module('cplantApp').controller('appDetailCtrl', ['$mdDialog', '$mdToast'
 
   self.cancel = function () {
     $mdDialog.cancel();
+  };
+
+  self.isAdmin = function() {
+    return labsService.isAdmin();
+  };
+
+  self.accept = function() {
+    labsService.createTrello(self.proposal)
+      .then(function (data) {
+        $mdToast.showSimple('Success!');
+      });
+    self.cancel();
+  };
+
+  self.reject = function() {
+    self.proposal.status = 'REJECTED';
+    proposalService.update(self.proposal)
+      .then(function () {
+        $mdToast.showSimple('Success');
+      });
+    self.cancel();
+  };
+
+  self.isCompletedAccept = function() {
+    return self.proposal.status === 'ACCEPTED';
+  };
+
+  self.isCompletedReject = function() {
+    return self.proposal.status === 'REJECTED';
   };
 
   self.edit = function(ev) {

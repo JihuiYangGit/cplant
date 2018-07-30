@@ -97,9 +97,7 @@ const ProposalSchema = new Schema({
   },
 
   // TODO Add other field for user to track status in Trello
-  trello: {
-    id: String,
-  },
+  trelloCardId: String,
 
   // Kerberos Id
   userId: String,

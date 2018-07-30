@@ -63,16 +63,22 @@ angular.module('cplantApp').controller('mainCtrl', ['$mdDialog', 'proposalServic
 
   self.showProposal = function () {
     query.cond.type = 'PROPOSAL';
+    query.page = 1;
+    query.limit = 10;
     showFellowList();
   };
 
   self.showFeature = function () {
     query.cond.type = 'FEATURE';
+    query.page = 1;
+    query.limit = 10;
     showFellowList();
   };
 
   self.showBug = function () {
     query.cond.type = 'BUG';
+    query.page = 1;
+    query.limit = 10;
     showFellowList();
   };
 

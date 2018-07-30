@@ -8,13 +8,36 @@ angular.module('cplantApp').controller('reportDetailCtrl', ['$mdDialog', '$mdToa
     return labsService.isAdmin();
   };
 
-
   self.hide = function () {
     $mdDialog.hide();
   };
 
   self.cancel = function () {
     $mdDialog.cancel();
+  };
+
+  self.accept = function() {
+    labsService.createTrello(self.report);
+    self.cancel();
+  };
+
+
+  self.reject = function() {
+    self.report.status = 'REJECTED';
+    reportService.update(self.report)
+      .then(function () {
+        $mdToast.showSimple('Success!');
+      });
+    self.cancel();
+  };
+
+
+  self.isCompletedAccept = function() {
+    return self.report.status === 'ACCEPTED';
+  };
+
+  self.isCompletedReject = function() {
+    return self.report.status === 'REJECTED';
   };
 
   self.edit = function (ev) {

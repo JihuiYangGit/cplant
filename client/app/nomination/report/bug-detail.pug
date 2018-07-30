@@ -21,9 +21,9 @@
           a(ng-repeat='url in reportDetailCtrl.report.attachments', href='{{url}}', flex='20', target='_blank')
             img(src='{{url}}')
     md-dialog-actions(layout='row')
-      md-button(ng-click='reportDetailCtrl.edit($event)') Edit
-      md-button(ng-click='reportDetailCtrl.accept()' ng-if='reportDetailCtrl.isAdmin()') Accept
-      md-button(ng-click='reportDetailCtrl.reject()' ng-if='reportDetailCtrl.isAdmin()') Reject
+      md-button(ng-click='reportDetailCtrl.edit($event)', ng-disabled='reportDetailCtrl.isCompletedAccept()') Edit
+      md-button(ng-click='reportDetailCtrl.accept()' ng-if='reportDetailCtrl.isAdmin()', ng-disabled='reportDetailCtrl.isCompletedAccept()') Accept
+      md-button(ng-click='reportDetailCtrl.reject()' ng-if='reportDetailCtrl.isAdmin()', ng-disabled='reportDetailCtrl.isCompletedAccept() || reportDetailCtrl.isCompletedReject()') Reject
            
     
         

@@ -46,10 +46,7 @@ const reportSchema = new Schema({
     default: 'NEW'
   },
 
-  // TODO Add other field for user to track status in Trello
-  trello: {
-    id: String,
-  },
+  trelloCardId: String,
 
   lab: {
     id: String,
