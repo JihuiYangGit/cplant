@@ -5,6 +5,10 @@ const Report = require('../models/report.model');
 function load(req, res, next, id) {
   Report.get(id)
     .then(report => {
+      if(!req.session.admin && req.session.auth !== report.userId) {
+        return next(new Error('Unauthorized request'));
+      }
+
       req.report = report;
       return next();
     })
@@ -18,6 +22,8 @@ function get(req, res) {
 
 function create(req, res, next) {
   let report = new Report(req.body.report);
+
+  report.userId = req.session.auth;
 
   report.attachments = req.files ? req.files
     .map(f => 'uploads/' + f.filename) : [];
@@ -43,26 +49,29 @@ function update(req, res, next) {
 }
 
 function list(req, res, next) {
+  let session = req.session;
+
   let skip = req.query.skip || 0;
   let limit = req.query.limit || 50;
 
-  Report.list(skip, limit)
+  Report.list(session.admin?null:session.auth, skip, limit)
     .then(reports => res.json(reports))
     .catch(err => next(err));
-
 }
 
 
 function all(req, res, next) {
-  Report.all()
+  let session = req.session;
+
+  Report.all(session.admin?null:session.auth)
     .then(reports => res.json(reports))
     .catch(err => next(err));
 }
 
 function remove(req, res, next) {
-  let user = req.user;
-  user.remove()
-    .then(deletedUser => res.json(deletedUser))
+  let report = req.report;
+  report.remove()
+    .then(deletedReport => res.json(deletedReport))
     .catch(err => next(err));
 }
 

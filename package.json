@@ -4,8 +4,10 @@
   "main": "server/app.js",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
     "express": "^4.16.2",
     "express-fileupload": "^0.4.0",
+    "express-session": "latest",
     "grunt": "^1.0.1",
     "grunt-angular-templates": "^1.1.0",
     "grunt-autoprefixer": "^3.0.4",
@@ -37,8 +39,7 @@
     "pug": "^2.0.0-rc.4",
     "q": "^1.5.1",
     "time-grunt": "^1.4.0",
-    "tracer": "^0.8.15",
-    "express-session": "latest"
+    "tracer": "^0.8.15"
   },
   "devDependencies": {
     "connect-livereload": "^0.6.0",

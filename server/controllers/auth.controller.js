@@ -4,6 +4,8 @@ const Admin = require('../auth/admin.model');
 const pkg = require('../../package');
 const appPath = '/labs/' + pkg.name + '/';
 
+// default max age set to 10 minutes
+const DEFAULT_MAX_AGE = 10 * 60 * 1000;
 
 let userInfo = '';
 exports.auth = function (req, res) {
@@ -19,11 +21,19 @@ exports.auth = function (req, res) {
         userInfo = {result: false, msg: err};
         return res.send(userInfo);
       }
+
       if (user) {
         req.session.admin = true;
+        req.session.maxAge = 3 * DEFAULT_MAX_AGE;
+        res.cookie('red-hat-cplant-admin', 'true');
+      } else {
+        req.session.maxAge = DEFAULT_MAX_AGE;
       }
-      req.session.auth = true;
-      return res.redirect(appPath);
+      req.session.auth = result.msg;
+      res.cookie('red-hat-cplant-user', result.msg);
+
+      return res.send(result);
     });
   });
 };
+

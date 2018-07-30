@@ -1,5 +1,16 @@
-angular.module('cplantApp').controller('navCtrl', [function () {
+angular.module('cplantApp').controller('navCtrl', ['labsService', 'avatarService', function (labsService, avatarService) {
   'use strict';
-  this.nominations = [];
-  this.searchText = '';
+  var self = this;
+
+  self.isOpen = false;
+
+  self.getUserName = function () {
+    return labsService.getUser();
+  };
+
+  self.signOut = function () {
+    labsService.signOut();
+  };
+
+  avatarService.generateAvatar(self.getUserName(), 'cplant-nav-avatar');
 }]);

@@ -11,7 +11,7 @@ angular.module('cplantApp').controller('mainCtrl', ['$mdDialog', 'proposalServic
 
   function showFellowList() {
     self.requests.length = 0;
-  // .slice((query.page - 1) * query.limit, query.page * query.limit)
+
     self._requests.filter(value => {
       for (var q in query.cond) {
         if (query.cond.hasOwnProperty(q)) {
@@ -85,7 +85,6 @@ angular.module('cplantApp').controller('mainCtrl', ['$mdDialog', 'proposalServic
   self.logPagination = function (page, limit) {
     query.page = page;
     query.limit = limit;
- //   showFellowList();
   };
 
   self.detail = function (f, ev) {

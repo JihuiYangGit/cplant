@@ -101,14 +101,9 @@ const ProposalSchema = new Schema({
     id: String,
   },
 
-  user: {
-    sso_username: String, // jshint ignore:line
-    first_name: String, // jshint ignore:line
-    last_name: String, // jshint ignore:line
-    account_number: String, // jshint ignore:line
-    email: String, // jshint ignore:line
-    is_internal: Boolean // jshint ignore:line
-  }
+  // Kerberos Id
+  userId: String,
+
 }, {
   // Mongoose will assign createdAt and updatedAt fields to the Schema and handle them.
   timestamps: true
@@ -118,25 +113,25 @@ ProposalSchema.statics = {
   get: function (id) {
     return this.findById(id)
       .exec()
-      .then(function (user) {
-        if (user) {
-          return user;
+      .then(function (proposal) {
+        if (proposal) {
+          return proposal;
         }
         const err = new Error('No Such Proposal');
         return Promise.reject(err);
       });
   },
 
-  list: function (skip = 0, limit = 50) {
-    return this.find()
+  list: function (userId, skip = 0, limit = 50) {
+    return this.find(userId ? {userId: userId} : null)
       .sort({createdAt: -1})
       .skip(+skip)
       .limit(+limit)
       .exec();
   },
 
-  all: function () {
-    return this.find()
+  all: function (userId) {
+    return this.find(userId ? {userId: userId} : null)
       .sort({createdAt: -1})
       .exec();
   }

@@ -22,8 +22,8 @@
             img(src='{{url}}')
     md-dialog-actions(layout='row')
       md-button(ng-click='reportDetailCtrl.edit($event)') Edit
-      md-button(ng-click='reportDetailCtrl.accept()') Accept
-      md-button(ng-click='reportDetailCtrl.reject()') Reject
+      md-button(ng-click='reportDetailCtrl.accept()' ng-if='reportDetailCtrl.isAdmin()') Accept
+      md-button(ng-click='reportDetailCtrl.reject()' ng-if='reportDetailCtrl.isAdmin()') Reject
            
     
         

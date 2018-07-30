@@ -4,6 +4,7 @@ const path = require('path');
 const http = require('http');
 
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const express = require('express');
 const session = require('express-session');
 const moment = require('moment');
@@ -22,6 +23,11 @@ if (config.env !== 'production') {
   app.use(appPath, express.static(path.resolve('.tmp')));
 }
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.use(cookieParser());
 app.use(session({
   secret: 'customer portal labs',
   resave: false,
@@ -32,13 +38,11 @@ app.use(session({
 mongoose.Promise = global.Promise;
 mongoose.connect(config.mongo.uri, config.mongo.options);
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
+app.use(appPath + 'bower_components/', express.static(path.resolve(config.publicDir + '/bower_components')));
+app.use(appPath + 'assets/', express.static(path.resolve(config.publicDir + '/assets')));
 
 app.use(appPath + 'login', function (req, res, next) {
-  if(req.session.auth) {
+  if (req.session.auth) {
     return res.redirect(appPath);
   }
   next();
@@ -46,15 +50,15 @@ app.use(appPath + 'login', function (req, res, next) {
 
 
 app.use(function (req, res, next) {
-  if(!req.session.auth) {
+  if (!req.session.auth) {
     return res.redirect(appPath + 'login');
   }
   next();
 });
 
-app.use(appPath + 'api', routes);
+ app.use(appPath, express.static(path.resolve(config.publicDir)));
 
-app.use(appPath, express.static(path.resolve(config.publicDir)));
+app.use(appPath + 'api', routes);
 
 app.get('/', function (req, res) {
   res.send(200);

@@ -1,8 +1,12 @@
-angular.module('cplantApp').controller('reportDetailCtrl', ['$mdDialog', '$mdToast', 'reportService', function ($mdDialog, $mdToast, reportService) {
+angular.module('cplantApp').controller('reportDetailCtrl', ['$mdDialog', '$mdToast', 'reportService', 'labsService', function ($mdDialog, $mdToast, reportService, labsService) {
   'use strict';
   var self = this;
 
   self.report = self.locals.report;
+
+  self.isAdmin = function() {
+    return labsService.isAdmin();
+  };
 
 
   self.hide = function () {

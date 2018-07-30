@@ -1,43 +1,43 @@
 div(layout-gt-sm='row', layout-sm='column', layout-fill, ng-controller='mainCtrl as mainCtrl')
   div(layout-gt-sm='column', flex-gt-sm='20', flex-sm, layout-align='none none').cplant-action-cards
-    md-card.cplant-user-content-card.cplant-user-content-app-card.hvr-glow(ng-controller='newAppCtrl as newAppCtrl', ng-click='newAppCtrl.create($event)', layout-padding)
+    md-card.cplant-user-content-card.cplant-user-content-app-card.hvr-glow(ng-controller='newAppCtrl as newAppCtrl', ng-click='newAppCtrl.create($event)', layout-padding, flex='none')
       div.cplant-user-app
         md-card-title
           div.cplant-card-top-icon-container.cplant-app-card-top-icon-container.md-whiteframe-2dp(layout-align='center center')
             md-icon(md-svg-src='assets/images/baseline-add.svg')
           span(flex)
-          span New App
+          span.cplant-card-top-text New App
         md-divider
         md-card-content(layout="row", layout-align="start center")
           .cplant-card-content-icon-container
             md-icon(md-svg-src='assets/images/baseline-create.svg')
           div Request a New App
-    md-card.cplant-user-content-card.cplant-user-content-feature-card.hvr-glow(ng-controller='newFeatureCtrl as newFeatureCtrl', ng-click='newFeatureCtrl.create($event)', layout-padding)
+    md-card.cplant-user-content-card.cplant-user-content-feature-card.hvr-glow(ng-controller='newFeatureCtrl as newFeatureCtrl', ng-click='newFeatureCtrl.create($event)', layout-padding, flex='none')
       div.cplant-user-feature
         md-card-title
           div.cplant-card-top-icon-container.cplant-feature-card-top-icon-container.md-whiteframe-2dp(layout-align='center center')
             md-icon(md-svg-src='assets/images/baseline-highlight.svg')
           span(flex)
-          span New Feature
+          span.cplant-card-top-text New Feature
         md-divider
         md-card-content(layout="row", layout-align="start center")
           .cplant-card-content-icon-container
             md-icon(md-svg-src='assets/images/baseline-create.svg')
           div Request a New Feature
-    md-card.cplant-user-content-card.cplant-user-content-bug-card.hvr-glow(ng-controller='newBugCtrl as newBugCtrl', ng-click='newBugCtrl.create($event)', layout-padding)
+    md-card.cplant-user-content-card.cplant-user-content-bug-card.hvr-glow(ng-controller='newBugCtrl as newBugCtrl', ng-click='newBugCtrl.create($event)', layout-padding, flex='none')
       div.cplant-user-bug
         md-card-title
           div.cplant-card-top-icon-container.cplant-bug-card-top-icon-container.md-whiteframe-2dp(layout-align='center center')
             md-icon(md-svg-src='assets/images/baseline-bug_report.svg')
           span(flex)
-          span Bug
+          span.cplant-card-top-text Bug
         md-divider
         md-card-content(layout="row", layout-align="start center")
           .cplant-card-content-icon-container
             md-icon(md-svg-src='assets/images/baseline-create.svg')
           div Report a Bug
   div(layout-gt-xm='column', flex-gt-sm='80', flex-sm)
-    md-card.cplant-user-content-card.hvr-glow()
+    md-card.cplant-user-content-card.hvr-glow
       md-card-title.cplant-user-fellow.md-whiteframe-2dp(flex='none', layout='row', layout-align='start center')
         span.md-headline ALL REQUESTS
         span(flex)

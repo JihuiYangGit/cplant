@@ -6,6 +6,10 @@ const Proposal = require('../models/proposal.model');
 function load(req, res, next, id) {
   Proposal.get(id)
     .then(proposal => {
+      if(!req.session.admin && req.session.auth !== proposal.userId) {
+        return next(new Error('Unauthorized request'));
+      }
+
       req.proposal = proposal;
       return next();
     })
@@ -19,6 +23,7 @@ function get(req, res) {
 
 function create(req, res, next) {
   let proposal = new Proposal(req.body);
+  proposal.userId = req.session.auth;
 
   proposal.save()
     .then(savedProposal => res.json(savedProposal))
@@ -37,10 +42,12 @@ function update(req, res, next) {
 }
 
 function list(req, res, next) {
+  let session = req.session;
+
   let skip = req.query.skip || 0;
   let limit = req.query.limit || 50;
 
-  Proposal.list(skip, limit)
+  Proposal.list(session.admin?null:session.auth, skip, limit)
     .then(proposals => res.json(proposals))
     .catch(err => next(err));
 
@@ -48,15 +55,19 @@ function list(req, res, next) {
 
 
 function all(req, res, next) {
-  Proposal.all()
-    .then(proposals => res.json(proposals))
+  let session = req.session;
+
+  Proposal.all(session.admin?null:session.auth)
+    .then(proposals => {
+      res.json(proposals);
+    })
     .catch(err => next(err));
 }
 
 function remove(req, res, next) {
-  let user = req.user;
-  user.remove()
-    .then(deletedUser => res.json(deletedUser))
+  let proposal = req.proposal;
+  proposal.remove()
+    .then(deletedProposal => res.json(deletedProposal))
     .catch(err => next(err));
 }
 

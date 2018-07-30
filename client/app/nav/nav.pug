@@ -1,4 +1,4 @@
-md-toolbar.cplant-nav.md-whiteframe-6dp
+md-toolbar.cplant-nav.md-whiteframe-6dp(ng-controller='navCtrl as navCtrl')
   .md-toolbar-tools
     img.cplant-nav-logo-crop(src='assets/images/redhat-lg-black.png')
     md-divider.cplant-vertical-divider.cplant-nav-divider
@@ -7,7 +7,12 @@ md-toolbar.cplant-nav.md-whiteframe-6dp
         .primary-title.flex Customer Portal Labs 
         .secondary-title.flex Nomination Tool
     span.flex(flex)
-    button.md-icon-button.md-button(hide-xs)
-      md-icon.md-avatar(md-svg-src='assets/images/useravatar.svg')
+    md-menu.cplant-nav-avatar-container(md-offset="0 50")
+      canvas#cplant-nav-avatar(hide-xs, md-menu-origin, ng-click='$mdMenu.open()')
+      md-menu-content(width=2, ng-mouseleave="$mdMenu.close()")
+        md-menu-item
+          md-button(ng-click='navCtrl.signOut()')
+            md-icon(md-svg-src='assets/images/baseline-exit_to_app.svg')
+            span Sign Out
 
       

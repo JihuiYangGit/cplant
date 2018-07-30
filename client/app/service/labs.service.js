@@ -1,6 +1,5 @@
-angular.module('cplantApp').factory('labsService', ['$http', '$q', function ($http, $q) {
+angular.module('cplantApp').factory('labsService', ['$http', '$cookies','$q', function ($http, $cookies, $q) {
   'use strict';
-
   var apps = null;
 
   function all() {
@@ -19,16 +18,23 @@ angular.module('cplantApp').factory('labsService', ['$http', '$q', function ($ht
       });
   }
 
+  // TODO Pass data by cookie is a bad implementation, should be fix in the future.
   function getUser() {
-
+    return $cookies.get('red-hat-cplant-user');
   }
 
   function isAdmin() {
-    return false  ;
+    return !!$cookies.get('redhat-red-hat-cplant-admin');
+  }
+  
+  function signOut() {
+    window.location.href = 'api/labs/signOut';
   }
 
   return {
     all,
-    isAdmin
+    getUser,
+    isAdmin,
+    signOut,
   };
 }]);
