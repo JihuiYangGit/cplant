@@ -29,10 +29,12 @@ router.route('/signOut')
   });
 
 router.route('/trello/proposal/:proposalId')
-  .post(trelloCtrl.createProposalTrello);
+  .post(trelloCtrl.createProposalTrello)
+  .put(trelloCtrl.updateProposalTrello);
 
 router.route('/trello/report/:reportId')
-  .post(trelloCtrl.createReportTrello);
+  .post(trelloCtrl.createReportTrello)
+  .put(trelloCtrl.updateReportTrello);
 
 router.param('proposalId', proposalCtrl.load);
 router.param('reportId', reportCtrl.load);

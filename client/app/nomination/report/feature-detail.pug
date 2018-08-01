@@ -5,6 +5,7 @@
       span(flex)
       md-button.md-icon-button(ng-click='reportDetailCtrl.cancel()')
         md-icon(md-svg-src='assets/images/ic-exit.svg')
+    md-progress-linear(md-mode="indeterminate", ng-hide='!reportDetailCtrl.startProgress')
     md-dialog-content
       .md-dialog-content
         h5 App name
@@ -21,9 +22,14 @@
           a(ng-repeat='url in reportDetailCtrl.report.attachments', href='{{url}}', flex='20', target='_blank')
             img(src='{{url}}')
     md-dialog-actions(layout='row')
-      md-button(ng-click='reportDetailCtrl.edit($event)', ng-disabled='reportDetailCtrl.isCompletedAccept()') Edit
-      md-button(ng-click='reportDetailCtrl.accept()' ng-if='reportDetailCtrl.isAdmin()', ng-disabled='reportDetailCtrl.isCompletedAccept()') Accept
-      md-button(ng-click='reportDetailCtrl.reject()' ng-if='reportDetailCtrl.isAdmin()', ng-disabled='reportDetailCtrl.isCompletedAccept() || reportDetailCtrl.isCompletedReject()') Reject
+      md-input-container(ng-if='reportDetailCtrl.isAdmin()')
+        label Status
+        md-select(ng-model='reportDetailCtrl.reportStatus')
+          md-option(value='NEW') NEW
+          md-option(value='ACCEPTED') ACCEPTED
+          md-option(value='REJECTED') REJECTED
+      md-button(ng-click='reportDetailCtrl.edit($event)', ng-disabled='reportDetailCtrl.isCompletedAccept()', ng-if='!reportDetailCtrl.isAdmin()') Edit
+      md-button(ng-if='reportDetailCtrl.isAdmin()', ng-click='reportDetailCtrl.updateStatus()' ng-disabled='reportDetailCtrl.reportStatus === reportDetailCtrl.report.status || reportDetailCtrl.disableConfirm') Confirm
            
     
         

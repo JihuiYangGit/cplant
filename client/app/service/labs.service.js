@@ -51,11 +51,32 @@ angular.module('cplantApp').factory('labsService', ['$http', '$cookies', '$q', f
     }
   }
 
+  function updateTrello(nomination) {
+    if (nomination.type === 'PROPOSAL') {
+      return $http.put('api/labs/trello/proposal/' + nomination._id, {newStatus: nomination.status})
+        .then(function (res) {
+          if (res.data.err) {
+            return $q.reject(res.data.msg);
+          }
+          return res.data;
+        });
+    } else if (nomination.type === 'BUG' || nomination.type === 'FEATURE') {
+      return $http.put('api/labs/trello/report/' + nomination._id, {newStatus: nomination.status})
+        .then(function (res) {
+          if (res.data.err) {
+            return $q.reject(res.data.msg);
+          }
+          return res.data;
+        });
+    }
+  }
+
   return {
     all,
     getUser,
     isAdmin,
     signOut,
-    createTrello
+    createTrello,
+    updateTrello
   };
 }]);

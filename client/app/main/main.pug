@@ -71,4 +71,4 @@ div(layout-gt-sm='row', layout-sm='column', layout-fill, ng-controller='mainCtrl
                 td(md-cell) {{f.summary}}
                 td(md-cell) {{f.status}}
                 td(md-cell) {{f.updatedAt|date:'yyyy-MM-dd HH:mm'}}
-        md-table-pagination(md-limit="mainCtrl.query.limit", md-page="mainCtrl.query.page" md-total="{{mainCtrl._requests.length}}" md-page-select="true" md-boundary-links="true" md-on-paginate="mainCtrl.logPagination")
+        md-table-pagination(md-limit="mainCtrl.query.limit", md-page="mainCtrl.query.page" md-total="{{mainCtrl.showLength}}" md-page-select="true" md-boundary-links="true" md-on-paginate="mainCtrl.logPagination")

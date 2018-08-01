@@ -52,6 +52,10 @@ md-input-container:not(.md-input-invalid).md-input-focused md-icon {
   md-divider {
     border-top-color: rgba(0, 0, 0, 0.06) !important;
   }
+
+  md-select {
+    margin: 0;
+  }
 }
 
 .drop-box {
@@ -104,5 +108,40 @@ md-input-container:not(.md-input-invalid).md-input-focused md-icon {
     img {
       width: 100%;
     }
+  }
+}
+
+#appDetailDialog {
+  md-select:not([disabled]):focus .md-select-value {
+    border-bottom-color: #5cb85c;
+  }
+
+  .md-bar {
+    background: #5cb85c;
+  }
+}
+
+#featureDetailDialog {
+  md-select:not([disabled]):focus .md-select-value {
+    border-bottom-color: #428bca;
+  }
+
+  .md-bar {
+    background: #428bca;
+  }
+
+  .md-button:not([disabled]) {
+    font-weight: 400;
+    color: #428bca;
+  }
+}
+
+#bugDetailDialog {
+  md-select:not([disabled]):focus .md-select-value {
+    border-bottom-color: #e35d6a;
+  }
+
+  .md-bar {
+    background: #e35d6a;
   }
 }

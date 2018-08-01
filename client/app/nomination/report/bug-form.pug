@@ -21,7 +21,7 @@
             label Description
             textarea(ng-model='newReportCtrl.report.desc', md-maxlength='2000', ng-required='true')
           .md-subheader Attachments:
-          .drop-box(ngf-drop, ngf-select, ngf-multiple="true", ng-model="newReportCtrl.files", ngf-keep="true", multiple, ngf-drag-over-class="'dragover'", accept="image/*", ngf-pattern="'image/*'", ngf-max-files="{{5 - newReportCtrl.attachmentsNumber()}}", ngf-max-size='1MB') Drop images here or click to upload
+          .drop-box(ngf-drop, ngf-select, ngf-multiple="true", ng-model="newReportCtrl.files", ngf-keep="true", multiple, ngf-drag-over-class="'dragover'", accept="image/*", ngf-pattern="'image/*'", ngf-max-files="{{5 - newReportCtrl.attachmentsNumber()}}", ngf-max-size='1MB') Drop images here or click to upload (Max image size is 1MB)
           div(ngf-no-file-drop) File Drag/Drop is not supported for this browser
           .md-subheader.cplant-images-preview-subheader Preview ({{newReportCtrl.attachmentsNumber() + newReportCtrl.uploadFileNumber()}}/5):
           div.cplant-preview-container(layout='row')
