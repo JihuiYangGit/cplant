@@ -1,6 +1,6 @@
 'use strict';
 const auth = require('../auth');
-const Admin = require('../auth/admin.model');
+const Admin = require('../models/admin.model');
 const pkg = require('../../package');
 const appPath = '/labs/' + pkg.name + '/';
 

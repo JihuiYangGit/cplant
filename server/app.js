@@ -12,7 +12,7 @@ const mongoose = require('mongoose');
 
 const pkg = require('../package');
 const routes = require('./routes/index.route');
-const auth = require('./auth/auth.route');
+const auth = require('./routes/auth.route');
 // contains all configuration
 const config = require('./config/environment');
 

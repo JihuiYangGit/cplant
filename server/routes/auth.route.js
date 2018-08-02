@@ -2,7 +2,7 @@
 const path = require('path');
 const express = require('express');
 const authCtrl = require('../controllers/auth.controller');
-const config = require('../config/environment');
+const config = require('../config/environment/index');
 
 const router = express.Router();
 
