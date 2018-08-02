@@ -28,7 +28,7 @@
           md-option(value='NEW') NEW
           md-option(value='ACCEPTED') ACCEPTED
           md-option(value='REJECTED') REJECTED
-      md-button(ng-click='reportDetailCtrl.edit($event)', ng-disabled='reportDetailCtrl.isCompletedAccept()', ng-if='!reportDetailCtrl.isAdmin()') Edit
-      md-button(ng-if='reportDetailCtrl.isAdmin()', ng-click='reportDetailCtrl.updateStatus()' ng-disabled='reportDetailCtrl.reportStatus === reportDetailCtrl.report.status || reportDetailCtrl.disableConfirm') Confirm           
+      md-button(ng-click='reportDetailCtrl.edit($event)', ng-disabled='reportDetailCtrl.isCompletedAccept()') Edit
+      md-button(ng-if='reportDetailCtrl.isAdmin()', ng-click='reportDetailCtrl.updateStatus()' ng-disabled='reportDetailCtrl.reportStatus === reportDetailCtrl.report.status || reportDetailCtrl.disableConfirm') Change Status           
     
         

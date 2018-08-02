@@ -26,11 +26,15 @@ angular.module('cplantApp').controller('appDetailCtrl', ['$mdDialog', '$mdToast'
     self.disableConfirm = true;
     labsService
       .createTrello(self.proposal)
-      .then(function () {
+      .then(function (data) {
         self.proposal.status = 'ACCEPTED';
         self.startProgress = false;
         $mdToast.showSimple('Success!');
         self.cancel();
+
+        if(data.result) {
+          self.report.trelloCardId = data.trelloCardId;
+        }
       }, function (data) {
         $mdToast.showSimple('Failed!' + data);
         self.disableConfirm = false;
