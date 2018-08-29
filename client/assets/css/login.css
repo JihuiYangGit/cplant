@@ -1,0 +1,63 @@
+/* roboto-300 - latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  src: url('../fonts/roboto-v18-latin-300.eot'); /* IE9 Compat Modes */
+  src: local('Roboto Light'), local('Roboto-Light'),
+  url('../fonts/roboto-v18-latin-300.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../fonts/roboto-v18-latin-300.woff2') format('woff2'), /* Super Modern Browsers */
+  url('../fonts/roboto-v18-latin-300.woff') format('woff'), /* Modern Browsers */
+  url('../fonts/roboto-v18-latin-300.ttf') format('truetype'), /* Safari, Android, iOS */
+  url('../fonts/roboto-v18-latin-300.svg#Roboto') format('svg'); /* Legacy iOS */
+}
+/* roboto-regular - latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/roboto-v18-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Roboto'), local('Roboto-Regular'),
+  url('../fonts/roboto-v18-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../fonts/roboto-v18-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+  url('../fonts/roboto-v18-latin-regular.woff') format('woff'), /* Modern Browsers */
+  url('../fonts/roboto-v18-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+  url('../fonts/roboto-v18-latin-regular.svg#Roboto') format('svg'); /* Legacy iOS */
+}
+/* roboto-500 - latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: url('../fonts/roboto-v18-latin-500.eot'); /* IE9 Compat Modes */
+  src: local('Roboto Medium'), local('Roboto-Medium'),
+  url('../fonts/roboto-v18-latin-500.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../fonts/roboto-v18-latin-500.woff2') format('woff2'), /* Super Modern Browsers */
+  url('../fonts/roboto-v18-latin-500.woff') format('woff'), /* Modern Browsers */
+  url('../fonts/roboto-v18-latin-500.ttf') format('truetype'), /* Safari, Android, iOS */
+  url('../fonts/roboto-v18-latin-500.svg#Roboto') format('svg'); /* Legacy iOS */
+}
+
+body {
+  background: #e8e8e8;
+}
+
+.cplant-login-labs-logo-container {
+  background-image: url('../images/labs-logo-brush-bg-01.png');
+  background-repeat: no-repeat;
+  background-position: center 40px;
+}
+
+md-input-container.md-default-theme:not(.md-input-invalid).md-input-focused label,
+md-input-container:not(.md-input-invalid).md-input-focused label,
+md-input-container.md-default-theme:not(.md-input-invalid).md-input-focused md-icon,
+md-input-container:not(.md-input-invalid).md-input-focused md-icon {
+  color: #000;
+}
+
+md-input-container.md-default-theme:not(.md-input-invalid).md-input-focused .md-input,
+md-input-container:not(.md-input-invalid).md-input-focused .md-input,
+md-input-container.md-default-theme:not(.md-input-invalid).md-input-resized .md-input,
+md-input-container:not(.md-input-invalid).md-input-resized .md-input {
+  border-color: #000;
+}

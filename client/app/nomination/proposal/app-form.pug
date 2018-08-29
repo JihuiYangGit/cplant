@@ -1,0 +1,107 @@
+.md-dialog-container.cplant-dialog-form-container#newAppDialog
+  md-dialog(aria-label='New App Proposal')
+    form(name='proposalForm')
+      md-toolbar.md-toolbar-tools
+        h2 New APP Proposal
+        span(flex)
+        md-button.md-icon-button(ng-click='newAppDialogCtrl.cancel()', aria-label='cancel')
+          md-icon(md-svg-src='assets/images/ic-exit.svg')
+      md-dialog-content
+        .md-dialog-content
+          md-input-container.md-block
+            label App Name
+            input(ng-model='newAppDialogCtrl.proposal.name', md-maxlength='40', ng-required='true')
+          md-input-container.md-block
+            label Summary
+            textarea(ng-model='newAppDialogCtrl.proposal.summary', md-maxlength='150', ng-required='true')
+          md-input-container.md-block
+            label Description
+            textarea(ng-model='newAppDialogCtrl.proposal.desc', md-maxlength='2000', ng-required='true')
+          .md-subheader Which Red Hat product will this tool help with? *
+          md-input-container.md-input-has-value
+            md-radio-group(ng-model='newAppDialogCtrl.proposal.requiredQuestions.product', ng-required='true', name='productRb')
+              md-radio-button(value='Red Hat Enterprise Linux') Red Hat Enterprise Linux
+              md-radio-button(value='JBoss') JBoss
+              md-radio-button(value='Red Hat Virtualization') Red Hat Virtualization
+              md-radio-button(value='Cloud') Cloud
+              md-radio-button(value='Mobile') Mobile
+              md-radio-button(value='{{newAppDialogCtrl.otherProduct}}')
+                label Other
+                input(ng-model='newAppDialogCtrl.otherProduct')
+            div(ng-messages='proposalForm.productRb.$error')
+              div(ng-message='required') This field has an input error
+          .md-subheader Which SBR does this tool belong to? *
+          md-input-container
+            md-radio-group(ng-model='newAppDialogCtrl.proposal.requiredQuestions.sbr', required)
+              md-radio-button(value='Kernel') Kernel
+              md-radio-button(value='Networking') Networking
+              md-radio-button(value='Storage') Storage
+              md-radio-button(value='Virtulualization') Virtulualization
+              md-radio-button(value='JBoss Base AS') JBoss Base AS
+              md-radio-button(value='Ceph') Ceph
+              md-radio-button(value='Stack') Stack
+              md-radio-button(value='{{newAppDialogCtrl.otherSbr}}')
+                label Other
+                input(ng-model='newAppDialogCtrl.otherSbr')
+          .md-subheader Who will use this tool? *
+          .cplant-checkbox-container(layout='column')
+            md-checkbox(ng-click='newAppDialogCtrl.targetUsersCheckBoxClick(0)', ng-checked='newAppDialogCtrl.targetUserSelectIndex[0]') Customers
+            md-checkbox(ng-click='newAppDialogCtrl.targetUsersCheckBoxClick(1)', ng-checked='newAppDialogCtrl.targetUserSelectIndex[1]') Support Delivery / Strategic Customer Engagement teams
+            md-checkbox(ng-click='newAppDialogCtrl.targetUsersCheckBoxClick(2)', ng-checked='newAppDialogCtrl.targetUserSelectIndex[2]')
+              md-input-container
+                label Other
+                input(ng-model='newAppDialogCtrl.otherTargetUser', ng-click='newAppDialogCtrl.otherTargetUserClick($event)', ng-change='newAppDialogCtrl.otherTargetUserChange()')
+          .md-subheader How many potential users would this tool have?(Optional)
+          md-input-container
+            label Do your best guess
+            input(ng-model='newAppDialogCtrl.proposal.optionalQuestions.expectUsers')
+          .md-subheader How many cases were opened in the last 30 days related to the problem that the tool targets?(Optional)
+          md-input-container
+            md-radio-group(ng-model='newAppDialogCtrl.proposal.optionalQuestions.caseFrequency')
+              md-radio-button(value='1000+') 1000+
+              md-radio-button(value='500 - 1000') 500 - 1000
+              md-radio-button(value='100 - 500') 100 - 500
+              md-radio-button(value='50 - 100') 50 - 100
+              md-radio-button(value='0 - 50') 0 - 50
+              md-radio-button(value='{{newAppDialogCtrl.otherCaseFrequency}}')
+                label Other
+                input(ng-model='newAppDialogCtrl.otherCaseFrequency')
+          .md-subheader Can this tool help decrease case volume in last question? If yes, how many cases this tool would help resolve in a month approximately?(Optional)
+          md-input-container.md-block
+            approximately
+            textarea(ng-model='newAppDialogCtrl.proposal.optionalQuestions.expectCaseDecreasing', aria-label='expect case decreasing')
+          .md-subheader Can this tool help shorten case TTC(time to close)? If yes, what is the percentage of time can be saved approximately?(Optional)
+          md-input-container
+            md-radio-group(ng-model='newAppDialogCtrl.proposal.optionalQuestions.expectTTCDecreasing')
+              md-radio-button(value='Yes 50%') Yes 50%
+              md-radio-button(value='Yes 20%') Yes 20%
+              md-radio-button(value='No') No
+          .md-subheader Are there any tools existing in communities or Red Hat providing similar features?(Optional)
+          md-input-container.md-block
+            label Your answer
+            textarea(ng-model='newAppDialogCtrl.proposal.optionalQuestions.similarTools')
+          .md-subheader What KBase solutions or documents are related to this tool?(Optional)
+          md-input-container.md-block
+            label Please provide links to them
+            textarea(ng-model='newAppDialogCtrl.proposal.optionalQuestions.relatedKBaseRes')
+          .md-subheader What are your key requirements or features about this tool?
+          md-input-container.md-block
+            label Your answer
+            textarea(ng-model='newAppDialogCtrl.proposal.requiredQuestions.keyDesc', ng-required='true')
+          .md-subheader Please list scenarios as many as possible in which the tool will be used.
+          md-input-container.md-block
+            label Your answer
+            textarea(ng-model='newAppDialogCtrl.proposal.requiredQuestions.scenarios', ng-required='true')
+          .md-subheader Is there any specific reason to request this lab, e.g. a request from your customer? If yes, please elaborate more about it.
+          md-input-container.md-block
+            label Your answer
+            textarea(ng-model='newAppDialogCtrl.proposal.requiredQuestions.specialReason', ng-required='true')
+          .md-subheader Who will be the primary contact that the labs dev team can reach out to during development?
+          md-input-container.md-block
+            label Please provide their email addresses
+            textarea(ng-model='newAppDialogCtrl.proposal.requiredQuestions.contacts', ng-required='true')
+
+      md-dialog-actions(layout='row')
+            md-button(ng-click='newAppDialogCtrl.reset(proposalForm)') Reset
+            md-button(type='submit', ng-click='newAppDialogCtrl.submit(proposalForm)' aria-label='Submit Proposal') Submit
+    

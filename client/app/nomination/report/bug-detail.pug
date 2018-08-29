@@ -1,0 +1,34 @@
+.md-dialog-container.cplant-dialog-detail-container#bugDetailDialog
+  md-dialog(aria-label='Bug Detail')
+    md-toolbar.md-toolbar-tools
+      h2 Bug Detail
+      span(flex)
+      md-button.md-icon-button(ng-click='reportDetailCtrl.cancel()')
+        md-icon(md-svg-src='assets/images/ic-exit.svg')
+    md-progress-linear(md-mode="indeterminate", ng-hide='!reportDetailCtrl.startProgress')
+    md-dialog-content
+      .md-dialog-content
+        h5 App name
+        p {{reportDetailCtrl.report.app.name}}
+        md-divider
+        h5 Summary
+        p {{reportDetailCtrl.report.summary}}
+        md-divider
+        h5 Description
+        p {{reportDetailCtrl.report.desc}}
+        h5 Attachments
+        p(ng-if='!reportDetailCtrl.report.attachments || reportDetailCtrl.report.attachments.length === 0') No attachments contained
+        div.cplant-detail-attachments-container(layout='row')
+          a(ng-repeat='url in reportDetailCtrl.report.attachments', href='{{url}}', flex='20', target='_blank')
+            img(src='{{url}}')
+    md-dialog-actions(layout='row')
+      md-input-container(ng-if='reportDetailCtrl.isAdmin()')
+        label Status
+        md-select(ng-model='reportDetailCtrl.reportStatus')
+          md-option(value='NEW') NEW
+          md-option(value='ACCEPTED') ACCEPTED
+          md-option(value='REJECTED') REJECTED
+      md-button(ng-click='reportDetailCtrl.edit($event)', ng-disabled='reportDetailCtrl.isCompletedAccept()') Edit
+      md-button(ng-if='reportDetailCtrl.isAdmin()', ng-click='reportDetailCtrl.updateStatus()' ng-disabled='reportDetailCtrl.reportStatus === reportDetailCtrl.report.status || reportDetailCtrl.disableConfirm') Change Status           
+    
+        
