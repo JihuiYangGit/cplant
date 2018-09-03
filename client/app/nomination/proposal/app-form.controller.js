@@ -16,6 +16,7 @@ angular.module('cplantApp').controller('newAppCtrl', ['$mdDialog', '$mdToast', '
       }
       proposalService.create(proposal)
         .then(function (data) {
+          // console.log(data);
           $mdToast.show($mdToast.simple()
             .textContent('Success!')
             .position('top right')

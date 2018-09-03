@@ -42,6 +42,7 @@ angular.module('cplantApp').factory('proposalService', ['$http', '$q', function 
         if (res.data.err) {
           return $q.reject(res.data.msg);
         }
+        // console.log(res.data);
         return res.data;
       });
   }
