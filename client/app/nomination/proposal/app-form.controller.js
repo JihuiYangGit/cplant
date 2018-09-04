@@ -1,4 +1,4 @@
-angular.module('cplantApp').controller('newAppCtrl', ['$mdDialog', '$mdToast', 'proposalService', function ($mdDialog, $mdToast, proposalService) {
+angular.module('cplantApp').controller('newAppCtrl', ['$scope', '$mdDialog', '$mdToast', 'proposalService', function ($scope,$mdDialog, $mdToast, proposalService) {
   'use strict';
   var self = this;
 
@@ -16,7 +16,7 @@ angular.module('cplantApp').controller('newAppCtrl', ['$mdDialog', '$mdToast', '
       }
       proposalService.create(proposal)
         .then(function (data) {
-          // console.log(data);
+          $scope.$emit("RequestsChange", data);
           $mdToast.show($mdToast.simple()
             .textContent('Success!')
             .position('top right')

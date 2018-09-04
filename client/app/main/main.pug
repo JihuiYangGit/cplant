@@ -1,74 +1,76 @@
-div(layout-gt-sm='row', layout-sm='column', layout-fill, ng-controller='mainCtrl as mainCtrl')
-  div(layout-gt-sm='column', flex-gt-sm='20', flex-sm, layout-align='none none').cplant-action-cards
-    md-card.cplant-user-content-card.cplant-user-content-app-card.hvr-glow(ng-controller='newAppCtrl as newAppCtrl', ng-click='newAppCtrl.create($event)', layout-padding, flex='none')
-      div.cplant-user-app
-        md-card-title
-          div.cplant-card-top-icon-container.cplant-app-card-top-icon-container.md-whiteframe-2dp(layout-align='center center')
-            md-icon(md-svg-src='assets/images/baseline-add.svg')
-          span(flex)
-          span.cplant-card-top-text New App
-        md-divider
-        md-card-content(layout="row", layout-align="start center")
-          .cplant-card-content-icon-container
-            md-icon(md-svg-src='assets/images/baseline-create.svg')
-          div Request a New App
-    md-card.cplant-user-content-card.cplant-user-content-feature-card.hvr-glow(ng-controller='newFeatureCtrl as newFeatureCtrl', ng-click='newFeatureCtrl.create($event)', layout-padding, flex='none')
-      div.cplant-user-feature
-        md-card-title
-          div.cplant-card-top-icon-container.cplant-feature-card-top-icon-container.md-whiteframe-2dp(layout-align='center center')
-            md-icon(md-svg-src='assets/images/baseline-highlight.svg')
-          span(flex)
-          span.cplant-card-top-text New Feature
-        md-divider
-        md-card-content(layout="row", layout-align="start center")
-          .cplant-card-content-icon-container
-            md-icon(md-svg-src='assets/images/baseline-create.svg')
-          div Request a New Feature
-    md-card.cplant-user-content-card.cplant-user-content-bug-card.hvr-glow(ng-controller='newBugCtrl as newBugCtrl', ng-click='newBugCtrl.create($event)', layout-padding, flex='none')
-      div.cplant-user-bug
-        md-card-title
-          div.cplant-card-top-icon-container.cplant-bug-card-top-icon-container.md-whiteframe-2dp(layout-align='center center')
-            md-icon(md-svg-src='assets/images/baseline-bug_report.svg')
-          span(flex)
-          span.cplant-card-top-text Bug
-        md-divider
-        md-card-content(layout="row", layout-align="start center")
-          .cplant-card-content-icon-container
-            md-icon(md-svg-src='assets/images/baseline-create.svg')
-          div Report a Bug
-  div(layout-gt-xm='column', flex-gt-sm='80', flex-sm)
-    md-card.cplant-user-content-card.hvr-glow
-      md-card-title.cplant-user-fellow.md-whiteframe-2dp(flex='none', layout='row', layout-align='start center')
-        span.md-headline ALL REQUESTS
-        span(flex)
-        .cplant-user-fellow-title-tools
-          md-button(md-icon-button, ng-click="mainCtrl.showProposal()", aria-label='show proposals')
-            md-icon(md-svg-src='assets/images/baseline-add.svg')
-          md-button(md-icon-button, ng-click="mainCtrl.showFeature()", aria-label='show feature reports')
-            md-icon(md-svg-src='assets/images/baseline-highlight.svg')
-          md-button(md-icon-button, ng-click="mainCtrl.showBug()", aria-label='show bug reports')
-            md-icon(md-svg-src='assets/images/baseline-bug_report.svg')
-          md-button(md-icon-button, ng-click="mainCtrl.reset()", aria-label='reset')
-            md-icon(md-svg-src='assets/images/baseline-replay.svg')
-      md-card-content
-        md-table-container
-          table(md-table)
-            thead(md-head, md-order="mainCtrl.query.order")
-              tr(md-row)
-                th(md-column, md-order-by='type') Type
-                th(md-column, md-order-by='name') App Name
-                th(md-column) Summary
-                th(md-column, md-order-by='status') Status
-                th(md-column, md-order-by='updatedAt') Update
-            tbody(md-body)
-              tr(md-row, ng-repeat='f in mainCtrl.requests | orderBy: mainCtrl.query.order | limitTo: mainCtrl.query.limit : (mainCtrl.query.page -1) * mainCtrl.query.limit', ng-click='mainCtrl.detail(f, $event)')
-                td(md-cell)
-                  div.cplant-user-fellow-table-icon
-                    md-icon.cplant-user-fellow-table-app-icon(md-svg-src='assets/images/baseline-add.svg', ng-if="f.type && f.type === 'PROPOSAL'")
-                    md-icon.cplant-user-fellow-table-feature-icon(md-svg-src='assets/images/baseline-highlight.svg', ng-if="f.type && f.type === 'FEATURE'")
-                    md-icon.cplant-user-fellow-table-bug-icon(md-svg-src='assets/images/baseline-bug_report.svg', ng-if="f.type && f.type === 'BUG'")
-                td(md-cell) {{f.type === 'PROPOSAL'?f.name:f.app.name}}
-                td(md-cell) {{f.summary}}
-                td(md-cell) {{f.status}}
-                td(md-cell) {{f.updatedAt|date:'yyyy-MM-dd HH:mm'}}
-        md-table-pagination(md-limit="mainCtrl.query.limit", md-page="mainCtrl.query.page" md-total="{{mainCtrl.showLength}}" md-page-select="true" md-boundary-links="true" md-on-paginate="mainCtrl.logPagination")
+div(layout-gt-sm='row', layout-sm='column', layout-fill, ng-controller='parentCtrl as parentCtrl')
+  div(layout-gt-sm='row', layout-sm='column', layout-fill, ng-controller='newAppCtrl as newAppCtrl')
+    div(layout-gt-sm='row', layout-sm='column', layout-fill, ng-controller='mainCtrl as mainCtrl')
+      div(layout-gt-sm='column', flex-gt-sm='20', flex-sm, layout-align='none none').cplant-action-cards
+        md-card.cplant-user-content-card.cplant-user-content-app-card.hvr-glow(ng-controller='newAppCtrl as newAppCtrl', ng-click='newAppCtrl.create($event)', layout-padding, flex='none')
+          div.cplant-user-app
+            md-card-title
+              div.cplant-card-top-icon-container.cplant-app-card-top-icon-container.md-whiteframe-2dp(layout-align='center center')
+                md-icon(md-svg-src='assets/images/baseline-add.svg')
+              span(flex)
+              span.cplant-card-top-text New App
+            md-divider
+            md-card-content(layout="row", layout-align="start center")
+              .cplant-card-content-icon-container
+                md-icon(md-svg-src='assets/images/baseline-create.svg')
+              div Request a New App
+        md-card.cplant-user-content-card.cplant-user-content-feature-card.hvr-glow(ng-controller='newFeatureCtrl as newFeatureCtrl', ng-click='newFeatureCtrl.create($event)', layout-padding, flex='none')
+          div.cplant-user-feature
+            md-card-title
+              div.cplant-card-top-icon-container.cplant-feature-card-top-icon-container.md-whiteframe-2dp(layout-align='center center')
+                md-icon(md-svg-src='assets/images/baseline-highlight.svg')
+              span(flex)
+              span.cplant-card-top-text New Feature
+            md-divider
+            md-card-content(layout="row", layout-align="start center")
+              .cplant-card-content-icon-container
+                md-icon(md-svg-src='assets/images/baseline-create.svg')
+              div Request a New Feature
+        md-card.cplant-user-content-card.cplant-user-content-bug-card.hvr-glow(ng-controller='newBugCtrl as newBugCtrl', ng-click='newBugCtrl.create($event)', layout-padding, flex='none')
+          div.cplant-user-bug
+            md-card-title
+              div.cplant-card-top-icon-container.cplant-bug-card-top-icon-container.md-whiteframe-2dp(layout-align='center center')
+                md-icon(md-svg-src='assets/images/baseline-bug_report.svg')
+              span(flex)
+              span.cplant-card-top-text Bug
+            md-divider
+            md-card-content(layout="row", layout-align="start center")
+              .cplant-card-content-icon-container
+                md-icon(md-svg-src='assets/images/baseline-create.svg')
+              div Report a Bug
+      div(layout-gt-xm='column', flex-gt-sm='80', flex-sm)
+        md-card.cplant-user-content-card.hvr-glow
+          md-card-title.cplant-user-fellow.md-whiteframe-2dp(flex='none', layout='row', layout-align='start center')
+            span.md-headline ALL REQUESTS
+            span(flex)
+            .cplant-user-fellow-title-tools
+              md-button(md-icon-button, ng-click="mainCtrl.showProposal()", aria-label='show proposals')
+                md-icon(md-svg-src='assets/images/baseline-add.svg')
+              md-button(md-icon-button, ng-click="mainCtrl.showFeature()", aria-label='show feature reports')
+                md-icon(md-svg-src='assets/images/baseline-highlight.svg')
+              md-button(md-icon-button, ng-click="mainCtrl.showBug()", aria-label='show bug reports')
+                md-icon(md-svg-src='assets/images/baseline-bug_report.svg')
+              md-button(md-icon-button, ng-click="mainCtrl.reset()", aria-label='reset')
+                md-icon(md-svg-src='assets/images/baseline-replay.svg')
+          md-card-content
+            md-table-container
+              table(md-table)
+                thead(md-head, md-order="mainCtrl.query.order")
+                  tr(md-row)
+                    th(md-column, md-order-by='type') Type
+                    th(md-column, md-order-by='name') App Name
+                    th(md-column) Summary
+                    th(md-column, md-order-by='status') Status
+                    th(md-column, md-order-by='updatedAt') Update
+                tbody(md-body)
+                  tr(md-row, ng-repeat='f in mainCtrl.requests | orderBy: mainCtrl.query.order | limitTo: mainCtrl.query.limit : (mainCtrl.query.page -1) * mainCtrl.query.limit', ng-click='mainCtrl.detail(f, $event)')
+                    td(md-cell)
+                      div.cplant-user-fellow-table-icon
+                        md-icon.cplant-user-fellow-table-app-icon(md-svg-src='assets/images/baseline-add.svg', ng-if="f.type && f.type === 'PROPOSAL'")
+                        md-icon.cplant-user-fellow-table-feature-icon(md-svg-src='assets/images/baseline-highlight.svg', ng-if="f.type && f.type === 'FEATURE'")
+                        md-icon.cplant-user-fellow-table-bug-icon(md-svg-src='assets/images/baseline-bug_report.svg', ng-if="f.type && f.type === 'BUG'")
+                    td(md-cell) {{f.type === 'PROPOSAL'?f.name:f.app.name}}
+                    td(md-cell) {{f.summary}}
+                    td(md-cell) {{f.status}}
+                    td(md-cell) {{f.updatedAt|date:'yyyy-MM-dd HH:mm'}}
+            md-table-pagination(md-limit="mainCtrl.query.limit", md-page="mainCtrl.query.page" md-total="{{mainCtrl.showLength}}" md-page-select="true" md-boundary-links="true" md-on-paginate="mainCtrl.logPagination")

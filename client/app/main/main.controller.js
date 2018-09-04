@@ -1,4 +1,4 @@
-angular.module('cplantApp').controller('mainCtrl', ['$mdDialog', 'proposalService', 'reportService', 'labsService', function ($mdDialog, proposalService, reportService, labsService) {
+angular.module('cplantApp').controller('mainCtrl', ['$scope','$mdDialog', 'proposalService', 'reportService', 'labsService', function ($scope, $mdDialog, proposalService, reportService, labsService) {
   'use strict';
   var self = this;
 
@@ -9,9 +9,14 @@ angular.module('cplantApp').controller('mainCtrl', ['$mdDialog', 'proposalServic
     cond: {}
   };
 
+  $scope.$on("RequsetsChangeBroadcast",function (event, data) { 
+    self._requests.push(data);
+    showFellowList();
+    console.log(self.requests);
+  });
+
   function showFellowList() {
     self.requests.length = 0;
-
     self._requests.filter(value => {
       for (var q in query.cond) {
         if (query.cond.hasOwnProperty(q)) {
