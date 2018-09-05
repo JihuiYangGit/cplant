@@ -61,3 +61,9 @@ md-input-container.md-default-theme:not(.md-input-invalid).md-input-resized .md-
 md-input-container:not(.md-input-invalid).md-input-resized .md-input {
   border-color: #000;
 }
+
+md-progress-linear 
+  .md-bar{
+    background-color: lightslategray;
+  }
+

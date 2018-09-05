@@ -1,4 +1,4 @@
-angular.module('cplantApp').controller('newBugCtrl', ['$mdDialog', '$mdToast', 'reportService', function ($mdDialog, $mdToast, reportService) {
+angular.module('cplantApp').controller('newBugCtrl', ['$scope','$mdDialog', '$mdToast', 'reportService', function ($scope, $mdDialog, $mdToast, reportService) {
   'use strict';
   var self = this;
 
@@ -10,11 +10,13 @@ angular.module('cplantApp').controller('newBugCtrl', ['$mdDialog', '$mdToast', '
       targetEvent: ev,
       clickOutsideToClose: false,
     }).then(function (data) {
+      // console.log(data);
       var report = data[0];
       var attachments = data[1];
       report.type = 'BUG';
       reportService.create(report, attachments)
-        .then(function () {
+        .then(function (result) {
+          $scope.$emit("RequestsChange", result.data);
           $mdToast.show($mdToast.simple()
             .textContent('Success!')
             .position('top right')
@@ -22,7 +24,7 @@ angular.module('cplantApp').controller('newBugCtrl', ['$mdDialog', '$mdToast', '
         });
     });
   };
-}]).controller('newFeatureCtrl', ['$mdDialog', '$mdToast', 'reportService', function ($mdDialog, $mdToast, reportService) {
+}]).controller('newFeatureCtrl', ['$scope','$mdDialog', '$mdToast', 'reportService', function ($scope, $mdDialog, $mdToast, reportService) {
   'use strict';
   var self = this;
 
@@ -35,11 +37,14 @@ angular.module('cplantApp').controller('newBugCtrl', ['$mdDialog', '$mdToast', '
       targetEvent: ev,
       clickOutsideToClose: false,
     }).then(function (data) {
+     
+      // console.log(data);
       var report = data[0];
       var attachments = data[1];
       report.type = 'FEATURE';
       reportService.create(report, attachments)
-        .then(function () {
+        .then(function (result) {
+          $scope.$emit("RequestsChange", result.data);
           $mdToast.show($mdToast.simple()
             .textContent('Success!')
             .position('top right')
@@ -79,18 +84,16 @@ angular.module('cplantApp').controller('newBugCtrl', ['$mdDialog', '$mdToast', '
   self.querySearch = function (query) {
     query = query || '';
     query = query.toLowerCase();
-
+    console.log(self.apps);
     return query ? self.apps.filter(function (item) {
       return item && (item.name.toLowerCase().indexOf(query) !== -1 || item.id.toLowerCase().indexOf(query) !== -1);
     }) : self.apps;
-
   };
 
   self.removeUploadFile = function (f) {
     if (!self.files) {
       return;
     }
-
     var index = self.files.indexOf(f);
     if (index !== -1) {
       self.files.splice(index, 1);

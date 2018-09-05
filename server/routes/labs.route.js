@@ -11,7 +11,7 @@ const reportCtrl = require('../controllers/report.controller');
 
 const router = express.Router();
 
-const appPath = '/labs/' + pkg.name + '/';
+const appPath = '/labs/' + pkg. + '/';
 
 router.route('/all')
   .get(function (req, res) {
@@ -23,7 +23,7 @@ router.route('/signOut')
     req.session.auth=null;
     req.session.admin=null;
     res.clearCookie('red-hat-cplant-user');
-    res.clearCookie('redhat-red-hat-cplant-admin');
+    res.clearCookie('red-hat-cplant-admin');
 
     return res.redirect(appPath + 'login');
   });

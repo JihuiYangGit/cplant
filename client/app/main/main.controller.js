@@ -10,7 +10,7 @@ angular.module('cplantApp').controller('mainCtrl', ['$scope','$mdDialog', 'propo
   };
 
   $scope.$on("RequsetsChangeBroadcast",function (event, data) { 
-    self._requests.push(data);
+    self._requests.unshift(data);
     showFellowList();
     console.log(self.requests);
   });
