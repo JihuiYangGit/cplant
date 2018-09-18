@@ -67,6 +67,16 @@ angular.module('cplantApp').factory('proposalService', ['$http', '$q', function 
       });
   }
 
+  function mailto(maildata) {
+    return $http.post('api/proposal/mail' , maildata)
+      .then(function (res) {
+        if (res.data.err) {
+          return $q.reject(res.data.msg);
+        }
+        return res.data;
+      });
+  }
+
   return {
     list,
     all,
@@ -74,5 +84,6 @@ angular.module('cplantApp').factory('proposalService', ['$http', '$q', function 
     create,
     remove,
     update,
+    mailto,
   };
 }]);

@@ -27,6 +27,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+
+
 app.use(cookieParser());
 app.use(session({
   secret: 'customer portal labs',
@@ -40,6 +42,19 @@ mongoose.connect(config.mongo.uri, config.mongo.options);
 
 app.use(appPath + 'bower_components/', express.static(path.resolve(config.publicDir + '/bower_components')));
 app.use(appPath + 'assets/', express.static(path.resolve(config.publicDir + '/assets')));
+
+app.use(function(req, res, next){
+  //CORS config
+  res.header('Access-Control-Allow-Origin', '');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
+  res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
+
+  if (req.method == 'OPTIONS') {
+      res.send(200); /*让options请求快速返回*/
+  }else {
+      next();
+  }
+})
 
 app.use(appPath + 'login', function (req, res, next) {
   if (req.session.auth) {
@@ -67,6 +82,8 @@ app.get('/', function (req, res) {
 app.get(appPath + '*', function (req, res) {
   res.sendFile(path.resolve(config.publicDir + '/index.html'));
 });
+
+
 
 // handle error
 app.use(function (err, req, res, next) {

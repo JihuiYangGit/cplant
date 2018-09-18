@@ -7,6 +7,9 @@ router.route('/')
   .get(proposalCtrl.list)
   .post(proposalCtrl.create);
 
+router.route('/mail')
+  .post(proposalCtrl.mailto);
+
 router.route('/id/:proposalId')
   .get(proposalCtrl.get)
   .put(proposalCtrl.update)

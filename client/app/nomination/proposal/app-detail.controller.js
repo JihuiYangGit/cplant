@@ -1,4 +1,4 @@
-angular.module('cplantApp').controller('appDetailCtrl', ['$mdDialog', '$mdToast', 'proposalService', 'labsService', function ($mdDialog, $mdToast, proposalService, labsService) {
+angular.module('cplantApp').controller('appDetailCtrl', ['$mdDialog', '$mdToast', 'proposalService', 'labsService','$http', function ($mdDialog, $mdToast, proposalService, labsService, $http) {
   'use strict';
   var self = this;
   self.proposal = self.locals.proposal;
@@ -21,6 +21,8 @@ angular.module('cplantApp').controller('appDetailCtrl', ['$mdDialog', '$mdToast'
   self.isAdmin = function () {
     return labsService.isAdmin();
   };
+
+
 
   function accept() {
     self.disableConfirm = true;
@@ -73,17 +75,30 @@ angular.module('cplantApp').controller('appDetailCtrl', ['$mdDialog', '$mdToast'
   }
 
   self.updateStatus = function () {
-    console.log('asd');
+    //console.log('asd');
+    var maildata = {address: self.proposal.requiredQuestions.contacts[0],status: self.proposalStatus};
     self.disableConfirm = true;
     if (self.proposalStatus === self.proposal.status) {
       return;
     }
     self.startProgress = true;
-    if (!self.proposal.trelloCardId) {
+    if (!self.proposal.trelloCardId ) {
       if (self.proposalStatus === 'REJECTED') {
         reject();
+        proposalService.mailto(maildata)
+        .then(function(response){
+          console.log('Email has sent');
+        },function(response){
+          console.log('Email sent with err');
+        })
       } else if (self.proposalStatus === 'ACCEPTED') {
         accept();
+        proposalService.mailto(maildata)
+        .then(function(response){
+          console.log('Email has sent');
+        },function(response){
+          console.log('Email sent with err');
+        })
       } else {
         recover();
       }
@@ -95,6 +110,13 @@ angular.module('cplantApp').controller('appDetailCtrl', ['$mdDialog', '$mdToast'
           self.proposal.status = self.proposalStatus;
           self.startProgress = false;
           $mdToast.showSimple('Success!');
+          //maildata.status = self.proposal.status;
+          proposalService.mailto(maildata)
+          .then(function(response){
+            console.log('Email has sent');
+          },function(response){
+            console.log('Email sent with err');
+          })
           self.cancel();
         }, function () {
           self.disableConfirm = false;

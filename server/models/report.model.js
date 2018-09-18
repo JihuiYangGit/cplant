@@ -15,11 +15,12 @@ const reportSchema = new Schema({
       required: true
     },
 
-    product: {
-      type: String,
-      required: true
-    },
-    shortDesc: {
+    // product: {
+    //   type: String,
+    //   required: true
+    // },
+
+    description: {
       type: String,
       required: true
     },

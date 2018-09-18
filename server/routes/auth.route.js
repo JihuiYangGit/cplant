@@ -10,6 +10,7 @@ router.post('/auth', authCtrl.auth);
 
 router.get('/', function (req, res, next) {
   res.sendFile(path.resolve(config.publicDir + '/app/login/login.html'));
+  //res.sendFile(path.resolve(config.publicDir + '/app/login/bow.json'));
 });
 
 

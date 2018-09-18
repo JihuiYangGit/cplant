@@ -38,7 +38,7 @@ angular.module('cplantApp').controller('newBugCtrl', ['$scope','$mdDialog', '$md
       clickOutsideToClose: false,
     }).then(function (data) {
      
-      // console.log(data);
+       //console.log(data);
       var report = data[0];
       var attachments = data[1];
       report.type = 'FEATURE';
@@ -52,15 +52,55 @@ angular.module('cplantApp').controller('newBugCtrl', ['$scope','$mdDialog', '$md
         });
     });
   };
-}]).controller('newReportCtrl', ['$mdDialog', 'labsService', function ($mdDialog, labsService) {
+}]).controller('newReportCtrl', ['$mdDialog', 'labsService', '$http', function ($mdDialog, labsService, $http) {
   'use strict';
   var self = this;
 
   self.apps = [];
 
-  labsService.all().then(function (data) {
+  // labsService.all().then(function (data) {// search for the json file
+  //   self.apps = data;
+  // });
+
+var xhttp = new XMLHttpRequest();
+var data = [];
+var newdata = {};
+xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+         showResult(xhttp.responseXML);
+    }
+};
+xhttp.open("GET", "/feeds/labinfo", true);
+xhttp.send(); 
+
+
+
+function showResult(xml) {
+    var txt = "";
+    var path = "rss/channel/item/*"
+    var nodes = xml.evaluate(path, xml, null, XPathResult.ANY_TYPE, null);
+    var result = nodes.iterateNext();
+    while (result) {
+        
+        if(result.childNodes[0]){
+            var tagName = result.nodeName;
+            tagName = (tagName == 'title') ? 'name' : tagName ;
+            var nodeValue = result.childNodes[0].nodeValue;
+            txt += tagName + ":" + nodeValue + "<br>";
+            newdata[tagName] = nodeValue;
+        }
+        if(result.nodeName == "type")
+        {  
+            txt += "<br>";
+            data.push(newdata);
+            newdata = new Object();
+
+        }
+        result = nodes.iterateNext();    
+    }
+     //console.log(data);
     self.apps = data;
-  });
+}
 
   function init() {
     if(self.locals && self.locals.report) {
@@ -84,7 +124,7 @@ angular.module('cplantApp').controller('newBugCtrl', ['$scope','$mdDialog', '$md
   self.querySearch = function (query) {
     query = query || '';
     query = query.toLowerCase();
-    console.log(self.apps);
+    //console.log(self.apps);
     return query ? self.apps.filter(function (item) {
       return item && (item.name.toLowerCase().indexOf(query) !== -1 || item.id.toLowerCase().indexOf(query) !== -1);
     }) : self.apps;

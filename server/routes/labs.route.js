@@ -11,7 +11,7 @@ const reportCtrl = require('../controllers/report.controller');
 
 const router = express.Router();
 
-const appPath = '/labs/' + pkg. + '/';
+const appPath = '/labs/' + pkg.name + '/';
 
 router.route('/all')
   .get(function (req, res) {

@@ -12,13 +12,13 @@ angular.module('cplantApp').controller('mainCtrl', ['$scope','$mdDialog', 'propo
   $scope.$on("RequsetsChangeBroadcast",function (event, data) { 
     self._requests.unshift(data);
     showFellowList();
-    console.log(self.requests);
+    console.log('requests:' + self.requests);
   });
 
   function showFellowList() {
     self.requests.length = 0;
     self._requests.filter(value => {
-      for (var q in query.cond) {
+      for (var q in query.cond) {description
         if (query.cond.hasOwnProperty(q)) {
           if (value[q] && value[q] !== query.cond[q]) {
             return false;

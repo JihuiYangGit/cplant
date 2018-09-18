@@ -71,9 +71,44 @@ function remove(req, res, next) {
     .catch(err => next(err));
 }
 
+function mailto(req,res,next) {
+  console.log('!!!QAQ!!!');
+  var status = req.body.status;
+  var address = req.body.address;
+  console.log('address: ' + address);
+  console.log('status: ' + status);
+  var nodemailer = require('nodemailer');
+
+  var mailTransport = nodemailer.createTransport({
+      service: 'Gmail',
+      port: '465',
+      secureConnection: true,
+      auth : {
+          user : 'jihyang@redhat.com',
+          pass : 'xgwubjgkgwdejqui'
+      },
+  });
+
+  var mailOptions = {
+    from: 'jihyang@redhat.com',
+    to: address,
+    subject: 'Your porposal has been ' + status + '.',
+    text: 'Contact jihyang@redhat.com for more information.'
+  };
+
+  mailTransport.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    }
+  })
+
+    //.catch(err => next(err));
+}
 
 module.exports = {
-  load, get, create, update, list, all, remove
+  load, get, create, update, list, all, remove, mailto
 };
 
 

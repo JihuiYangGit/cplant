@@ -99,7 +99,7 @@
           .md-subheader Who will be the primary contact that the labs dev team can reach out to during development?
           md-input-container.md-block
             label Please provide their email addresses
-            textarea(ng-model='newAppDialogCtrl.proposal.requiredQuestions.contacts', ng-required='true')
+            input(ng-model='newAppDialogCtrl.proposal.requiredQuestions.contacts', ng-required='true', type='email')
 
       md-dialog-actions(layout='row')
             md-button(ng-click='newAppDialogCtrl.reset(proposalForm)') Reset
