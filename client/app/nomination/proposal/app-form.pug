@@ -100,8 +100,19 @@
           md-input-container.md-block
             label Please provide their email addresses
             input(ng-model='newAppDialogCtrl.proposal.requiredQuestions.contacts', ng-required='true', type='email')
+             
+        //-     md-chips ng-model="ctrl.recipients" readonly="ctrl.readOnlyEmails"
+        //-           name="recipients" md-max-chips="20"
+        //-           placeholder="Write email then Enter"
+        //-           secondary-placeholder="+Email"
+        //-           ng-enter="ctrl.validateEmail(ctrl.recipients)">
+        //-     <md-chip-template>
+        //-         <strong>({{$index + 1}}) {{$chip}}</strong>
+        //-     </md-chip-template>
+        //- </md-chips>
+
 
       md-dialog-actions(layout='row')
             md-button(ng-click='newAppDialogCtrl.reset(proposalForm)') Reset
             md-button(type='submit', ng-click='newAppDialogCtrl.submit(proposalForm)' aria-label='Submit Proposal') Submit
-    
+    md-progress-linear(md-mode="indeterminate" ng-hide="!newAppDialogCtrl.startProgress" id="login-progress-bar")

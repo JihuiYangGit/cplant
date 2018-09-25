@@ -61,6 +61,7 @@ angular.module('cplantApp').controller('newAppCtrl', ['$scope', '$mdDialog', '$m
   self.otherSbr = '';
   self.otherTargetUser = '';
   self.otherCaseFrequency = '';
+  self.startProgress = false;
 
   function calculateTargetUser() {
     self.proposal.requiredQuestions.targetUser = self.targetUserSelectIndex.map(function (value, index) {
@@ -129,11 +130,15 @@ angular.module('cplantApp').controller('newAppCtrl', ['$scope', '$mdDialog', '$m
   };
 
   self.submit = function (proposalForm) {
-    if (proposalForm.$valid) {
-      $mdDialog.hide(self.proposal).then(function () {
-        self.reset(proposalForm);
-      });
-    }
+    self.startProgress = true;
+    setTimeout(function(){        //delay 0.5 seconds for the effect
+      if (proposalForm.$valid) {
+        self.startProgress = false;
+        $mdDialog.hide(self.proposal).then(function () {
+          self.reset(proposalForm);
+        });
+      }
+    },500); 
   };
 
   self.targetUsersCheckBoxClick = function (index) {

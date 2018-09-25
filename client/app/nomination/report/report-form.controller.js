@@ -57,6 +57,7 @@ angular.module('cplantApp').controller('newBugCtrl', ['$scope','$mdDialog', '$md
   var self = this;
 
   self.apps = [];
+  self.startProgress = false;
 
   // labsService.all().then(function (data) {// search for the json file
   //   self.apps = data;
@@ -168,7 +169,9 @@ function showResult(xml) {
   };
 
   self.submit = function (reportForm) {
+    self.startProgress = true;
     if (reportForm.$valid) {
+      self.startProgress = false;
       $mdDialog.hide([self.report, self.files]).then(function () {
         self.reset(reportForm);
       });

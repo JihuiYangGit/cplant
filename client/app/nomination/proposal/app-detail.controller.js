@@ -76,8 +76,10 @@ angular.module('cplantApp').controller('appDetailCtrl', ['$mdDialog', '$mdToast'
 
   self.updateStatus = function () {
     //console.log('asd');
-    var maildata = {address: self.proposal.requiredQuestions.contacts[0],status: self.proposalStatus};
+    self.mailText = 'Contact jihyang@redhat.com for more information.'
+    var maildata = {address: self.proposal.requiredQuestions.contacts[0], subject: 'Your proposal has been '+ self.proposalStatus, text: self.mailText};
     self.disableConfirm = true;
+
     if (self.proposalStatus === self.proposal.status) {
       return;
     }

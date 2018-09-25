@@ -1,6 +1,6 @@
 div(layout-gt-sm='row', layout-sm='column', layout-fill, ng-controller='parentCtrl as parentCtrl')
-  div(layout-gt-sm='row', layout-sm='column', layout-fill, ng-controller='newAppCtrl as newAppCtrl')
-    div(layout-gt-sm='row', layout-sm='column', layout-fill, ng-controller='mainCtrl as mainCtrl')
+  div(layout-gt-sm='row', layout-sm='column', layout-fill, ng-controller='mainCtrl as mainCtrl')
+    div(layout-gt-sm='row', layout-sm='column', layout-fill, ng-controller='newAppCtrl as newAppCtrl')
       div(layout-gt-sm='column', flex-gt-sm='20', flex-sm, layout-align='none none').cplant-action-cards
         md-card.cplant-user-content-card.cplant-user-content-app-card.hvr-glow(ng-controller='newAppCtrl as newAppCtrl', ng-click='newAppCtrl.create($event)', layout-padding, flex='none')
           div.cplant-user-app

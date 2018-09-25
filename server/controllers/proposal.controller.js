@@ -72,11 +72,14 @@ function remove(req, res, next) {
 }
 
 function mailto(req,res,next) {
-  console.log('!!!QAQ!!!');
-  var status = req.body.status;
-  var address = req.body.address;
+  var address = req.body.address; 
+  var subject = req.body.subject;
+  var text = req.body.text;
+  //var status = req.body.status;
+  
   console.log('address: ' + address);
-  console.log('status: ' + status);
+  console.log('subject: ' + subject);
+  console.log('text: ' + text);
   var nodemailer = require('nodemailer');
 
   var mailTransport = nodemailer.createTransport({
@@ -92,8 +95,8 @@ function mailto(req,res,next) {
   var mailOptions = {
     from: 'jihyang@redhat.com',
     to: address,
-    subject: 'Your porposal has been ' + status + '.',
-    text: 'Contact jihyang@redhat.com for more information.'
+    subject: subject,
+    text: text
   };
 
   mailTransport.sendMail(mailOptions, function(error, info){

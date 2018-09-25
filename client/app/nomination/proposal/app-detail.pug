@@ -68,5 +68,6 @@
           md-option(value='NEW') NEW
           md-option(value='ACCEPTED') ACCEPTED
           md-option(value='REJECTED') REJECTED
+          md-option(value='COLLAPSED') COLLAPSED
       md-button(ng-click='appDetailCtrl.edit($event)', ng-disabled='appDetailCtrl.isCompletedAccept()') Edit
       md-button(ng-if='appDetailCtrl.isAdmin()', ng-click='appDetailCtrl.updateStatus()' ng-disabled='appDetailCtrl.proposalStatus === appDetailCtrl.proposal.status || appDetailCtrl.disableConfirm') Change Status        
