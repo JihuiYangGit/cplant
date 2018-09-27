@@ -36,4 +36,4 @@
       md-dialog-actions(layout='row')
         md-button(type='reset') Reset
         md-button(type='submit', ng-click='newReportCtrl.submit(reportFeatureForm)') Submit
-     
+    md-progress-linear(md-mode="indeterminate" ng-hide="!newReportCtrl.startProgress")      

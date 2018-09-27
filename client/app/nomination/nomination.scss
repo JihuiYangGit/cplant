@@ -17,6 +17,8 @@ md-input-container:not(.md-input-invalid).md-input-focused md-icon {
   color: #819ca9;
 }
 
+.md-errors-spacer { display: none; }
+
 .cplant-dialog-form-container md-dialog {
   width: 90vmin;
 
@@ -76,6 +78,11 @@ md-input-container:not(.md-input-invalid).md-input-focused md-icon {
 
 .cplant-images-preview-subheader {
   margin-bottom: 10px !important;
+}
+
+.cplant-reason-container {
+  margin-top: 30px;
+  margin-right: 20px;
 }
 
 .cplant-preview-container {
@@ -145,3 +152,5 @@ md-input-container:not(.md-input-invalid).md-input-focused md-icon {
     background: #e35d6a;
   }
 }
+
+

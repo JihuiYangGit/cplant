@@ -12,7 +12,6 @@ angular.module('cplantApp').controller('mainCtrl', ['$scope','$mdDialog', 'propo
   $scope.$on("RequsetsChangeBroadcast",function (event, data) { 
     self._requests.unshift(data);
     showFellowList();
-    console.log('requests:' + self.requests);
   });
 
   function showFellowList() {

@@ -89,6 +89,12 @@
   color:white;
 }
 
+#newAppDialog md-progress-linear, #newFeatureDialog md-progress-linear, #newBugDialog md-progress-linear { 
+  .md-bar{
+    background-color: darkorchid;
+  }
+}
+
 .cplant-user-fellow {
   margin-left: 16px;
   margin-right: 16px;

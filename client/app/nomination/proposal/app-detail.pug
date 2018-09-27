@@ -37,37 +37,36 @@
         md-divider
         h5 Contacts
         p {{appDetailCtrl.multiline(appDetailCtrl.proposal.requiredQuestions.contacts)}}
-        md-divider
         div(ng-if="appDetailCtrl.proposal.optionalQuestions.expectUsers")
+          md-divider
           h5 Potential users would this tool have
           p {{appDetailCtrl.proposal.optionalQuestions.expectUsers}}
-          md-divider
         div(ng-if="appDetailCtrl.proposal.optionalQuestions.caseFrequency")
+          md-divider
           h5 The number of cases that were opened in the last 30 days related to the problem that the tool targets
           p {{appDetailCtrl.proposal.optionalQuestions.caseFrequency}}
-          md-divider
         div(ng-if="appDetailCtrl.proposal.optionalQuestions.expectCaseDecreasing")
+          md-divider
           h5 Expect case decreasing
           p {{appDetailCtrl.proposal.optionalQuestions.expectCaseDecreasing}}
-          md-divider
         div(ng-if="appDetailCtrl.proposal.optionalQuestions.expectTTCDecreasing")
+          md-divider
           h5 Expect TTC(time to close) decreasing
           p {{appDetailCtrl.proposal.optionalQuestions.expectTTCDecreasing}}
-          md-divider
         div(ng-if="appDetailCtrl.proposal.optionalQuestions.similarTools")
+          md-divider
           h5 Similar tools
           p {{appDetailCtrl.proposal.optionalQuestions.similarTools}}
-          md-divider
         div(ng-if="appDetailCtrl.proposal.optionalQuestions.relatedKBaseRes")
+          md-divider
           h5 Related KBase solutions or documents
           p {{appDetailCtrl.proposal.optionalQuestions.relatedKBaseRes}}
-          md-divider
     md-dialog-actions(layout='row')
+      md-input-container.cplant-reason-container(ng-if='appDetailCtrl.isAdmin()')   
+        input(ng-model='appDetailCtrl.rejectReason' type='text' ng-required='true' placeholder='Reason' ng-hide = "appDetailCtrl.proposalStatus !== 'REJECTED'")
       md-input-container(ng-if='appDetailCtrl.isAdmin()')
-        md-select(ng-model='appDetailCtrl.proposalStatus')
-          md-option(value='NEW') NEW
-          md-option(value='ACCEPTED') ACCEPTED
-          md-option(value='REJECTED') REJECTED
-          md-option(value='COLLAPSED') COLLAPSED
+        md-radio-group(ng-model='appDetailCtrl.proposalStatus')
+          md-radio-button(value='ACCEPTED' ng-disabled="appDetailCtrl.isCompletedAccept()") ACCEPT
+          md-radio-button(value='REJECTED' ng-disabled="appDetailCtrl.isCompletedAccept()") REJECT
       md-button(ng-click='appDetailCtrl.edit($event)', ng-disabled='appDetailCtrl.isCompletedAccept()') Edit
       md-button(ng-if='appDetailCtrl.isAdmin()', ng-click='appDetailCtrl.updateStatus()' ng-disabled='appDetailCtrl.proposalStatus === appDetailCtrl.proposal.status || appDetailCtrl.disableConfirm') Change Status        

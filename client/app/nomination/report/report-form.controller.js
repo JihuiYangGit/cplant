@@ -65,6 +65,7 @@ angular.module('cplantApp').controller('newBugCtrl', ['$scope','$mdDialog', '$md
 
 var xhttp = new XMLHttpRequest();
 var data = [];
+var appdata = [];
 var newdata = {};
 xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -95,12 +96,15 @@ function showResult(xml) {
             txt += "<br>";
             data.push(newdata);
             newdata = new Object();
-
         }
         result = nodes.iterateNext();    
     }
-     //console.log(data);
-    self.apps = data;
+    data.forEach(function(element, index, array){
+      if(element.lang === 'en'){
+        appdata.push(data[index]);
+      }
+  });
+    self.apps = appdata;
 }
 
   function init() {

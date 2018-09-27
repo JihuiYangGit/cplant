@@ -5,9 +5,9 @@ angular.module('cplantApp').controller('appDetailCtrl', ['$mdDialog', '$mdToast'
   self.proposalStatus = self.proposal.status;
   self.disableConfirm = false;
   self.startProgress = false;
-
+  self.rejectReason = '';
   self.multiline = function (arr) {
-    return arr.join('<br>');
+    return arr.join(' & ');
   };
 
   self.hide = function () {
@@ -35,7 +35,7 @@ angular.module('cplantApp').controller('appDetailCtrl', ['$mdDialog', '$mdToast'
         self.cancel();
 
         if(data.result) {
-          self.report.trelloCardId = data.trelloCardId;
+          self.proposal.trelloCardId = data.trelloCardId;
         }
       }, function (data) {
         $mdToast.showSimple('Failed!' + data);
@@ -75,8 +75,9 @@ angular.module('cplantApp').controller('appDetailCtrl', ['$mdDialog', '$mdToast'
   }
 
   self.updateStatus = function () {
-    //console.log('asd');
-    self.mailText = 'Contact jihyang@redhat.com for more information.'
+    console.log(self.rejectReason);
+    var mailreason = self.rejectReason === '' ? '':'Reason: ' + self.rejectReason + '\n';
+    self.mailText = mailreason + 'Contact jihyang@redhat.com for more information.'
     var maildata = {address: self.proposal.requiredQuestions.contacts[0], subject: 'Your proposal has been '+ self.proposalStatus, text: self.mailText};
     self.disableConfirm = true;
 

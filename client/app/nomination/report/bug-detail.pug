@@ -1,7 +1,7 @@
 .md-dialog-container.cplant-dialog-detail-container#bugDetailDialog
   md-dialog(aria-label='Bug Detail')
     md-toolbar.md-toolbar-tools
-      h2 Bug Detail
+      h2 Bug Detail ({{reportDetailCtrl.report.status}})
       span(flex)
       md-button.md-icon-button(ng-click='reportDetailCtrl.cancel()')
         md-icon(md-svg-src='assets/images/ic-exit.svg')
@@ -16,18 +16,23 @@
         md-divider
         h5 Description
         p {{reportDetailCtrl.report.desc}}
+        md-divider
         h5 Attachments
         p(ng-if='!reportDetailCtrl.report.attachments || reportDetailCtrl.report.attachments.length === 0') No attachments contained
         div.cplant-detail-attachments-container(layout='row')
           a(ng-repeat='url in reportDetailCtrl.report.attachments', href='{{url}}', flex='20', target='_blank')
             img(src='{{url}}')
+        div(ng-if = '!reportDetailCtrl.report.trelloCardId')
+        md-divider(ng-hide = '!reportDetailCtrl.report.trelloCardId')
+        h5(ng-hide = '!reportDetailCtrl.report.trelloCardId') TrelloCardID 
+        p(ng-hide = '!reportDetailCtrl.report.trelloCardId') {{reportDetailCtrl.report.trelloCardId}}
     md-dialog-actions(layout='row')
+      md-input-container.cplant-reason-container(ng-if='reportDetailCtrl.isAdmin()')   
+        input(ng-model='reportDetailCtrl.rejectReason' type='text' ng-required='true' placeholder='Reason' ng-hide = "reportDetailCtrl.reportStatus !== 'REJECTED'")
       md-input-container(ng-if='reportDetailCtrl.isAdmin()')
-        label Status
-        md-select(ng-model='reportDetailCtrl.reportStatus')
-          md-option(value='NEW') NEW
-          md-option(value='ACCEPTED') ACCEPTED
-          md-option(value='REJECTED') REJECTED
+        md-radio-group(ng-model='reportDetailCtrl.reportStatus')
+          md-radio-button(value='ACCEPTED' ng-disabled="reportDetailCtrl.isCompletedAccept()") ACCEPT
+          md-radio-button(value='REJECTED' ng-disabled="reportDetailCtrl.isCompletedAccept()") REJECT
       md-button(ng-click='reportDetailCtrl.edit($event)', ng-disabled='reportDetailCtrl.isCompletedAccept()') Edit
       md-button(ng-if='reportDetailCtrl.isAdmin()', ng-click='reportDetailCtrl.updateStatus()' ng-disabled='reportDetailCtrl.reportStatus === reportDetailCtrl.report.status || reportDetailCtrl.disableConfirm') Change Status           
     

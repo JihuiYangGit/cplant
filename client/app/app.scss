@@ -7,8 +7,12 @@
   box-sizing: border-box;
 }
 
-h1, h2, h3, h4, h5, h6, p {
+h1, h2, h3, h4, h5, h6, p, pre {
   margin-bottom: 10px;
+}
+
+pre {
+  inline-height: 150%;
 }
 
 ol, ul, dl {

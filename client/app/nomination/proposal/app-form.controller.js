@@ -131,14 +131,14 @@ angular.module('cplantApp').controller('newAppCtrl', ['$scope', '$mdDialog', '$m
 
   self.submit = function (proposalForm) {
     self.startProgress = true;
-    setTimeout(function(){        //delay 0.5 seconds for the effect
+    
       if (proposalForm.$valid) {
         self.startProgress = false;
         $mdDialog.hide(self.proposal).then(function () {
           self.reset(proposalForm);
         });
       }
-    },500); 
+      self.startProgress = false;
   };
 
   self.targetUsersCheckBoxClick = function (index) {
