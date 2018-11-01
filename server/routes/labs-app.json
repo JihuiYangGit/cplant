@@ -3,6 +3,7 @@
     "id": "ntpcc",
     "name": "NTP Configuration",
     "product": "Red Hat Enterprise Linux",
+<<<<<<< HEAD
     "description": "This application steps you through a guide that generates a script for setting up NTP (Network Time Protocol) clients and servers."
   },
   {
@@ -388,5 +389,392 @@
     "title": "Network Teaming Helper",
     "product": "Others",
     "description": "This app is designed to help you configure network teaming. The app will generate a script for you to configure network teaming based on the information you provided."
+=======
+    "shortDesc": "This application steps you through a guide that generates a script for setting up NTP (Network Time Protocol) clients and servers."
+  },
+  {
+    "id": "iscsihelper",
+    "name": "iSCSI Helper",
+    "product": "Red Hat Enterprise Linux",
+    "shortDesc": "The iSCSI helper tool simplifies configuring an iSCSI target (server) or initiator (client). It handles the different configurations required for RHEL 5.4 and later versions."
+  },
+  {
+    "id": "cephpgc",
+    "name": "Ceph Placement Groups (PGs) per Pool Calculator",
+    "product": "Red Hat Enterprise Linux",
+    "shortDesc": "The Ceph PGs (Placement Groups) per Pool Calculator application helps you: 1. Calculate suggested PG Count per pool and total PG Count in Ceph. 2. Generate commands that create pools."
+  },
+  {
+    "id": "plcc",
+    "name": "Product Life Cycle Checker",
+    "product": "Cloud",
+    "shortDesc": "Query the life cycle of Red Hat products, and better plan your deployment or maintenance."
+  },
+  {
+    "id": "venom",
+    "name": "VENOM: QEMU Vulnerability Detector",
+    "product": "Red Hat Enterprise Linux",
+    "shortDesc": "Script to detect vulnerability to VENOM"
+  },
+  {
+    "id": "jbossdvsat",
+    "name": "JBoss Data Virtualization Sizing Architecture Tool",
+    "product": "JBoss",
+    "shortDesc": "Plan Your JBoss Data Virtualization Deployment"
+  },
+  {
+    "id": "linterfordockerfile",
+    "name": "Linter for Dockerfile",
+    "product": "Cloud",
+    "shortDesc": "Check your dockerfile compliance with best practices using this online tool."
+  },
+  {
+    "id": "declawed",
+    "name": "JMX/RMI Remote Code Execution Detector",
+    "product": "JBoss",
+    "shortDesc": "CVE-2014-3518 JMX/RMI Remote Code Execution Detector"
+  },
+  {
+    "id": "cve20162118",
+    "name": "Samba BADLOCK Checker",
+    "product": "Red Hat Enterprise Linux",
+    "shortDesc": "This script helps you confirm whether your system is susceptible to the Samba BADLOCK vulnerability."
+  },
+  {
+    "id": "yumrepoconfighelper",
+    "name": "Yum Repository Configuration Helper",
+    "product": "Red Hat Enterprise Linux",
+    "shortDesc": "Set up a Yum repository to be used by the local machine or remote ones."
+  },
+  {
+    "id": "poodle",
+    "name": "SSLv3 (POODLE) Detector",
+    "product": "Red Hat Enterprise Linux",
+    "shortDesc": "The SSLv3 Detector allows customers to scan vulnerable systems for CVE-2014-3566 (POODLE)."
+  },
+  {
+    "id": "rhma",
+    "name": "Red Hat Memory Analyzer",
+    "product": "Red Hat Enterprise Linux",
+    "shortDesc": "Red Hat Memory Analyzer visualizes memory usage on your system based on information captured by the SAR utility."
+  },
+  {
+    "id": "kickstartconfig",
+    "name": "Kickstart Generator",
+    "product": "Red Hat Enterprise Linux",
+    "shortDesc": "Create optimal Kickstart configurations for Red Hat Enterprise Linux 5, 6, or 7 that are tailored to meet specific deployment goals."
+  },
+  {
+    "id": "drown",
+    "name": "DROWN (CVE-2016-0800): TLS SSLv2 Cross-protocol Attack Vulnerability Detector",
+    "product": "Others",
+    "shortDesc": "This script helps you confirm whether your system is susceptible to DROWN."
+  },
+  {
+    "id": "iavmmapper",
+    "name": "IAVM Mapper",
+    "product": "Red Hat Enterprise Linux",
+    "shortDesc": "Look at the IAVM reports that are related to Red Hat products."
+  },
+  {
+    "id": "dnshelper",
+    "name": "DNS Helper",
+    "product": "Red Hat Enterprise Linux",
+    "shortDesc": "The DNS Helper tool provides assistance with configuring different types of DNS servers. The tool works by collecting specifications regarding the RHEL version and DNS server product, then generates a bash script to automatically create and configure the server."
+  },
+  {
+    "id": "securitydataapi",
+    "name": "Red Hat Security Data API",
+    "product": "Others",
+    "shortDesc": "This tool will allow customers to programmatically query an API for data that was previously exposed only through files on our Security Data page."
+  },
+  {
+    "id": "tls12",
+    "name": "TLS 1.2 Renegotiation Test",
+    "product": "Red Hat Enterprise Linux",
+    "shortDesc": "Determines whether a host is TLS version intolerant."
+  },
+  {
+    "id": "ccsinjectiontest",
+    "name": "OpenSSL CCS Injection Detector",
+    "product": "Red Hat Enterprise Linux",
+    "shortDesc": "Detect whether a given host has been patched against the OpenSSL CCS Injection vulnerability (CVE-2014-0224)"
+  },
+  {
+    "id": "lbconfig",
+    "name": "Load Balancer Configuration Tool",
+    "product": "JBoss",
+    "shortDesc": "Plug in information about your Apache and JBoss configuration and get sane baseline configuration files."
+  },
+  {
+    "id": "rhiou",
+    "name": "Red Hat I/O Usage Visualizer",
+    "product": "Red Hat Enterprise Linux",
+    "shortDesc": "Red Hat I/O Usage Visualizer displays a visualization of the I/O device usage statistics captured by the sar utility."
+  },
+  {
+    "id": "rhevmhdsc",
+    "name": "RHV Manager History Database Size Calculator",
+    "product": "Red Hat Enterprise Virtualization",
+    "shortDesc": "The History Database Size Calculator estimates the minimum and maximum size needed for your RHV database history records."
+  },
+  {
+    "id": "sambaconfig",
+    "name": "Samba Configuration Helper",
+    "product": "Red Hat Enterprise Linux",
+    "shortDesc": "Build a basic Samba v4.x configuration to share files and printers."
+  },
+  {
+    "id": "logreaper",
+    "name": "Log Reaper",
+    "product": "JBoss",
+    "shortDesc": "Log Reaper provides analysis of common RHEL and Middleware logs with an emphasis on break/fix."
+  },
+  {
+    "id": "vncconfig",
+    "name": "VNC Configurator",
+    "product": "Red Hat Enterprise Linux",
+    "shortDesc": "Install and configure VNC server on your Red Hat Enterprise Linux"
+  },
+  {
+    "id": "networkbondinghelper",
+    "name": "Network Bonding Helper",
+    "product": "Red Hat Enterprise Linux",
+    "shortDesc": "Configure two or more network interfaces to act as one \"bonded\" interface, simultaneously increasing the bandwidth and providing redundancy."
+  },
+  {
+    "id": "gitchecker",
+    "name": "GIT - Integer Truncation And Overflow Vulnerability (CVE-2016-2324)",
+    "product": "Red Hat Enterprise Linux",
+    "shortDesc": "This script helps you confirm whether your system is susceptible to the git integer truncation and overflow vulnerability."
+  },
+  {
+    "id": "multipathhelper",
+    "name": "Multipath Helper",
+    "product": "Red Hat Enterprise Linux",
+    "shortDesc": "Create optimal multipath configurations for Red Hat Enterprise Linux 5, 6, or 7 that are tailored to meet specific deployment goals."
+  },
+  {
+    "id": "rhmap",
+    "name": "Red Hat Mobile Application Platform 4.x sizing tool",
+    "product": "Mobile",
+    "shortDesc": "This application helps plan your deployment of Red Hat Mobile Application Platform."
+  },
+  {
+    "id": "fslayoutcalculator",
+    "name": "File System Layout Calculator",
+    "product": "Red Hat Enterprise Linux",
+    "shortDesc": "Generate a command to create a file system on given RAID storage."
+  },
+  {
+    "id": "scsi",
+    "name": "SCSI Decoder",
+    "product": "Red Hat Enterprise Linux",
+    "shortDesc": "Discover and decode SCSI errors from your log files."
+  },
+  {
+    "id": "imagetragick",
+    "name": "ImageMagick Filtering Vulnerability",
+    "product": "Others",
+    "shortDesc": "A vulnerability was found in Imagemagick where insufficient filtering for filenames passed to a delegate's command allows remote code execution during the conversion of several file formats."
+  },
+  {
+    "id": "jvmconfig",
+    "name": "JVM Options Configuration Tool",
+    "product": "JBoss",
+    "shortDesc": "Optimize your JVM tuning based on your workload and environment."
+  },
+  {
+    "id": "mpcv",
+    "name": "Multipath Configuration Visualizer",
+    "product": "Red Hat Enterprise Linux",
+    "shortDesc": "Multipath Configuration Visualizer extracts and visualizes multipath configuration from a sosreport."
+  },
+  {
+    "id": "ghost",
+    "name": "GHOST (CVE-2015-0235) - gethostbyname Detector",
+    "product": "Red Hat Enterprise Linux",
+    "shortDesc": "This script helps you confirm whether your system is susceptible to GHOST."
+  },
+  {
+    "id": "adih",
+    "name": "AD Integration Helper (Samba FS - winbind)",
+    "product": "Others",
+    "shortDesc": "This tool helps you connect a Red Hat Enterprise Linux system to an Active Directory server by generating Samba Winbind configuration. Basic information of Active Directory server is needed and a script will be generated. The script will config Samba, NSS and PAM for you."
+  },
+  {
+    "id": "kvmbridgeconfiguration",
+    "name": "Bridge Configuration",
+    "product": "Red Hat Enterprise Linux",
+    "shortDesc": "Configure a bridged network interface"
+  },
+  {
+    "id": "kdumphelper",
+    "name": "Kdump Helper",
+    "product": "Red Hat Enterprise Linux",
+    "shortDesc": "Configure Kdump to dump vmcores"
+  },
+  {
+    "id": "lvmraidcalculator",
+    "name": "LVM RAID Calculator",
+    "product": "Red Hat Enterprise Linux",
+    "shortDesc": "Create LVM volumes on RAID."
+  },
+  {
+    "id": "rheltfo",
+    "name": "RHEL Tuner for Oracle",
+    "product": "Red Hat Enterprise Linux",
+    "shortDesc": "This app generates a script that sets the tuning parameter in the operating system, which improves Oracle’s performance."
+  },
+  {
+    "id": "virtwhoconfig",
+    "name": "Red Hat Virtualization Agent (virt-who) Configuration Helper",
+    "product": "Others",
+    "shortDesc": "virt-who is required when working with any hypervisor if your subscription name includes the words \"Virtual Datacenters\", \"4 Guests\", or \"Unlimited Guests\". This app helps users configure virt-who. When started, the app requests information about your virt-who usage and generates a configuration file based on he answers. It also provides instructions for updating your virt-who configuration."
+  },
+  {
+    "id": "rhpc",
+    "name": "Red Hat Product Certificates",
+    "product": "Others",
+    "shortDesc": "The Red Hat Product Certificates application helps you retrieve and install product certificate files."
+  },
+  {
+    "id": "leapsecond",
+    "name": "Leap Second Issue Detector",
+    "product": "Red Hat Enterprise Linux",
+    "shortDesc": "Leap Second Issue Detector. The next leap second will occur on 2016 December 31, 23h 59m 60s UTC."
+  },
+  {
+    "id": "registrationassistant",
+    "name": "Registration Assistant",
+    "product": "Red Hat Enterprise Linux",
+    "shortDesc": "A simple guide to registering Red Hat Enterprise Linux systems."
+  },
+  {
+    "id": "cve20150240checker",
+    "name": "Samba Vulnerability (CVE-2015-0240) Detector",
+    "product": "Red Hat Enterprise Linux",
+    "shortDesc": "This script helps you confirm whether your system is susceptible to CVE-2015-0240."
+  },
+  {
+    "id": "kerneloopsanalyzer",
+    "name": "Kernel Oops Analyzer",
+    "product": "Red Hat Enterprise Linux",
+    "shortDesc": "Diagnose kernel crash issue."
+  },
+  {
+    "id": "psb",
+    "name": "Red Hat Code Browser",
+    "product": "Others",
+    "shortDesc": "Browse Red Hat product source code, including ChangeLogs, RPM spec files, and individual patches."
+  },
+  {
+    "id": "shellshock",
+    "name": "Shellshock - Bash Vulnerability Detector",
+    "product": "Red Hat Enterprise Linux",
+    "shortDesc": "This application helps you test whether your system is vulnerable to Bash code injection."
+  },
+  {
+    "id": "jvmpeg",
+    "name": "JVMPeg",
+    "product": "JBoss",
+    "shortDesc": "This tool will help you analyze JVM threads that are pegging the CPU above a specified threshold"
+  },
+  {
+    "id": "rbra",
+    "name": "RHEL Backup and Restore Assistant",
+    "product": "Red Hat Enterprise Linux",
+    "shortDesc": "This application introduces the most frequently-used backup/restore tools provided in Red Hat Enterprise Linux and helps you understand the common usage of each backup/restore tool by examples and how to choose an appropriate tool for a specific scenario."
+  },
+  {
+    "id": "slcv",
+    "name": "Storage / LVM configuration viewer",
+    "product": "Red Hat Enterprise Linux",
+    "shortDesc": "The Storage/LVM Configuration Viewer analyzes the files included in a sosreport and creates a diagram to visualize the storage/LVM configuration."
+  },
+  {
+    "id": "rhnsle",
+    "name": "Red Hat Network (RHN) System List Exporter",
+    "product": "Red Hat Enterprise Linux",
+    "shortDesc": "This app can retrieve information about systems that are still registered to Red Hat Network Classic (RHN)."
+  },
+  {
+    "id": "heartbleed",
+    "name": "Heartbleed Detector",
+    "product": "Red Hat Enterprise Linux",
+    "shortDesc": "Detect whether a given host is susceptible to CVE-2014-0160 -heartbleed-"
+  },
+  {
+    "id": "nfshelper",
+    "name": "NFS Helper",
+    "product": "Red Hat Enterprise Linux",
+    "shortDesc": "Generate a configuration script for a new NFS server or client."
+  },
+  {
+    "id": "jevd",
+    "name": "Embedded Vulnerability Detector",
+    "product": "JBoss",
+    "shortDesc": "Scan your Java application for dependencies on JARs with known security vulnerabilities."
+  },
+  {
+    "id": "rhelupgradehelper",
+    "name": "Red Hat Enterprise Linux Upgrade Helper",
+    "product": "Red Hat Enterprise Linux",
+    "shortDesc": "Upgrade Red Hat Enterprise Linux from version 6.5/6.6/6.7/6.8/6.9/6.10 to the latest version of Red Hat Enterprise Linux 7."
+  },
+  {
+    "id": "rhevupgradehelper",
+    "name": "Red Hat Virtualization Upgrade Helper",
+    "product": "Red Hat Enterprise Linux",
+    "shortDesc": "Upgrade Red Hat Virtualization to a later version."
+  },
+  {
+    "id": "rescuemodeassistant",
+    "name": "Rescue Mode Assistant",
+    "product": "Red Hat Enterprise Linux",
+    "shortDesc": "Rescue Mode Assistant helps customers to reset root password, generate sosreport, perform a filesystem check(fsck), reinstall GRUB, rebuild the Initial Ramdisk Image and reduce the size of the root file system in/through the rescue mode of Red Hat Enterprise Linux."
+  },
+  {
+    "id": "winbindmapper",
+    "name": "Winbind Mapper",
+    "product": "Red Hat Enterprise Linux",
+    "shortDesc": "Build an optimized Samba Winbind configuration to integrate with Active Directory servers"
+  },
+  {
+    "id": "nptcpdump",
+    "name": "Packet capture syntax generator",
+    "product": "Red Hat Enterprise Linux",
+    "shortDesc": "The Packet capture syntax generator application will generate a tcpdump command to capture network packets."
+  },
+  {
+    "id": "garbagedog",
+    "name": "Garbage Collection Analysis",
+    "product": "Red Hat Enterprise Linux",
+    "shortDesc": "Visualize and analyze Java Virtual Machine garbage collection logs."
+  },
+  {
+    "id": "speculativeexecution",
+    "name": "Spectre And Meltdown Detector",
+    "product": "Red Hat Enterprise Linux",
+    "shortDesc": "Detect Spectre and Meltdown in Red Hat Enterprise Linux 5 or later"
+  },
+  {
+    "id": "rhvupgradehelper",
+    "name": "Red Hat Virtualization Upgrade Helper",
+    "product": "Red Hat Enterprise Virtualization",
+    "shortDesc": "Upgrade Red Hat Virtualization to a later version."
+  },
+  {
+    "id": "satelliteupgradehelper",
+    "name": "Red Hat Satellite Upgrade Helper",
+    "product": "Others",
+    "shortDesc": "This app is designed to help you upgrade your Red Hat Satellite 6 to a newer version."
+  },
+  {
+    "id": "teamdconfighelper",
+    "name": "Network Teaming Helper",
+    "product": "Others",
+    "shortDesc": "This app is designed to help you configure network teaming. The app will generate a script for you to configure network teaming based on the information you provided."
+>>>>>>> 55db460ec6a55bb14460d9075f2be0cb0a8f98c0
   }
 ]

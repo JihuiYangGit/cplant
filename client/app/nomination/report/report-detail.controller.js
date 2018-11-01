@@ -29,9 +29,7 @@ angular.module('cplantApp').controller('reportDetailCtrl', ['$mdDialog', '$mdToa
         self.report.status = 'ACCEPTED';
         self.startProgress = false;
         $mdToast.showSimple('Success!');
-
         self.cancel();
-
         if(data.result) {
           console.log("controller get url:" + data.trelloCardUrl);
           self.report.trelloCardId = data.trelloCardId;
@@ -52,7 +50,6 @@ angular.module('cplantApp').controller('reportDetailCtrl', ['$mdDialog', '$mdToa
       .then(function () {
         self.startProgress = false;
         $mdToast.showSimple('Success!');
-
         self.cancel();
       }, function (data) {
         $mdToast.showSimple('Failed!' + data);
@@ -68,7 +65,6 @@ angular.module('cplantApp').controller('reportDetailCtrl', ['$mdDialog', '$mdToa
       .then(function () {
         self.startProgress = false;
         $mdToast.showSimple('Success!');
-
         self.cancel();
       }, function (data) {
         $mdToast.showSimple('Failed!' + data);
@@ -99,7 +95,6 @@ angular.module('cplantApp').controller('reportDetailCtrl', ['$mdDialog', '$mdToa
           self.report.status = self.reportStatus;
           self.startProgress = false;
           $mdToast.showSimple('Success!');
-
           self.cancel();
         }, function () {
           self.disableConfirm = false;

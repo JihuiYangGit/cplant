@@ -45,6 +45,7 @@ module.exports = function (grunt) {
         open: {
             server: {
                  url: 'https://jihyang.usersys.redhat.com:10001/labs/<%= pkg.name %>/'
+                 //url: 'https://szheng.usersys.redhat.com:10001/labs/<%= pkg.name %>/'
                  //url: 'https://localhost:10001/labs/<%= pkg.name %>/'
             }
         },
