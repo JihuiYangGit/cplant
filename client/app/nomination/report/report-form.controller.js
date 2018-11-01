@@ -76,7 +76,6 @@ xhttp.open("GET", "/feeds/labinfo", true);
 xhttp.send(); 
 
 
-
 function showResult(xml) {
     var txt = "";
     var path = "rss/channel/item/*"

@@ -84,12 +84,14 @@ function createProposalTrello(req, res, next) {
       return next(new Error(error));
     }
 
+    proposal.trelloCardUrl = JSON.parse(body).shortUrl;
     proposal.trelloCardId = JSON.parse(body).id;
+    console.log('request get url:' + proposal.trelloCardUrl);
     proposal.status = 'ACCEPTED';
 
     proposal.save();
 
-    return res.send({result: true, trelloCardId: proposal.trelloCardId});
+    return res.send({result: true, trelloCardId: proposal.trelloCardId, trelloCardUrl: proposal.trelloCardUrl});
   });
 }
 
@@ -121,8 +123,9 @@ function createReportTrello(req, res, next) {
     if (error) {
       return next(new Error(error));
     }
-
     report.trelloCardId = JSON.parse(body).id;
+    report.trelloCardUrl = JSON.parse(body).shortUrl;
+    console.log('request get url:' + report.trelloCardUrl);
     report.status = 'ACCEPTED';
 
     report.save();
@@ -147,7 +150,7 @@ function createReportTrello(req, res, next) {
 
     }
 
-    return res.send({result: true, trelloCardId: report.trelloCardId});
+    return res.send({result: true, trelloCardId: report.trelloCardId, trelloCardUrl: report.trelloCardUrl});
   });
 }
 

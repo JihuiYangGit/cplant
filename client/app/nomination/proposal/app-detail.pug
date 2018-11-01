@@ -3,6 +3,8 @@
     md-toolbar.md-toolbar-tools
       h2 Proposal Detail ({{appDetailCtrl.proposal.status}})
       span(flex)
+      md-button.cplant-trello-button(ng-href="{{appDetailCtrl.proposal.trelloCardUrl}}" target="_blank" ng-if="appDetailCtrl.proposal.trelloCardUrl && appDetailCtrl.isAdmin()")
+          md-icon.cplant-trello-logo(md-svg-src='assets/images/trello-logo-black.svg')
       md-button.md-icon-button(ng-click='appDetailCtrl.cancel()')
         md-icon(md-svg-src='assets/images/ic-exit.svg')
     md-progress-linear(md-mode="indeterminate", ng-hide='!appDetailCtrl.startProgress')
@@ -62,11 +64,11 @@
           h5 Related KBase solutions or documents
           p {{appDetailCtrl.proposal.optionalQuestions.relatedKBaseRes}}
     md-dialog-actions(layout='row')
-      md-input-container.cplant-reason-container(ng-if='appDetailCtrl.isAdmin()')   
-        input(ng-model='appDetailCtrl.rejectReason' type='text' ng-required='true' placeholder='Reason' ng-hide = "appDetailCtrl.proposalStatus !== 'REJECTED'")
-      md-input-container(ng-if='appDetailCtrl.isAdmin()')
-        md-radio-group(ng-model='appDetailCtrl.proposalStatus')
-          md-radio-button(value='ACCEPTED' ng-disabled="appDetailCtrl.isCompletedAccept()") ACCEPT
-          md-radio-button(value='REJECTED' ng-disabled="appDetailCtrl.isCompletedAccept()") REJECT
+      md-input-container(ng-if='appDetailCtrl.isAdmin()' layout='row')
+        md-switch.cplant-status-switch(ng-if='appDetailCtrl.isAdmin()' ng-model='appDetailCtrl.proposalStatus' ng-disabled='appDetailCtrl.isCompletedAccept()||appDetailCtrl.proposal.status === "ACCEPTED"' ng-true-value="'ACCEPTED'" ng-false-value="'NEW'" ) ACCEPT
+        md-switch.cplant-status-switch(ng-if='appDetailCtrl.isAdmin()' ng-model='appDetailCtrl.proposalStatus' ng-disabled='appDetailCtrl.isCompletedAccept()||appDetailCtrl.proposal.status === "REJECTED"' ng-true-value="'REJECTED'" ng-false-value="'NEW'" ) REJECT
+        div.cplant-reason-container
+          md-select(ng-model="appDetailCtrl.rejectReason" placeholder='Reason' ng-required='true' ng-hide = "appDetailCtrl.proposalStatus !== 'REJECTED'||appDetailCtrl.proposal.status === 'REJECTED'" ng-disabled='reportDetailCtrl.report.status === "REJECTED"')
+            md-option(ng-value="reason" ng-repeat="reason in appDetailCtrl.reasons") {{reason}}
+      md-button(ng-if='appDetailCtrl.isAdmin()', ng-click='appDetailCtrl.updateStatus()' ng-disabled='appDetailCtrl.proposalStatus === appDetailCtrl.proposal.status || appDetailCtrl.disableConfirm || appDetailCtrl.proposalStatus === "NEW"') Change Status           
       md-button(ng-click='appDetailCtrl.edit($event)', ng-disabled='appDetailCtrl.isCompletedAccept()') Edit
-      md-button(ng-if='appDetailCtrl.isAdmin()', ng-click='appDetailCtrl.updateStatus()' ng-disabled='appDetailCtrl.proposalStatus === appDetailCtrl.proposal.status || appDetailCtrl.disableConfirm') Change Status        

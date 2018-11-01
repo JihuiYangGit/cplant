@@ -38,6 +38,8 @@ exports.login = function (id, passwd) {
     .then(function (result) {
       console.log(result);
       dfd.resolve(result);
+    }).catch(function(reason) {
+      dfd.reject(reason);
     });
   return dfd.promise;
 };

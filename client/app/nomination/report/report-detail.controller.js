@@ -6,6 +6,8 @@ angular.module('cplantApp').controller('reportDetailCtrl', ['$mdDialog', '$mdToa
   self.reportStatus = self.report.status;
   self.startProgress = false;
   self.disableConfirm = false;
+  self.rejectReason = '';
+  self.reasons = ['NOT A BUG','DUPLICATED','CANNOT FIX ','OTHER'];
 
   self.isAdmin = function () {
     return labsService.isAdmin();
@@ -31,7 +33,9 @@ angular.module('cplantApp').controller('reportDetailCtrl', ['$mdDialog', '$mdToa
         self.cancel();
 
         if(data.result) {
+          console.log("controller get url:" + data.trelloCardUrl);
           self.report.trelloCardId = data.trelloCardId;
+          self.report.trelloCardUrl = data.trelloCardUrl;
         }
       }, function (data) {
         $mdToast.showSimple('Failed!' + data);

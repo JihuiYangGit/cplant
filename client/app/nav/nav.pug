@@ -8,7 +8,7 @@ md-toolbar.cplant-nav.md-whiteframe-6dp(ng-controller='navCtrl as navCtrl')
         .secondary-title.flex Nomination Tool
     span.flex(flex)
     md-menu.cplant-nav-avatar-container(md-offset="0 50")
-      canvas#cplant-nav-avatar(hide-xs, md-menu-origin, ng-click='$mdMenu.open()')
+      canvas#cplant-nav-avatar(md-menu-origin, ng-click='$mdMenu.open()')
       md-menu-content(width=2, ng-mouseleave="$mdMenu.close()")
         md-menu-item
           md-button(ng-click='navCtrl.signOut()')

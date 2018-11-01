@@ -17,16 +17,18 @@ angular.module('cplantApp').factory('avatarService', [function () {
   function generateAvatar(name, elementId) {
     var colours = ['#1abc9c', '#2ecc71', '#3498db', '#9b59b6', '#34495e', '#16a085', '#27ae60', '#2980b9', '#8e44ad', '#2c3e50', '#f1c40f', '#e67e22', '#e74c3c', '#95a5a6', '#f39c12', '#d35400', '#c0392b', '#bdc3c7', '#7f8c8d'];
 
-    var nameSplit = name.split(' ');
+    // var nameSplit = name.split(' ');
+    // var initials = nameSplit[0].charAt(0).toUpperCase();
+    // if(nameSplit.length > 1) {  
+    //   initials += nameSplit[1].charAt(0).toUpperCase();
+    // } else {
+    //   if(nameSplit[0].length > 1) {
+    //     initials += nameSplit[0].charAt(1).toUpperCase();
+    //   }
+    // }
 
-    var initials = nameSplit[0].charAt(0).toUpperCase();
-    if(nameSplit.length > 1) {
-      initials += nameSplit[1].charAt(0).toUpperCase();
-    } else {
-      if(nameSplit[0].length > 1) {
-        initials += nameSplit[0].charAt(1).toUpperCase();
-      }
-    }
+    //  initials += 'qwert124325'
+    var initials = name;
 
     var charIndex = initials.charCodeAt(0) - 65,
       colourIndex = charIndex % 19;
@@ -35,7 +37,7 @@ angular.module('cplantApp').factory('avatarService', [function () {
     var context = canvas.getContext('2d');
 
     var canvasWidth = $(canvas).width(),
-      canvasHeight = $(canvas).width(),
+      canvasHeight = $(canvas).height(),
       canvasCssWidth = canvasWidth,
       canvasCssHeight = canvasHeight;
 

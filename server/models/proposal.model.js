@@ -98,6 +98,10 @@ const ProposalSchema = new Schema({
 
   // TODO Add other field for user to track status in Trello
   trelloCardId: String,
+  trelloCardUrl: String,
+
+  // The reason why you reject a proposal
+  rejectReason: String,
 
   // Kerberos Id
   userId: String,

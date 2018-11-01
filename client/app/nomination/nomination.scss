@@ -17,6 +17,20 @@ md-input-container:not(.md-input-invalid).md-input-focused md-icon {
   color: #819ca9;
 }
 
+md-switch{
+  height: auto;
+}
+
+.md-toolbar-tools{
+  .md-button:not([disabled]):hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+}
+
+md-dialog-actions{
+  min-height: 70px !important;
+}
+
 .md-errors-spacer { display: none; }
 
 .cplant-dialog-form-container md-dialog {
@@ -81,8 +95,21 @@ md-input-container:not(.md-input-invalid).md-input-focused md-icon {
 }
 
 .cplant-reason-container {
-  margin-top: 30px;
-  margin-right: 20px;
+  // margin-top: 6px;
+  // margin-right: 20px;
+  min-width: 120px;
+}
+
+
+.cplant-trello-logo{
+  color: royalblue;
+  height: 28px;
+  width: 100px;
+}
+.cplant-status-switch{
+  margin: 0;
+  margin-right: 10px;
+  min-width: 120px;
 }
 
 .cplant-preview-container {
@@ -122,9 +149,17 @@ md-input-container:not(.md-input-invalid).md-input-focused md-icon {
   md-select:not([disabled]):focus .md-select-value {
     border-bottom-color: #5cb85c;
   }
-
-  .md-bar {
-    background: #5cb85c;
+  md-progress-linear .md-bar {
+    background-color: #5cb85c;
+  }
+  md-switch.md-checked .md-thumb {
+    background-color: rgb(92,184,92);
+  }
+  md-switch.md-checked .md-bar {
+    background-color: rgba(92,184,92, 0.5);
+  } 
+  md-switch.md-checked .md-ink-ripple {
+    color: rgb(92,184,92);
   }
 }
 
@@ -132,14 +167,21 @@ md-input-container:not(.md-input-invalid).md-input-focused md-icon {
   md-select:not([disabled]):focus .md-select-value {
     border-bottom-color: #428bca;
   }
-
-  .md-bar {
-    background: #428bca;
+  md-progress-linear .md-bar {
+    background-color: #428bca;
   }
-
   .md-button:not([disabled]) {
     font-weight: 400;
     color: #428bca;
+  }
+  md-switch.md-checked .md-thumb {
+    background-color: rgb(66,139,202);
+  }
+  md-switch.md-checked .md-bar {
+    background-color: rgba(66,139,202, 0.5);
+  } 
+  md-switch.md-checked .md-ink-ripple {
+    color: rgb(66,139,202);
   }
 }
 
@@ -147,10 +189,17 @@ md-input-container:not(.md-input-invalid).md-input-focused md-icon {
   md-select:not([disabled]):focus .md-select-value {
     border-bottom-color: #e35d6a;
   }
-
-  .md-bar {
-    background: #e35d6a;
+  md-progress-linear .md-bar {
+    background-color: #e35d6a;
+  }
+  md-switch.md-checked .md-thumb {
+    background-color: rgb(227,93,106);
+  }
+  md-switch.md-checked .md-bar {
+    background-color: rgba(227,93,106, 0.5);
+  } 
+  md-switch.md-checked .md-ink-ripple {
+    color: rgb(227,93,106);
   }
 }
-
 

@@ -3,6 +3,8 @@
     md-toolbar.md-toolbar-tools
       h2 Feature Detail ({{reportDetailCtrl.report.status}})
       span(flex)
+      md-button.cplant-trello-button(ng-href="{{reportDetailCtrl.report.trelloCardUrl}}" target="_blank" ng-if="reportDetailCtrl.report.trelloCardUrl && reportDetailCtrl.isAdmin()")
+        md-icon.cplant-trello-logo(md-svg-src='assets/images/trello-logo-black.svg')
       md-button.md-icon-button(ng-click='reportDetailCtrl.cancel()')
         md-icon(md-svg-src='assets/images/ic-exit.svg')
     md-progress-linear(md-mode="indeterminate", ng-hide='!reportDetailCtrl.startProgress')
@@ -22,18 +24,15 @@
         div.cplant-detail-attachments-container(layout='row')
           a(ng-repeat='url in reportDetailCtrl.report.attachments', href='{{url}}', flex='20', target='_blank')
             img(src='{{url}}')
-        md-divider(ng-hide = '!reportDetailCtrl.report.trelloCardId')
-        h5(ng-hide = '!reportDetailCtrl.report.trelloCardId') TrelloCardID 
-        p(ng-hide = '!reportDetailCtrl.report.trelloCardId') {{reportDetailCtrl.report.trelloCardId}}
-    md-dialog-actions(layout='row')    
-      md-input-container.cplant-reason-container(ng-if='reportDetailCtrl.isAdmin()')   
-        input(ng-model='reportDetailCtrl.rejectReason' type='text' ng-required='true' placeholder='Reason' ng-hide = "reportDetailCtrl.reportStatus !== 'REJECTED'")
-      md-input-container(ng-if='reportDetailCtrl.isAdmin()') 
-        md-radio-group(ng-model='reportDetailCtrl.reportStatus')
-          md-radio-button(value='ACCEPTED' ng-disabled="reportDetailCtrl.isCompletedAccept()") ACCEPT
-          md-radio-button(value='REJECTED' ng-disabled="reportDetailCtrl.isCompletedAccept()") REJECT
+        md-divider
+    md-dialog-actions(layout='row')
+      md-input-container(ng-if='reportDetailCtrl.isAdmin()' layout='row')
+        md-switch.cplant-status-switch(ng-if='reportDetailCtrl.isAdmin()' ng-model='reportDetailCtrl.reportStatus' ng-disabled='reportDetailCtrl.isCompletedAccept()||reportDetailCtrl.report.status === "ACCEPTED"' ng-true-value="'ACCEPTED'" ng-false-value="'NEW'" ) ACCEPT
+        md-switch.cplant-status-switch(ng-if='reportDetailCtrl.isAdmin()' ng-model='reportDetailCtrl.reportStatus' ng-disabled='reportDetailCtrl.isCompletedAccept()||reportDetailCtrl.report.status === "REJECTED"' ng-true-value="'REJECTED'" ng-false-value="'NEW'" ) REJECT
+        div.cplant-reason-container
+          md-select(ng-model="reportDetailCtrl.rejectReason" placeholder='Reason' ng-required='true' ng-hide = "reportDetailCtrl.reportStatus !== 'REJECTED' || reportDetailCtrl.report.status === 'REJECTED'" ng-disabled='reportDetailCtrl.report.status === "REJECTED"')
+            md-option(ng-value="reason" ng-repeat="reason in reportDetailCtrl.reasons") {{reason}}
+      md-button(ng-if='reportDetailCtrl.isAdmin()', ng-click='reportDetailCtrl.updateStatus()' ng-disabled='reportDetailCtrl.reportStatus === reportDetailCtrl.report.status || reportDetailCtrl.disableConfirm') Change Status           
       md-button(ng-click='reportDetailCtrl.edit($event)', ng-disabled='reportDetailCtrl.isCompletedAccept()') Edit
-      md-button(ng-if='reportDetailCtrl.isAdmin()', ng-click='reportDetailCtrl.updateStatus()' ng-disabled='reportDetailCtrl.reportStatus === reportDetailCtrl.report.status || reportDetailCtrl.disableConfirm') Change Status
-           
     
         

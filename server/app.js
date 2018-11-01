@@ -33,12 +33,15 @@ app.use(cookieParser());
 app.use(session({
   secret: 'customer portal labs',
   resave: false,
-  cookie: {}
+  cookie: {},
+  saveUninitialized: true
 }));
 
 // connect to mongodb database
-mongoose.Promise = global.Promise;
-mongoose.connect(config.mongo.uri, config.mongo.options);
+  mongoose.Promise = global.Promise
+  mongoose.connect(config.mongo.uri,config.mongo.options)
+  .then(() => console.log('MongoDB Connected'))
+  .catch((err) => console.log(err));
 
 app.use(appPath + 'bower_components/', express.static(path.resolve(config.publicDir + '/bower_components')));
 app.use(appPath + 'assets/', express.static(path.resolve(config.publicDir + '/assets')));

@@ -5,6 +5,9 @@
 module.exports = {
   // MongoDB connection options
   mongo: {
-    uri: 'mongodb://localhost/labs-test'
+    uri: 'mongodb://localhost:27017/labs-test',
+    options: {
+      useNewUrlParser: true
+    }
   }
 };

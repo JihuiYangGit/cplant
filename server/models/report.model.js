@@ -48,6 +48,7 @@ const reportSchema = new Schema({
   },
 
   trelloCardId: String,
+  trelloCardUrl: String,
 
   lab: {
     id: String,
