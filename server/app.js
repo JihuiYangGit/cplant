@@ -39,6 +39,7 @@ app.use(session({
 
 // connect to mongodb database
   mongoose.Promise = global.Promise
+  console.log('uri:' + config.mongo.uri);
   mongoose.connect(config.mongo.uri,config.mongo.options)
   .then(() => console.log('MongoDB Connected'))
   .catch((err) => console.log(err));

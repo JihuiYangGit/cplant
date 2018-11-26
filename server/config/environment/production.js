@@ -18,10 +18,14 @@ module.exports = {
 
   // MongoDB connection options
   mongo: {
-    uri: 'mongodb://' + process.env.OPENSHIFT_MONGODB_DB_USERNAME + ':' + process.env.OPENSHIFT_MONGODB_DB_PASSWORD + '@' + process.env.OPENSHIFT_MONGODB_DB_HOST1 + ':' + process.env.OPENSHIFT_MONGODB_DB_PORT + ',' + process.env.OPENSHIFT_MONGODB_DB_HOST2 + ':' + process.env.OPENSHIFT_MONGODB_DB_PORT + ',' + process.env.OPENSHIFT_MONGODB_DB_HOST3 + ':' + process.env.OPENSHIFT_MONGODB_DB_PORT + '/' + process.env.OPENSHIFT_APP_NAME,
+    uri: 'mongodb://' + process.env.OPENSHIFT_MONGODB_DB_USERNAME + ':' + process.env.OPENSHIFT_MONGODB_DB_PASSWORD + '@' 
+    + process.env.OPENSHIFT_MONGODB_DB_HOST1 + ':' + process.env.OPENSHIFT_MONGODB_DB_PORT + ','
+     + process.env.OPENSHIFT_MONGODB_DB_HOST2 + ':' + process.env.OPENSHIFT_MONGODB_DB_PORT + ','
+      + process.env.OPENSHIFT_MONGODB_DB_HOST3 + ':' + process.env.OPENSHIFT_MONGODB_DB_PORT + '/' 
+      + process.env.OPENSHIFT_APP_NAME,
     options: {
       poolSize: 10,
-      ssl: true,
+      ssl: false,
       sslValidate: true,
       sslCA: [require('fs').readFileSync(process.env.CPLABS_DB_CERT_PATH)],
       keepAlive: true,
