@@ -35,7 +35,8 @@ module.exports = {
       reconnectInterval: 500,
       replicaSet: 'cplabsmongo',
       authSource: 'admin',
-      useNewUrlParser: true
+      useNewUrlParser: true,
+      connectWithNoPrimary: true
     }
   }
 };
