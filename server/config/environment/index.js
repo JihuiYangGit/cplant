@@ -3,7 +3,8 @@
 const path = require('path');
 const _ = require('lodash');
 
-process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+process.env.NODE_ENV = process.env.NODE_ENV || 'production';
+//process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 // All configurations will extend these options
 // ============================================
