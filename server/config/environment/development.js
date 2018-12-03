@@ -12,7 +12,8 @@ module.exports = {
 
   // MongoDB connection options
   mongo: {
-    uri: 'mongodb://localhost:27017/cplant-development',
+    uri: 'mongodb://:@10.72.37.221:27017/cplant',
+   // uri: 'mongodb://localhost:27017/cplant-development',
     options: {
       useNewUrlParser: true
     }
