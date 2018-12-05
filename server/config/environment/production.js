@@ -21,23 +21,24 @@ module.exports = {
   //MongoDB connection options
   mongo: {
     uri: 'mongodb://' + process.env.OPENSHIFT_MONGODB_DB_USERNAME + ':' + process.env.OPENSHIFT_MONGODB_DB_PASSWORD + '@' 
-    + process.env.OPENSHIFT_MONGODB_DB_HOST1 + ':' + process.env.OPENSHIFT_MONGODB_DB_PORT
-    + '/' 
-      + process.env.OPENSHIFT_APP_NAME,
+    + process.env.OPENSHIFT_MONGODB_DB_HOST1 + ':' + process.env.OPENSHIFT_MONGODB_DB_PORT + ','
+    + process.env.OPENSHIFT_MONGODB_DB_HOST2 + ':' + process.env.OPENSHIFT_MONGODB_DB_PORT + ','
+    + process.env.OPENSHIFT_MONGODB_DB_HOST3 + ':' + process.env.OPENSHIFT_MONGODB_DB_PORT + '/' 
+    + process.env.OPENSHIFT_APP_NAME,
     options: {
-    //   poolSize: 10,
-    //   ssl: false,
-    //   sslValidate: true,
-    //   sslCA: [require('fs').readFileSync(process.env.CPLABS_DB_CERT_PATH)],
-    //   keepAlive: true,
-    //  // useMongoClient: true,
-    //   socketTimeoutMS: 0,
-    //   reconnectTries: Number.MAX_VALUE,
-    //   reconnectInterval: 500,
-    //   replicaSet: 'cplabsmongo',
-    //   authSource: 'admin',
+      poolSize: 10,
+      ssl: false,
+      sslValidate: true,
+      sslCA: [require('fs').readFileSync(process.env.CPLABS_DB_CERT_PATH)],
+      keepAlive: true,
+      useMongoClient: true,
+      socketTimeoutMS: 0,
+      reconnectTries: Number.MAX_VALUE,
+      reconnectInterval: 500,
+      replicaSet: 'cplabsmongo',
+      authSource: 'admin',
       useNewUrlParser: true,
-     // connectWithNoPrimary: true
+      // connectWithNoPrimary: true
     }
   }
 };
