@@ -27,14 +27,12 @@ module.exports = {
       sslValidate: true,
       sslCA: [require('fs').readFileSync(process.env.CPLABS_DB_CERT_PATH)],
       keepAlive: true,
-      //useMongoClient: true,
+      useMongoClient: true,
       socketTimeoutMS: 0,
       reconnectTries: Number.MAX_VALUE,
       reconnectInterval: 500,
       replicaSet: 'cplabsmongo',
-      authSource: 'admin',
-      useNewUrlParser: true,
-      // connectWithNoPrimary: true
+      authSource: 'admin'
     }
   }
 };
