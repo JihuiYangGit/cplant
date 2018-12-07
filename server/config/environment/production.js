@@ -14,8 +14,8 @@ module.exports = {
   9000,
 
   // public directory
-  publicDir: process.env.OPENSHIFT_LABSNODEJS_IP ? 'public' : 'dist/public',
-
+  // publicDir: process.env.OPENSHIFT_LABSNODEJS_IP ? 'public' : 'dist/public',
+  publicDir: '',
 
  
   //MongoDB connection options
