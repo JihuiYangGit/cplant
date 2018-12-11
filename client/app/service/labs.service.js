@@ -72,11 +72,11 @@ angular.module('cplantApp').factory('labsService', ['$http', '$cookies', '$q', f
   }
 
   return {
-    all,
-    getUser,
-    isAdmin,
-    signOut,
-    createTrello,
-    updateTrello
+    all: all,
+    getUser: getUser,
+    isAdmin: isAdmin,
+    signOut: signOut,
+    createTrello: createTrello,
+    updateTrello: updateTrello
   };
 }]);

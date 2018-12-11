@@ -2,8 +2,10 @@ angular.module('cplantApp').factory('avatarService', [function () {
   'use strict';
 
   CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
-    if (w < 2 * r) r = w / 2;
-    if (h < 2 * r) r = h / 2;
+    if (w < 2 * r) 
+      {r = w / 2;}
+    if (h < 2 * r) 
+      {r = h / 2;}
     this.beginPath();
     this.moveTo(x+r, y);
     this.arcTo(x+w, y,   x+w, y+h, r);
@@ -12,7 +14,7 @@ angular.module('cplantApp').factory('avatarService', [function () {
     this.arcTo(x,   y,   x+w, y,   r);
     this.closePath();
     return this;
-  }
+  };
 
   function generateAvatar(name, elementId) {
     var colours = ['#1abc9c', '#2ecc71', '#3498db', '#9b59b6', '#34495e', '#16a085', '#27ae60', '#2980b9', '#8e44ad', '#2c3e50', '#f1c40f', '#e67e22', '#e74c3c', '#95a5a6', '#f39c12', '#d35400', '#c0392b', '#bdc3c7', '#7f8c8d'];
@@ -57,7 +59,7 @@ angular.module('cplantApp').factory('avatarService', [function () {
     context.fillText(initials, canvasCssWidth / 2, canvasCssHeight / 1.5);
   }
 
-  return {
-    generateAvatar
+  return { 
+    generateAvatar: generateAvatar
   };
 }]);

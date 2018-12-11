@@ -2,14 +2,14 @@
 (function () {
   'use strict';
 
-  requirejs.config({
+  require.config({
     baseUrl: 'assets/js',
     paths: {
       jquery: 'jquery-3.3.1.min'
     }
   });
 
-  requirejs(['jquery'], function (jq) {
+  require(['jquery'], function (jq) {
     var deps;
 
     var base = '/labs/cplant/';
@@ -29,7 +29,7 @@
       var previousDfd = dfds[index - 1];
       dfds[index] = new jq.Deferred();
       var _load = function () {
-        requirejs(mod.split(), function () {
+        require(mod.split(), function () {
           dfds[index].resolve();
         });
       };

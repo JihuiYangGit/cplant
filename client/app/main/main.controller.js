@@ -16,8 +16,9 @@ angular.module('cplantApp').controller('mainCtrl', ['$scope','$mdDialog', 'propo
 
   function showFellowList() {
     self.requests.length = 0;
-    self._requests.filter(value => {
-      for (var q in query.cond) {description
+    self._requests.filter(function(value) {
+      for (var q in query.cond) {
+        description;
         if (query.cond.hasOwnProperty(q)) {
           if (value[q] && value[q] !== query.cond[q]) {
             return false;
@@ -25,7 +26,7 @@ angular.module('cplantApp').controller('mainCtrl', ['$scope','$mdDialog', 'propo
         }
       }
       return true;
-    }).forEach((value, index) => {
+    }).forEach(function(value, index) {
       self.requests.push(value);
     });
   }

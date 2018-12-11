@@ -81,6 +81,8 @@ reportSchema.statics = {
   },
 
   list: function (userId, skip = 0, limit = 50) {
+    skip = skip || 0;
+    limit = limit || 50;
     return this.find(userId ? {userId: userId} : null)
       .sort({createAt: -1})
       .skip(+skip)

@@ -77,24 +77,24 @@ xhttp.send();
 
 
 function showResult(xml) {
-    var txt = "";
-    var path = "rss/channel/item/*"
+    var txt = '';
+    var path = 'rss/channel/item/*';
     var nodes = xml.evaluate(path, xml, null, XPathResult.ANY_TYPE, null);
     var result = nodes.iterateNext();
     while (result) {
         
         if(result.childNodes[0]){
             var tagName = result.nodeName;
-            tagName = (tagName == 'title') ? 'name' : tagName ;
+            tagName = (tagName === 'title') ? 'name' : tagName ;
             var nodeValue = result.childNodes[0].nodeValue;
-            txt += tagName + ":" + nodeValue + "<br>";
+            txt += tagName + ':' + nodeValue + '<br>';
             newdata[tagName] = nodeValue;
         }
-        if(result.nodeName == "type")
+        if(result.nodeName === 'type')
         {  
             txt += "<br>";
             data.push(newdata);
-            newdata = new Object();
+            newdata = new Object({});
         }
         result = nodes.iterateNext();    
     }

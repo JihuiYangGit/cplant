@@ -1,7 +1,9 @@
 angular.module('cplantApp').factory('proposalService', ['$http', '$q', function ($http, $q) {
   'use strict';
 
-  function list(skip = 0, limit = 50) {
+  function list(skip, limit) {
+    skip = skip || 0;
+    limit = limit || 50;
     return $http.get('api/proposal', {
       params: {
         skip: skip,
@@ -78,12 +80,12 @@ angular.module('cplantApp').factory('proposalService', ['$http', '$q', function 
   }
 
   return {
-    list,
-    all,
-    get,
-    create,
-    remove,
-    update,
-    mailto,
+    list: list,
+    all: all,
+    get: get,
+    create: create,
+    remove: remove,
+    update: update,
+    mailto: mailto
   };
 }]);

@@ -41,8 +41,8 @@ app.use(session({
   mongoose.Promise = global.Promise
   console.log('uri:' + config.mongo.uri);
   mongoose.connect(config.mongo.uri,config.mongo.options)
-  .then(() => console.log('MongoDB Connected'))
-  .catch((err) => console.log(err));
+  .then(function(){return console.log('MongoDB Connected');})
+  .catch(function(err){return console.log(err);});
 
 app.use(appPath + 'bower_components/', express.static(path.resolve(config.publicDir + '/bower_components')));
 app.use(appPath + 'assets/', express.static(path.resolve(config.publicDir + '/assets')));
@@ -53,7 +53,7 @@ app.use(function(req, res, next){
   res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
   res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
 
-  if (req.method == 'OPTIONS') {
+  if (req.method === 'OPTIONS') {
       res.send(200); /*让options请求快速返回*/
   }else {
       next();

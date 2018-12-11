@@ -1,7 +1,9 @@
 angular.module('cplantApp').factory('reportService', ['$http', '$q', 'Upload', function ($http, $q, Upload) {
   'use strict';
 
-  function list(skip = 0, limit = 50) {
+  function list(skip,limit) {
+    skip = skip || 0;
+    limit = limit || 50;
     return $http.get('api/report', {
       params: {
         skip: skip,
@@ -70,11 +72,11 @@ angular.module('cplantApp').factory('reportService', ['$http', '$q', 'Upload', f
   }
 
   return {
-    list,
-    all,
-    get,
-    create,
-    remove,
-    update,
+    list: list,
+    all: all,
+    get: get,
+    create: create,
+    remove: remove,
+    update: update
   };
 }]);

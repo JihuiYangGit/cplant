@@ -5,7 +5,7 @@ const Proposal = require('../models/proposal.model');
 
 function load(req, res, next, id) {
   Proposal.get(id)
-    .then(proposal => {
+    .then(function(proposal) {
       if(!req.session.admin && req.session.auth !== proposal.userId) {
         return next(new Error('Unauthorized request'));
       }
@@ -13,7 +13,7 @@ function load(req, res, next, id) {
       req.proposal = proposal;
       return next();
     })
-    .catch(err => next(err));
+    .catch(function(err) {return next(err);});
 }
 
 function get(req, res) {
@@ -22,23 +22,23 @@ function get(req, res) {
 
 
 function create(req, res, next) {
-  let proposal = new Proposal(req.body);
+  var proposal = new Proposal(req.body);
   proposal.userId = req.session.auth;
 
   proposal.save()
-    .then(savedProposal => res.json(savedProposal))
-    .catch(err => next(err));
+    .then(function(savedProposal){return res.json(savedProposal);})
+    .catch(function(err){return next(err);});
 }
 
 function update(req, res, next) {
-  let proposal = req.proposal;
+  var proposal = req.proposal;
 
   Object.keys(req.body)
-    .forEach(key => proposal[key] = req.body[key]);
+    .forEach(function(key) {return proposal[key] = req.body[key]; });
 
   proposal.save()
-    .then(savedProposal => res.json(savedProposal))
-    .catch(err => next(err));
+    .then(function(savedProposal){return res.json(savedProposal); })
+    .catch(function(err){return next(err); });
 }
 
 function list(req, res, next) {
@@ -48,8 +48,8 @@ function list(req, res, next) {
   let limit = req.query.limit || 50;
 
   Proposal.list(session.admin?null:session.auth, skip, limit)
-    .then(proposals => res.json(proposals))
-    .catch(err => next(err));
+    .then(function(proposals) {return res.json(proposals);} )
+    .catch(function(err) {return next(err);});
 
 }
 
@@ -58,17 +58,17 @@ function all(req, res, next) {
   let session = req.session;
 
   Proposal.all(session.admin?null:session.auth)
-    .then(proposals => {
+    .then(function(proposals) {
       res.json(proposals);
     })
-    .catch(err => next(err));
+    .catch(function(err){next(err)});
 }
 
 function remove(req, res, next) {
   let proposal = req.proposal;
   proposal.remove()
-    .then(deletedProposal => res.json(deletedProposal))
-    .catch(err => next(err));
+    .then(function(deletedProposal){return res.json(deletedProposal)})
+    .catch(function(err) {return next(err)} );
 }
 
 function mailto(req,res,next) {

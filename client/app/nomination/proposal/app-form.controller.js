@@ -98,7 +98,7 @@ angular.module('cplantApp').controller('newAppCtrl', ['$scope', '$mdDialog', '$m
         self.targetUserSelectIndex[0] = self.proposal.requiredQuestions.targetUser.indexOf(targetUsers[0]) !== -1;
         self.targetUserSelectIndex[1] = self.proposal.requiredQuestions.targetUser.indexOf(targetUsers[1]) !== -1;
 
-        var other = self.proposal.requiredQuestions.targetUser.filter(value => targetUsers.indexOf(value) === -1);
+        var other = self.proposal.requiredQuestions.targetUser.filter(function(value) {return targetUsers.indexOf(value) === -1} );
         if (other.length !== 0) {
           self.targetUserSelectIndex[2] = false;
           self.otherTargetUser = other[0];
