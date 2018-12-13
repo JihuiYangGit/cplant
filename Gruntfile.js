@@ -45,7 +45,7 @@ module.exports = function (grunt) {
         },
         open: {
             server: {
-                 url: 'https://jihyang.usersys.redhat.com:10001/labs/<%= pkg.name %>/'
+                url: 'https://jihyang.usersys.redhat.com:10001/labs/<%= pkg.name %>/'
                  //url: 'https://localhost:10001/labs/<%= pkg.name %>/'
             }
         },
@@ -103,6 +103,7 @@ module.exports = function (grunt) {
                     '!{.tmp,<%= yeoman.client %>}/{app,components}/**/*.mock.js',
                     '<%= yeoman.client %>/assets/images/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}',
                     '<%= yeoman.client %>/assets/js/**/*',
+                    '<%= yeoman.client %>/assets/css/*',
                     '<%= yeoman.client %>/assets/languages/*.json'
                 ],
                 options: {
@@ -265,6 +266,7 @@ module.exports = function (grunt) {
                     '<%= yeoman.dist %>/public/app/*.loader.js',
                     '<%= yeoman.dist %>/public/assets/images',
                     '<%= yeoman.dist %>/public/assets/js',
+                    '<%= yeoman.dist %>/public/assets/css',
                     '<%= yeoman.dist %>/public/assets/languages'
                 ],
                 // This is so we update image references in our ng-templates
@@ -324,6 +326,8 @@ module.exports = function (grunt) {
                         'assets/images/{,*/}*.{png,jpg,jpeg,gif,webp}',
                         'assets/fonts/**/*',
                         'assets/js/**/*',
+                        'assets/css/*',
+                        'assets/fonts/*',
                         'assets/languages/*.json',
                         'index.html'
                     ]

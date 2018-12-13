@@ -24,13 +24,7 @@ angular.module('cplantApp', [
   $translateProvider.preferredLanguage('en');
   $translateProvider.registerAvailableLanguageKeys(['en']);
   $translateProvider.useSanitizeValueStrategy(null);
-}]).config(function ($stateProvider) {
-    'use strict';
-    $stateProvider.state('app', {
-        templateUrl: 'app/app.html',
-        controller: 'appCtrl'
-    });
-}).filter('to_trusted', ['$sce', function ($sce) {
+}]).filter('to_trusted', ['$sce', function ($sce) {
   'use strict';
   return function (text) {
     return $sce.trustAsHtml(text);
