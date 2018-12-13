@@ -52,6 +52,10 @@
     // <!-- injector:js -->
  /*<script src="app/app.controller.js"/>*/
                 window.deps.push("app/app.controller");
+ /*<script src="app/login/login.controller.js"/>*/
+                window.deps.push("app/login/login.controller");
+ /*<script src="app/login/login.js"/>*/
+                window.deps.push("app/login/login");
  /*<script src="app/main/main.controller.js"/>*/
                 window.deps.push("app/main/main.controller");
  /*<script src="app/main/main.parent-controller.js"/>*/
@@ -94,9 +98,11 @@
   <!-- injector:css -->
   <!-- endinjector -->
   <!-- endbuild -->
+  <link rel="stylesheet" href="assets/css/login.css">
 </head>
-<body layout-fill layout='column' id="cplant" ng-controller="appCtrl as appCtrl" ng-switch="appCtrl.isAdmin">
-<div ng-include src="'app/app.html'" layout-fill layout="column">
-</div>
+<body>
+    <div id="cplant" style="display: none;">
+        <div ui-view=""></div>
+    </div>
 </body>
 </html>
