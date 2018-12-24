@@ -3,7 +3,7 @@
 angular.module('cplantApp').config(function ($stateProvider) {
     'use strict';
     $stateProvider.state('login', {
-        url: '/',
+        url: '/login',
         templateUrl: 'app/login/login.html',
         controller: 'loginCtrl'
     });

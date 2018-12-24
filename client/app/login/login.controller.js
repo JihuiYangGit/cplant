@@ -4,16 +4,15 @@ angular.module('cplantApp').controller('loginCtrl', ['$http', '$mdToast', '$time
     'use strict';
     $scope.startProgress = false;
     $scope.login = function () {
-        alert('hahahah');
-        $state.go('main');
         $scope.startProgress = true;
-        $timeout(function () { $scope.displayErrorMsg = false; }, 3000);
+        $timeout(function () {
+            $scope.displayErrorMsg = false;
+        }, 3000);
         $http.post('login/auth', {kerberosid: $scope.kerberosid, password: $scope.password}).then(function (res) {
             if (!res.data.result) {
                 $scope.startProgress = false;
                 return $mdToast.showSimple(res.data.msg);
             }
-            //window.location.href = '';
             $state.go('main');
         });
     };

@@ -4,7 +4,11 @@
     var deps;
     var base = '/labs/cplant/';
     if (!window.LABS_DEBUG) {
-        deps = ['app/vendor.js', 'app/app.js'];
+        deps = [
+            'app/vendor.js',
+            'assets/js/angular-translate/angular-translate.min.js',
+            'assets/js/angular-translate/angular-translate-loader-static-files.min.js',
+            'app/app.js'];
     } else {
         deps = window.deps.map(function (dep) {
             return base + dep + '.js';
