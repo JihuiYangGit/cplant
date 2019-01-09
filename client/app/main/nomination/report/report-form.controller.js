@@ -72,7 +72,7 @@ xhttp.onreadystatechange = function() {
          showResult(xhttp.responseXML);
     }
 };
-xhttp.open("GET", "/feeds/labinfo", true);
+xhttp.open("GET", "https://access.redhat.com/feeds/labinfo", true);
 xhttp.send(); 
 
 
