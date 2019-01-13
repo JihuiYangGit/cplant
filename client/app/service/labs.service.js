@@ -3,7 +3,11 @@ angular.module('cplantApp').factory('labsService', ['$http', '$cookies', '$q', f
   var apps = null;
 
   function all() {
-    return $http.get('api/labs/all')
+    return $http({
+      method : 'GET',
+      url: '/feeds/labinfo',
+      responseType: 'document'
+    })
       .then(function (res) {
         if (res.data.err) {
           return $q.reject(res.data.msg);
@@ -12,7 +16,7 @@ angular.module('cplantApp').factory('labsService', ['$http', '$cookies', '$q', f
         if (apps) {
           return $q.resolve(apps);
         }
-
+        
         apps = res.data;
         return apps;
       });

@@ -55,58 +55,59 @@ angular.module('cplantApp').controller('newBugCtrl', ['$scope','$mdDialog', '$md
 }]).controller('newReportCtrl', ['$mdDialog', 'labsService', '$http', function ($mdDialog, labsService, $http) {
   'use strict';
   var self = this;
-
   self.apps = [];
   self.startProgress = false;
-
-  // labsService.all().then(function (data) {// search for the json file
-  //   self.apps = data;
-  // });
-
-var xhttp = new XMLHttpRequest();
-var data = [];
-var appdata = [];
-var newdata = {};
-xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-         showResult(xhttp.responseXML);
-    }
-};
-xhttp.open("GET", "https://access.redhat.com/feeds/labinfo", true);
-xhttp.send(); 
-
-
-function showResult(xml) {
-    var txt = '';
-    var path = 'rss/channel/item/*';
-    var nodes = xml.evaluate(path, xml, null, XPathResult.ANY_TYPE, null);
-    var result = nodes.iterateNext();
-    while (result) {
-        
-        if(result.childNodes[0]){
-            var tagName = result.nodeName;
-            tagName = (tagName === 'title') ? 'name' : tagName ;
-            var nodeValue = result.childNodes[0].nodeValue;
-            txt += tagName + ':' + nodeValue + '<br>';
-            newdata[tagName] = nodeValue;
+  
+  function xmlToJson(xml) {
+    // Create the return object
+    var obj = {};
+  
+    if (xml.nodeType == 1) { // element
+      // do attributes
+      if (xml.attributes.length > 0) {
+      obj["@attributes"] = {};
+        for (var j = 0; j < xml.attributes.length; j++) {
+          var attribute = xml.attributes.item(j);
+          obj["@attributes"][attribute.nodeName] = attribute.nodeValue;
         }
-        if(result.nodeName === 'type')
-        {  
-            txt += "<br>";
-            data.push(newdata);
-            newdata = new Object({});
-        }
-        result = nodes.iterateNext();    
-    }
-    data.forEach(function(element, index, array){
-      if(element.lang === 'en'){
-        appdata.push(data[index]);
       }
-  });
-    self.apps = appdata;
-}
+    } else if (xml.nodeType == 3) { // text
+      obj = xml.nodeValue;
+    }
+  
+    // do children
+    if (xml.hasChildNodes()) {
+      for(var i = 0; i < xml.childNodes.length; i++) {
+        var item = xml.childNodes.item(i);
+        var nodeName = item.nodeName;
+        if (typeof(obj[nodeName]) == "undefined") {
+          obj[nodeName] = xmlToJson(item);
+        } else {
+          if (typeof(obj[nodeName].push) == "undefined") {
+            var old = obj[nodeName];
+            obj[nodeName] = [];
+            obj[nodeName].push(old);
+          }
+          obj[nodeName].push(xmlToJson(item));
+        }
+      }
+    }
+    return obj;
+  }
 
-  function init() {
+  labsService.all().then(function (data) {// search for the xml file
+    self.apps = xmlToJson(data).rss.channel.item;
+    for (var i of self.apps){
+        i.id = i.id['#text'];
+        i.title = i.title['#text'];
+        i.lang = i.lang['#text'];
+    }
+    self.apps = self.apps.filter(function(item,index,array){
+        return (item.lang === 'en');
+    });
+  });
+
+  function init() {   
     if(self.locals && self.locals.report) {
       self.report = Object.assign({}, self.locals.report);
       self.selectedApp = self.report.app;
@@ -128,10 +129,10 @@ function showResult(xml) {
   self.querySearch = function (query) {
     query = query || '';
     query = query.toLowerCase();
-    //console.log(self.apps);
     return query ? self.apps.filter(function (item) {
-      return item && (item.name.toLowerCase().indexOf(query) !== -1 || item.id.toLowerCase().indexOf(query) !== -1);
+      return item && (item.title.toLowerCase().indexOf(query) !== -1 || item.id.toLowerCase().indexOf(query) !== -1);
     }) : self.apps;
+    
   };
 
   self.removeUploadFile = function (f) {
