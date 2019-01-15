@@ -97,11 +97,11 @@ angular.module('cplantApp').controller('newBugCtrl', ['$scope','$mdDialog', '$md
 
   labsService.all().then(function (data) {// search for the xml file
     self.apps = xmlToJson(data).rss.channel.item;
-    for (var i of self.apps){
-        i.id = i.id['#text'];
-        i.title = i.title['#text'];
-        i.lang = i.lang['#text'];
-    }
+    self.apps.forEach(function (app) {
+        app.id = app.id['#text'];
+        app.title = app.title['#text'];
+        app.lang = app.lang['#text'];
+    });
     self.apps = self.apps.filter(function(item,index,array){
         return (item.lang === 'en');
     });
