@@ -3,6 +3,7 @@
 const path = require('path');
 const _ = require('lodash');
 
+//process.env.NODE_ENV = process.env.NODE_ENV || 'production';
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 // All configurations will extend these options
@@ -17,9 +18,9 @@ const all = {
   // MongoDB connection options
   mongo: {
     options: {
-      db: {
-        safe: true
-      }
+      // db: {
+      //   safe: true
+      // }
     }
   },
 

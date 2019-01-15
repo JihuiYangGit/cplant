@@ -1,19 +1,19 @@
-.md-dialog-container.cplant-dialog-form-container#newFeatureDialog
-  md-dialog(aria-label='New Feature Proposal')
-    form(name='reportFeatureForm', ng-submit="$event.preventDefault()")
+.md-dialog-container.cplant-dialog-form-container#newBugDialog
+  md-dialog(aria-label='New Bug Proposal')
+    form(name='reportBugForm' ng-submit="$event.preventDefault()")
       md-toolbar.md-toolbar-tools
-        h2 Request Feature
+        h2 Report Bug
         span(flex)
         md-button.md-icon-button(ng-click='newReportCtrl.cancel()')
           md-icon(md-svg-src='assets/images/ic-exit.svg')
       md-dialog-content
         .md-dialog-content
           md-autocomplete(flex, ng-required='true', md-select-on-match='true', md-min-length="0", md-selected-item='newReportCtrl.report.app', md-search-text='newReportCtrl.searchText',
-          md-items='app in newReportCtrl.querySearch(newReportCtrl.searchText)', md-item-text='app.name', md-require-match='', md-input-name="appInput" md-floating-label="Labs App")
+          md-items='app in newReportCtrl.querySearch(newReportCtrl.searchText)', md-item-text='app.id', md-require-match='', md-input-name="appInput" md-floating-label="Labs App")
             md-item-template
-              span(md-highlight-text="newReportCtrl.searchText" md-highlight-flags="ig") {{app.name}} ({{app.id}})
+            span(md-highlight-text="newReportCtrl.searchText" md-highlight-flags="ig") {{app.id}} ({{app.title}})
             md-not-found No App matching "{{newReportCtrl.searchText}}" were found.
-            div(ng-messages='reportFeatureForm.appInput.$error' ng-if="reportFeatureForm.appInput.$touched")
+            div(ng-messages='reportBugForm.appInput.$error' ng-if="reportBugForm.appInput.$touched")
           md-input-container.md-block
             label Summary
             textarea(ng-model='newReportCtrl.report.summary', md-maxlength='60', ng-required='true')
@@ -34,6 +34,7 @@
                 md-icon(md-svg-src='assets/images/baseline-close.svg')
               img.cplant-image-preview(ngf-src="!f.$error && f", ngf-resize="{quality: 0.9}", flex='100')
       md-dialog-actions(layout='row')
-        md-button(type='reset') Reset
-        md-button(type='submit', ng-click='newReportCtrl.submit(reportFeatureForm)') Submit
-    md-progress-linear(md-mode="indeterminate" ng-hide="!newReportCtrl.startProgress")      
+        md-button(ng-click='newReportCtrl.reset(reportBugForm)') Reset
+        md-button(type='submit', ng-click='newReportCtrl.submit(reportBugForm)') Submit
+    md-progress-linear(md-mode="indeterminate" ng-hide="!newReportCtrl.startProgress")        
+        

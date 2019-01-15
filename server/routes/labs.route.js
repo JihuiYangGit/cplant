@@ -1,7 +1,7 @@
 'use strict';
 
 const express = require('express');
-const apps = require('./labs-app');
+// const apps = require('./labs-app');
 const pkg = require('../../package');
 
 const trelloCtrl = require('../controllers/trello.controller');
@@ -13,10 +13,10 @@ const router = express.Router();
 
 const appPath = '/labs/' + pkg.name + '/';
 
-router.route('/all')
-  .get(function (req, res) {
-    res.json(apps);
-  });
+// router.route('/all')
+//   .get(function (req, res) {
+//     res.json(apps);
+//   });
 
 router.route('/signOut')
   .get(function (req, res, next) {

@@ -14,11 +14,11 @@ module.exports = {
   9000,
 
   // public directory
-  publicDir: process.env.OPENSHIFT_LABSNODEJS_IP ? 'public' : 'dist/public',
+   publicDir: process.env.OPENSHIFT_LABSNODEJS_IP ? 'public' : 'dist/public',
 
-  // MongoDB connection options
+  //MongoDB connection options
   mongo: {
-    uri: 'mongodb://' + process.env.OPENSHIFT_MONGODB_DB_USERNAME + ':' + process.env.OPENSHIFT_MONGODB_DB_PASSWORD + '@' + process.env.OPENSHIFT_MONGODB_DB_HOST1 + ':' + process.env.OPENSHIFT_MONGODB_DB_PORT + ',' + process.env.OPENSHIFT_MONGODB_DB_HOST2 + ':' + process.env.OPENSHIFT_MONGODB_DB_PORT + ',' + process.env.OPENSHIFT_MONGODB_DB_HOST3 + ':' + process.env.OPENSHIFT_MONGODB_DB_PORT + '/' + process.env.OPENSHIFT_APP_NAME,
+    uri: 'mongodb://' + process.env.OPENSHIFT_MONGODB_DB_USERNAME + ':' + process.env.OPENSHIFT_MONGODB_DB_PASSWORD + '@' + process.env.OPENSHIFT_MONGODB_DB_HOST1 + ':' + process.env.OPENSHIFT_MONGODB_DB_PORT + ','+ process.env.OPENSHIFT_MONGODB_DB_HOST2 + ':' + process.env.OPENSHIFT_MONGODB_DB_PORT + ','+ process.env.OPENSHIFT_MONGODB_DB_HOST3 + ':' + process.env.OPENSHIFT_MONGODB_DB_PORT + '/' + process.env.OPENSHIFT_APP_NAME ,
     options: {
       poolSize: 10,
       ssl: true,
@@ -30,8 +30,7 @@ module.exports = {
       reconnectTries: Number.MAX_VALUE,
       reconnectInterval: 500,
       replicaSet: 'cplabsmongo',
-      authSource: 'admin',
-      useNewUrlParser: true
+      authSource: 'admin'
     }
   }
 };

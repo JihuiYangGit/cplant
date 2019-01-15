@@ -112,7 +112,7 @@ ol, ul, dl {
 
 // Component styles are injected through grunt
 // injector
-@import 'main/main.scss';
-@import 'nav/nav.scss';
-@import 'nomination/nomination.scss';
+@import 'main/content/content.scss';
+@import 'main/nav/nav.scss';
+@import 'main/nomination/nomination.scss';
 // endinjector
