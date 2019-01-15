@@ -37,8 +37,6 @@ angular.module('cplantApp').controller('newBugCtrl', ['$scope','$mdDialog', '$md
       targetEvent: ev,
       clickOutsideToClose: false,
     }).then(function (data) {
-     
-       //console.log(data);
       var report = data[0];
       var attachments = data[1];
       report.type = 'FEATURE';
