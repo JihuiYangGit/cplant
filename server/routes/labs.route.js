@@ -13,20 +13,17 @@ const router = express.Router();
 
 const appPath = '/labs/' + pkg.name + '/';
 
-// router.route('/all')
-//   .get(function (req, res) {
-//     res.json(apps);
-//   });
-
 router.route('/signOut')
   .get(function (req, res, next) {
     req.session.auth=null;
     req.session.admin=null;
     res.clearCookie('red-hat-cplant-user');
     res.clearCookie('red-hat-cplant-admin');
-
     return res.redirect(appPath + 'login');
   });
+
+router.route('/labinfo')
+  .get(reportCtrl.getLabsApp);
 
 router.route('/trello/proposal/:proposalId')
   .post(trelloCtrl.createProposalTrello)

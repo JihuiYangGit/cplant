@@ -22,6 +22,9 @@ angular.module('cplantApp').controller('newBugCtrl', ['$scope','$mdDialog', '$md
             .position('top right')
             .hideDelay(3000));
         });
+    })
+    .catch(function(err) {
+      console.log(err);
     });
   };
 }]).controller('newFeatureCtrl', ['$scope','$mdDialog', '$mdToast', 'reportService', function ($scope, $mdDialog, $mdToast, reportService) {
@@ -48,6 +51,9 @@ angular.module('cplantApp').controller('newBugCtrl', ['$scope','$mdDialog', '$md
             .position('top right')
             .hideDelay(3000));
         });
+    })
+    .catch(function(err) {
+        console.log(err);
     });
   };
 }]).controller('newReportCtrl', ['$mdDialog', 'labsService', '$http', function ($mdDialog, labsService, $http) {
@@ -56,53 +62,20 @@ angular.module('cplantApp').controller('newBugCtrl', ['$scope','$mdDialog', '$md
   self.apps = [];
   self.startProgress = false;
   
-  function xmlToJson(xml) {
-    // Create the return object
-    var obj = {};
-  
-    if (xml.nodeType == 1) { // element
-      // do attributes
-      if (xml.attributes.length > 0) {
-      obj["@attributes"] = {};
-        for (var j = 0; j < xml.attributes.length; j++) {
-          var attribute = xml.attributes.item(j);
-          obj["@attributes"][attribute.nodeName] = attribute.nodeValue;
-        }
-      }
-    } else if (xml.nodeType == 3) { // text
-      obj = xml.nodeValue;
-    }
-  
-    // do children
-    if (xml.hasChildNodes()) {
-      for(var i = 0; i < xml.childNodes.length; i++) {
-        var item = xml.childNodes.item(i);
-        var nodeName = item.nodeName;
-        if (typeof(obj[nodeName]) == "undefined") {
-          obj[nodeName] = xmlToJson(item);
-        } else {
-          if (typeof(obj[nodeName].push) == "undefined") {
-            var old = obj[nodeName];
-            obj[nodeName] = [];
-            obj[nodeName].push(old);
-          }
-          obj[nodeName].push(xmlToJson(item));
-        }
-      }
-    }
-    return obj;
-  }
-
-  labsService.all().then(function (data) {// search for the xml file
-    self.apps = xmlToJson(data).rss.channel.item;
-    self.apps.forEach(function (app) {
-        app.id = app.id['#text'];
-        app.title = app.title['#text'];
-        app.lang = app.lang['#text'];
-    });
-    self.apps = self.apps.filter(function(item,index,array){
+  labsService.all().then(function (data) {// search for the json file
+      var appdata = data.rss.channel.item;
+      var tmpArr = [];
+      appdata.forEach(function (app) {
+        var tmpObj = {};
+        tmpObj.id = app.id._text;
+        tmpObj.title = app.title._text;
+        tmpObj.lang = app.lang._text;
+        tmpArr.push(tmpObj);
+      });
+      tmpArr = tmpArr.filter(function(item,index,array){
         return (item.lang === 'en');
-    });
+      });
+      self.apps = tmpArr;
   });
 
   function init() {   

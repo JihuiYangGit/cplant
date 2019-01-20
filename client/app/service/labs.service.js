@@ -5,19 +5,17 @@ angular.module('cplantApp').factory('labsService', ['$http', '$cookies', '$q', f
   function all() {
     return $http({
       method : 'GET',
-      url: '/feeds/labinfo',
-      responseType: 'document'
+      url: 'api/labs/labinfo',
     })
       .then(function (res) {
         if (res.data.err) {
           return $q.reject(res.data.msg);
         }
-
         if (apps) {
           return $q.resolve(apps);
         }
-        
         apps = res.data;
+
         return apps;
       });
   }
@@ -32,7 +30,7 @@ angular.module('cplantApp').factory('labsService', ['$http', '$cookies', '$q', f
   }
 
   function signOut() {
-    window.location.href = 'api/labs/signOut';
+     window.location.href = 'api/labs/signOut';
   }
 
   function createTrello(nomination) {

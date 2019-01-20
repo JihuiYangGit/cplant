@@ -48,26 +48,14 @@ mongoose.connect(config.mongo.uri, config.mongo.options).then(function () {
 
 app.use(appPath, express.static(path.resolve(config.publicDir)));
 
-app.use(function (req, res, next) {
-    'use strict';
-    //CORS config
-    res.header('Access-Control-Allow-Origin', '');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
-    res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
-
-    if (req.method === 'OPTIONS') {
-        res.send(200); /*让options请求快速返回*/
-    } else {
-        next();
-    }
-});
-
 app.use(appPath + 'login', function (req, res, next) {
     if (req.session.auth) {
         return res.redirect(appPath);
     }
     next();
 }, authRoute);
+
+app.use(appPath + 'api', routes);
 
 app.use(function (req, res, next) {
     if (!req.session.auth) {
@@ -76,12 +64,11 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.use(appPath + 'api', routes);
-
 app.get('/', function (req, res) {
     'use strict';
     res.sendStatus(200);
 });
+
 
 app.get(appPath + '*', function (req, res) {
     'use strict';

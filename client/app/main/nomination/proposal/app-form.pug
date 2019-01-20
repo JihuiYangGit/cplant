@@ -99,8 +99,8 @@
             textarea(ng-model='newAppDialogCtrl.proposal.requiredQuestions.specialReason', ng-required='true')
           .md-subheader Who will be the primary contact that the labs dev team can reach out to during development?
           md-input-container.md-block
-            label Please provide their email addresses
-            input(ng-model='newAppDialogCtrl.proposal.requiredQuestions.contacts', ng-required='true', type='email')          
+            label Please provide their email addresses 
+            input(ng-model='newAppDialogCtrl.proposal.requiredQuestions.contacts' required='' minlength='10' maxlength='100' ng-pattern='/^.+@.+\..+$/')   
       md-dialog-actions(layout='row')
             md-button(ng-click='newAppDialogCtrl.reset(proposalForm)') Reset
             md-button(type='submit', ng-click='newAppDialogCtrl.submit(proposalForm)' aria-label='Submit Proposal') Submit

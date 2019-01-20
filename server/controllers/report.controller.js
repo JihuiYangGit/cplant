@@ -1,6 +1,19 @@
 'use strict';
 
 const Report = require('../models/report.model');
+const request = require('request');
+var convert = require('xml-js');
+
+function getLabsApp(req, res, next){
+    request('https://access.redhat.com/feeds/labinfo',function (error, response, body) {
+        if (error) {
+            return next(new Error(error));
+        }
+        var json_data= convert.xml2json(body, {compact: true, spaces: 4});
+        var json_obj = JSON.parse(json_data);
+        return res.send(json_obj);
+    });
+}
 
 function load(req, res, next, id) {
   Report.get(id)
@@ -77,7 +90,7 @@ function remove(req, res, next) {
 
 
 module.exports = {
-  load, get, create, update, list, all, remove
+  getLabsApp, load, get, create, update, list, all, remove
 };
 
 

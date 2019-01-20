@@ -41,10 +41,11 @@
     "nodemailer": "^4.6.8",
     "pug": "^2.0.0-rc.4",
     "q": "^1.5.1",
-    "request": "^2.87.0",
+    "request": "^2.88.0",
     "time-grunt": "^1.4.0",
     "tracer": "^0.8.15",
-    "xml-js": "^1.6.8"
+    "xml": "^1.0.1",
+    "xml-js": "^1.6.9"
   },
   "devDependencies": {
     "connect-livereload": "^0.6.0",

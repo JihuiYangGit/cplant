@@ -79,7 +79,7 @@ angular.module('cplantApp').controller('appDetailCtrl', ['$mdDialog', '$mdToast'
   self.updateStatus = function () {
     console.log('reason:' + self.rejectReason);
     var mailreason = self.rejectReason === '' ? '':'Reason: ' + self.rejectReason + '\n';
-    self.mailText = mailreason + 'Contact jihyang@redhat.com for more information.'
+    self.mailText = mailreason + 'Contact jihyang@redhat.com for more information.';
     var maildata = {address: self.proposal.requiredQuestions.contacts[0], subject: 'Your proposal has been '+ self.proposalStatus, text: self.mailText};
     self.disableConfirm = true;
 
