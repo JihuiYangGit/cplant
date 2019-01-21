@@ -6,7 +6,6 @@ angular.module('cplantApp').controller('appDetailCtrl', ['$mdDialog', '$mdToast'
   self.disableConfirm = false;
   self.startProgress = false;
   self.rejectReason = '';
-  self.reasons = ['repititive','meanless','solved','processing','others'];
   self.multiline = function (arr) {
     return arr.join(' & ');
   };
@@ -50,6 +49,7 @@ angular.module('cplantApp').controller('appDetailCtrl', ['$mdDialog', '$mdToast'
     var originStatus = self.proposal.status;
     self.disableConfirm = true;
     self.proposal.status = 'REJECTED';
+    self.proposal.rejectReason = self.rejectReason;
     proposalService.update(self.proposal)
       .then(function () {
         self.startProgress = false;
@@ -77,7 +77,6 @@ angular.module('cplantApp').controller('appDetailCtrl', ['$mdDialog', '$mdToast'
   }
 
   self.updateStatus = function () {
-    console.log('reason:' + self.rejectReason);
     var mailreason = self.rejectReason === '' ? '':'Reason: ' + self.rejectReason + '\n';
     self.mailText = mailreason + 'Contact jihyang@redhat.com for more information.';
     var maildata = {address: self.proposal.requiredQuestions.contacts[0], subject: 'Your proposal has been '+ self.proposalStatus, text: self.mailText};
@@ -113,9 +112,9 @@ angular.module('cplantApp').controller('appDetailCtrl', ['$mdDialog', '$mdToast'
       labsService.updateTrello(self.proposal)
         .then(function () {
           self.proposal.status = self.proposalStatus;
+          self.proposal.rejectReason = self.rejectReason;
           self.startProgress = false;
           $mdToast.showSimple('Success!');
-          //maildata.status = self.proposal.status;
           proposalService.mailto(maildata)
           .then(function(response){
             console.log('Email has sent');

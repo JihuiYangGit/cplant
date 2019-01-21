@@ -31,7 +31,7 @@
         md-switch.cplant-status-switch(ng-if='reportDetailCtrl.isAdmin()' ng-model='reportDetailCtrl.reportStatus' ng-disabled='reportDetailCtrl.isCompletedAccept()||reportDetailCtrl.report.status === "REJECTED"' ng-true-value="'REJECTED'" ng-false-value="'NEW'" ) REJECT
         div.cplant-reason-container
           md-select(ng-model="reportDetailCtrl.rejectReason" placeholder='Reason' ng-required='true' ng-hide = "reportDetailCtrl.reportStatus !== 'REJECTED' || reportDetailCtrl.report.status === 'REJECTED'" ng-disabled='reportDetailCtrl.report.status === "REJECTED"')
-            md-option(ng-value="reason" ng-repeat="reason in reportDetailCtrl.reasons") {{reason}}
+            md-option(ng-value="reason" ng-repeat="reason in reportDetailCtrl.reasons") {{reason}}       
       md-button(ng-if='reportDetailCtrl.isAdmin()', ng-click='reportDetailCtrl.updateStatus()' ng-disabled='reportDetailCtrl.reportStatus === reportDetailCtrl.report.status || reportDetailCtrl.disableConfirm') Change Status           
       md-button(ng-click='reportDetailCtrl.edit($event)', ng-disabled='reportDetailCtrl.isCompletedAccept()') Edit
     

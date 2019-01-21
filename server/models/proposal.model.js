@@ -101,8 +101,10 @@ const ProposalSchema = new Schema({
   trelloCardUrl: String,
 
   // The reason why you reject a proposal
-  rejectReason: String,
-
+  rejectReason: {
+    type: String,
+    default: ''
+  },
   // Kerberos Id
   userId: String,
 

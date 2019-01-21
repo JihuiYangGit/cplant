@@ -15,11 +15,6 @@ const reportSchema = new Schema({
       required: true
     },
 
-    // product: {
-    //   type: String,
-    //   required: true
-    // },
-
     description: {
       type: String,
       required: true
@@ -45,6 +40,12 @@ const reportSchema = new Schema({
     type: String,
     enum: ['NEW', 'ACCEPTED', 'REJECTED'],
     default: 'NEW'
+  },
+
+  rejectReason: {
+    type: String,
+    enum: ['NOT A BUG','DUPLICATED','CANNOT FIX ','OTHER',''],
+    default: ''
   },
 
   trelloCardId: String,

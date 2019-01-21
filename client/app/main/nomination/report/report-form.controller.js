@@ -10,10 +10,10 @@ angular.module('cplantApp').controller('newBugCtrl', ['$scope','$mdDialog', '$md
       targetEvent: ev,
       clickOutsideToClose: false,
     }).then(function (data) {
-      // console.log(data);
       var report = data[0];
       var attachments = data[1];
       report.type = 'BUG';
+      report.rejectReason = '';
       reportService.create(report, attachments)
         .then(function (result) {
           $scope.$emit("RequestsChange", result.data);
@@ -43,9 +43,10 @@ angular.module('cplantApp').controller('newBugCtrl', ['$scope','$mdDialog', '$md
       var report = data[0];
       var attachments = data[1];
       report.type = 'FEATURE';
+      report.rejectReason = '';
       reportService.create(report, attachments)
         .then(function (result) {
-          $scope.$emit("RequestsChange", result.data);
+          $scope.$emit('RequestsChange', result.data);
           $mdToast.show($mdToast.simple()
             .textContent('Success!')
             .position('top right')
@@ -68,8 +69,9 @@ angular.module('cplantApp').controller('newBugCtrl', ['$scope','$mdDialog', '$md
       appdata.forEach(function (app) {
         var tmpObj = {};
         tmpObj.id = app.id._text;
-        tmpObj.title = app.title._text;
+        tmpObj.name = app.title._text;
         tmpObj.lang = app.lang._text;
+        tmpObj.description = app.description._text;
         tmpArr.push(tmpObj);
       });
       tmpArr = tmpArr.filter(function(item,index,array){
@@ -151,6 +153,7 @@ angular.module('cplantApp').controller('newBugCtrl', ['$scope','$mdDialog', '$md
         self.reset(reportForm);
       });
     }
+    self.startProgress = false;
   };
 
   self.reset = function (reportForm) {
