@@ -118,7 +118,7 @@ angular.module('cplantApp').controller('contentCtrl', ['$scope','$mdDialog', 'pr
     if (f.type === 'PROPOSAL') {
       $mdDialog.show({
         controller: 'appDetailCtrl',
-        templateUrl: 'app/nomination/proposal/app-detail.html',
+        templateUrl: 'app/main/nomination/proposal/app-detail.html',
         parent: angular.element('body'),
         locals: {proposal: f},
         bindToController: true,
@@ -128,7 +128,7 @@ angular.module('cplantApp').controller('contentCtrl', ['$scope','$mdDialog', 'pr
     } else {
       $mdDialog.show({
         controller: 'reportDetailCtrl',
-        templateUrl: 'app/nomination/report/' + (f.type === 'BUG' ? 'bug-detail.html' : 'feature-detail.html'),
+        templateUrl: 'app/main/nomination/report/' + (f.type === 'BUG' ? 'bug-detail.html' : 'feature-detail.html'),
         parent: angular.element('body'),
         locals: {report: f},
         bindToController: true,
