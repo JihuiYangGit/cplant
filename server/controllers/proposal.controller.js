@@ -99,16 +99,15 @@ function mailto(req,res,next) {
     text: text
   };
 
-  mailTransport.sendMail(mailOptions, function(error, info){
-    if (error) {
-      console.log(error);
-    } else {
-      console.log('Email sent: ' + info.response);
-    }
+  mailTransport.sendMail(mailOptions)
+  .then(function(mailOptions){
+    return res.json(mailOptions);
   })
-
-    //.catch(err => next(err));
+  .catch(function(err){
+    return next(err);
+  })
 }
+
 
 module.exports = {
   load, get, create, update, list, all, remove, mailto

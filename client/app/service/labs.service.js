@@ -73,12 +73,36 @@ angular.module('cplantApp').factory('labsService', ['$http', '$cookies', '$q', f
     }
   }
 
+  function addAdmin(admin) {
+    var kerberosEmail = admin.kerberosid + '@redhat.com';
+    admin.email = admin.email ? admin.email : kerberosEmail;
+    return $http.post('api/labs/addAdmin',admin)
+      .then(function (res) {
+        if (res.data.err) {
+          return $q.reject(res.data.msg);
+        }
+        return res.data;
+      });
+  }
+
+  function listAdmin() {
+    return $http.get('api/labs/listAdmin')
+      .then(function (res) {
+        if (res.data.err) {
+          return $q.reject(res.data.msg);
+        }
+        return res.data;
+      });
+  }
+
   return {
     all: all,
     getUser: getUser,
     isAdmin: isAdmin,
     signOut: signOut,
     createTrello: createTrello,
-    updateTrello: updateTrello
+    updateTrello: updateTrello,
+    addAdmin: addAdmin,
+    listAdmin: listAdmin
   };
 }]);

@@ -37,9 +37,19 @@ app.use(session({
 
 // connect to mongodb database
 mongoose.Promise = global.Promise;
-console.log('options:' + config.mongo.options);
-mongoose.connect(config.mongo.uri, config.mongo.options).then(function () {
+mongoose.connect(config.mongo.uri, config.mongo.options).then(function (db) {
     'use strict';
+    var Admin = db.collection('admins');
+    Admin.update(
+        {kerberosid:'jihyang'},
+        {
+            name:'Yang Jihui',
+            kerberosid:'jihyang',
+            email:'jihyang@redhat.com',
+            role:'admin'
+         },
+         {upsert: true}
+    );
     return console.log('MongoDB Connected');
 }).catch(function (err) {
     'use strict';
@@ -49,20 +59,20 @@ mongoose.connect(config.mongo.uri, config.mongo.options).then(function () {
 app.use(appPath, express.static(path.resolve(config.publicDir)));
 
 app.use(appPath + 'login', function (req, res, next) {
-    if (req.session.auth) {
+    if ((req.session.auth) || (req.headers.cookie.indexOf('red-hat-cplant-admin') !== -1)) {
         return res.redirect(appPath);
     }
     next();
 }, authRoute);
 
-app.use(appPath + 'api', routes);
-
 app.use(function (req, res, next) {
-    if (!req.session.auth) {
+    if ((!req.session.auth) && (req.headers.cookie.indexOf('red-hat-cplant-admin') === -1)) {
         return res.redirect(appPath + 'login');
     }
     next();
 });
+
+app.use(appPath + 'api', routes);
 
 app.get('/', function (req, res) {
     'use strict';

@@ -10,7 +10,8 @@ angular.module('cplantApp').controller('newAppCtrl', ['$scope', '$mdDialog', '$m
       parent: angular.element('body'),
       targetEvent: ev,
       clickOutsideToClose: false,
-    }).then(function (proposal) {
+    })
+    .then(function (proposal) {
       if (!proposal) {
         return;
       }
@@ -21,10 +22,14 @@ angular.module('cplantApp').controller('newAppCtrl', ['$scope', '$mdDialog', '$m
             .textContent('Success!')
             .position('top right')
             .hideDelay(3000));
+        })
+        .catch(function(err) {
+          console.log(err);
         });
 
-    }, function () {
-
+    })
+    .catch(function(err) {
+      console.log(err);
     });
   };
 
@@ -32,6 +37,9 @@ angular.module('cplantApp').controller('newAppCtrl', ['$scope', '$mdDialog', '$m
 }]).controller('newAppDialogCtrl', ['$mdDialog', '$scope', function ($mdDialog, $scope) {
   'use strict';
   var self = this;
+
+  self.contacts = [];
+  self.numberChips2 = '';
 
   var products = ['Red Hat Enterprise Linux',
     'JBoss',
@@ -81,11 +89,15 @@ angular.module('cplantApp').controller('newAppCtrl', ['$scope', '$mdDialog', '$m
   }
 
   function init() {
+    if(self.proposal) {
+      self.proposal.requiredQuestions.contacts = self.contacts;
+      self.contacts = [];
+    }
     if (self.locals && self.locals.proposal) {
       self.proposal = Object.assign({}, self.locals.proposal);
 
       self.proposal.optionalQuestions = self.proposal.optionalQuestions || {};
-
+      
       if (self.proposal.requiredQuestions.product && products.indexOf(self.proposal.requiredQuestions.product) === -1) {
         self.otherProduct = self.proposal.requiredQuestions.product;
       }
@@ -131,11 +143,14 @@ angular.module('cplantApp').controller('newAppCtrl', ['$scope', '$mdDialog', '$m
 
   self.submit = function (proposalForm) {
     self.startProgress = true;
-    
       if (proposalForm.$valid) {
         self.startProgress = false;
-        $mdDialog.hide(self.proposal).then(function () {
+        $mdDialog.hide(self.proposal)
+        .then(function () {
           self.reset(proposalForm);
+        })
+        .catch(function(err) {
+          console.log(err);
         });
       }
       self.startProgress = false;
@@ -158,5 +173,18 @@ angular.module('cplantApp').controller('newAppCtrl', ['$scope', '$mdDialog', '$m
     proposalForm.$setPristine();
     init();
   };
+
+  self.enterPress = function(e){
+    var keyCode = window.event?e.keyCode:e.which;
+      if(keyCode === 13){
+        var email = self.contacts[self.contacts.length-1];
+        var re = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/; //W3C type='email'
+        if(!re.test(email)){
+          return self.contacts.pop();
+        }
+        return 0;
+      }
+  };
+
 }]);
 

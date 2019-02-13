@@ -4,15 +4,11 @@ md-toolbar.cplant-nav.md-whiteframe-6dp(ng-controller='navCtrl as navCtrl')
     md-divider.cplant-vertical-divider.cplant-nav-divider
     a(href='//access.redhat.com/labs/')
       .cplant-nav-site-title(layout='column')
+        //- img(src='assets/images/labs-logo-brush-bg.png')
+        //- img(src='assets/images/tool-logo-brush-bg.png')
         .primary-title.flex Customer Portal Labs 
         .secondary-title.flex Nomination Tool
     span.flex(flex)
-    md-menu.cplant-nav-avatar-container(md-offset="0 50")
-      canvas#cplant-nav-avatar(md-menu-origin, ng-click='$mdMenu.open()')
-      md-menu-content(width=2, ng-mouseleave="$mdMenu.close()")
-        md-menu-item
-          md-button(ng-click='navCtrl.signOut()')
-            md-icon(md-svg-src='assets/images/baseline-exit_to_app.svg')
-            span Sign Out
-
+    include ../menu/menu
+    
       

@@ -26,13 +26,12 @@
             img(src='{{url}}')
         md-divider
     md-dialog-actions(layout='row')
-      md-input-container(ng-if='reportDetailCtrl.isAdmin()' layout='row')
+      md-input-container(ng-if='reportDetailCtrl.isAdmin()' layout='row' layout-align="space-between center" layout-wrap)
         md-switch.cplant-status-switch(ng-if='reportDetailCtrl.isAdmin()' ng-model='reportDetailCtrl.reportStatus' ng-disabled='reportDetailCtrl.isCompletedAccept()||reportDetailCtrl.report.status === "ACCEPTED"' ng-true-value="'ACCEPTED'" ng-false-value="'NEW'" ) ACCEPT
         md-switch.cplant-status-switch(ng-if='reportDetailCtrl.isAdmin()' ng-model='reportDetailCtrl.reportStatus' ng-disabled='reportDetailCtrl.isCompletedAccept()||reportDetailCtrl.report.status === "REJECTED"' ng-true-value="'REJECTED'" ng-false-value="'NEW'" ) REJECT
-        div.cplant-reason-container
-          md-select(ng-model="reportDetailCtrl.rejectReason" placeholder='Reason' ng-required='true' ng-hide = "reportDetailCtrl.reportStatus !== 'REJECTED' || reportDetailCtrl.report.status === 'REJECTED'" ng-disabled='reportDetailCtrl.report.status === "REJECTED"')
+        div.cplant-reason-container(name='reason')
+          md-select(ng-model="reportDetailCtrl.rejectReason" placeholder='Reason' ng-hide = "reportDetailCtrl.reportStatus !== 'REJECTED' || reportDetailCtrl.report.status === 'REJECTED'" ng-required="reportDetailCtrl.reportStatus === 'REJECTED'" ng-disabled="reportDetailCtrl.reportStatus != 'REJECTED'")
             md-option(ng-value="reason" ng-repeat="reason in reportDetailCtrl.reasons") {{reason}}       
-      md-button(ng-if='reportDetailCtrl.isAdmin()', ng-click='reportDetailCtrl.updateStatus()' ng-disabled='reportDetailCtrl.reportStatus === reportDetailCtrl.report.status || reportDetailCtrl.disableConfirm') Change Status           
-      md-button(ng-click='reportDetailCtrl.edit($event)', ng-disabled='reportDetailCtrl.isCompletedAccept()') Edit
-    
+        md-button(type='submit' ng-if='reportDetailCtrl.isAdmin()', ng-click='reportDetailCtrl.updateStatus()' ng-disabled='(reportDetailCtrl.reportStatus === "REJECTED" && !reportDetailCtrl.rejectReason)||(reason.$invalid)||(reportDetailCtrl.reportStatus === reportDetailCtrl.report.status || reportDetailCtrl.disableConfirm|| reportDetailCtrl.reportStatus === "NEW")') Change Status           
+        md-button(ng-click='reportDetailCtrl.edit($event)', ng-disabled='reportDetailCtrl.isCompletedAccept()') Edit
         

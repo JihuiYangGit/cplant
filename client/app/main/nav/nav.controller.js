@@ -8,9 +8,5 @@ angular.module('cplantApp').controller('navCtrl', ['labsService', 'avatarService
     return labsService.getUser();
   };
 
-  self.signOut = function () {
-    labsService.signOut();
-  };
-
   avatarService.generateAvatar(self.getUserName(), 'cplant-nav-avatar');
 }]);

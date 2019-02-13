@@ -1,0 +1,17 @@
+md-menu.cplant-nav-avatar-container(md-offset="0 63" layout-align="center center" ng-controller='menuCtrl as menuCtrl')
+      canvas.hvr-glow#cplant-nav-avatar(md-menu-origin, ng-click='$mdMenu.open()' )
+      md-menu-content(width=2, ng-mouseleave="$mdMenu.close()" layout="column" )
+        md-menu-item
+          md-button(ng-click='menuCtrl.signOut()')
+            md-icon(md-svg-src='assets/images/baseline-exit_to_app.svg')
+            span Sign Out
+        md-menu-divider
+        md-menu-item 
+          md-button(ng-click='menuCtrl.addAdmin()')
+            md-icon(md-svg-src='assets/images/baseline-add-admin.svg')
+            span Add Admin
+        md-menu-item
+          md-button(ng-click='menuCtrl.listAdmin()')
+            md-icon(md-svg-src='assets/images/baseline-list.svg')
+            span List Admin
+//- TODO: hide last tow button when user not an admin

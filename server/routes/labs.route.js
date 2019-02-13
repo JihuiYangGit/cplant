@@ -7,7 +7,7 @@ const pkg = require('../../package');
 const trelloCtrl = require('../controllers/trello.controller');
 const proposalCtrl = require('../controllers/proposal.controller');
 const reportCtrl = require('../controllers/report.controller');
-
+const adminCtrl = require('../controllers/admin.controller');
 
 const router = express.Router();
 
@@ -32,6 +32,12 @@ router.route('/trello/proposal/:proposalId')
 router.route('/trello/report/:reportId')
   .post(trelloCtrl.createReportTrello)
   .put(trelloCtrl.updateReportTrello);
+
+router.route('/addAdmin')
+  .post(adminCtrl.addAdmin);
+
+router.route('/listAdmin')
+  .get(adminCtrl.listAdmin);
 
 router.param('proposalId', proposalCtrl.load);
 router.param('reportId', reportCtrl.load);

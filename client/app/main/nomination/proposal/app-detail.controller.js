@@ -7,7 +7,7 @@ angular.module('cplantApp').controller('appDetailCtrl', ['$mdDialog', '$mdToast'
   self.startProgress = false;
   self.rejectReason = '';
   self.multiline = function (arr) {
-    return arr.join(' & ');
+    return arr.join(' ; ');
   };
 
   self.hide = function () {
@@ -29,12 +29,12 @@ angular.module('cplantApp').controller('appDetailCtrl', ['$mdDialog', '$mdToast'
       .createTrello(self.proposal)
       .then(function (data) {
         self.proposal.status = 'ACCEPTED';
+        self.proposal.rejectReason = '';
         self.startProgress = false;
         $mdToast.showSimple('Success!');
         self.cancel();
 
         if(data.result) {
-          console.log("controller get url:" + data.trelloCardUrl);
           self.proposal.trelloCardId = data.trelloCardId;
           self.proposal.trelloCardUrl = data.trelloCardUrl;
         }
@@ -79,7 +79,7 @@ angular.module('cplantApp').controller('appDetailCtrl', ['$mdDialog', '$mdToast'
   self.updateStatus = function () {
     var mailreason = self.rejectReason === '' ? '':'Reason: ' + self.rejectReason + '\n';
     self.mailText = mailreason + 'Contact jihyang@redhat.com for more information.';
-    var maildata = {address: self.proposal.requiredQuestions.contacts[0], subject: 'Your proposal has been '+ self.proposalStatus, text: self.mailText};
+    var maildata = {address: self.proposal.requiredQuestions.contacts, subject: 'Your proposal has been '+ self.proposalStatus, text: self.mailText};
     self.disableConfirm = true;
 
     if (self.proposalStatus === self.proposal.status) {
@@ -91,18 +91,18 @@ angular.module('cplantApp').controller('appDetailCtrl', ['$mdDialog', '$mdToast'
         reject();
         proposalService.mailto(maildata)
         .then(function(response){
-          console.log('Email has sent');
-        },function(response){
-          console.log('Email sent with err');
-        })
+          console.log(response);
+        },function(err){
+          console.log(err);
+        });
       } else if (self.proposalStatus === 'ACCEPTED') {
         accept();
         proposalService.mailto(maildata)
         .then(function(response){
-          console.log('Email has sent');
-        },function(response){
-          console.log('Email sent with err');
-        })
+          console.log(response);
+        },function(err){
+          console.log(err);
+        });
       } else {
         recover();
       }
@@ -117,10 +117,10 @@ angular.module('cplantApp').controller('appDetailCtrl', ['$mdDialog', '$mdToast'
           $mdToast.showSimple('Success!');
           proposalService.mailto(maildata)
           .then(function(response){
-            console.log('Email has sent');
-          },function(response){
-            console.log('Email sent with err');
-          })
+            console.log(response);
+          },function(err){
+            console.log(err);
+          });
           self.cancel();
         }, function () {
           self.disableConfirm = false;
@@ -140,7 +140,7 @@ angular.module('cplantApp').controller('appDetailCtrl', ['$mdDialog', '$mdToast'
   self.edit = function (ev) {
     $mdDialog.show({
       controller: 'newAppDialogCtrl',
-      templateUrl: 'app/nomination/proposal/app-form.html',
+      templateUrl: 'app/main/nomination/proposal/app-form.html',
       parent: angular.element('body'),
       locals: {proposal: self.proposal},
       bindToController: true,

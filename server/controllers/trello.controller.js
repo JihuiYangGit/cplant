@@ -17,7 +17,7 @@ function generateProposalQuestionsDesc(proposal) {
   - Key requirements or features: ${proposal.requiredQuestions.keyDesc}
   - Scenarios: ${proposal.requiredQuestions.scenarios}
   - Special reason: ${proposal.requiredQuestions.specialReason}
-  - Contacts: ${proposal.contacts}
+  - Contacts: ${proposal.requiredQuestions.contacts}
   `;
 
   if (proposal.optionalQuestions.expectUsers) {
@@ -86,7 +86,6 @@ function createProposalTrello(req, res, next) {
 
     proposal.trelloCardUrl = JSON.parse(body).shortUrl;
     proposal.trelloCardId = JSON.parse(body).id;
-    console.log('request get url:' + proposal.trelloCardUrl);
     proposal.status = 'ACCEPTED';
 
     proposal.save();
@@ -125,7 +124,6 @@ function createReportTrello(req, res, next) {
     }
     report.trelloCardId = JSON.parse(body).id;
     report.trelloCardUrl = JSON.parse(body).shortUrl;
-    console.log('request get url:' + report.trelloCardUrl);
     report.status = 'ACCEPTED';
 
     report.save();

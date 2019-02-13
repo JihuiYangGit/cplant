@@ -64,11 +64,12 @@
           h5 Related KBase solutions or documents
           p {{appDetailCtrl.proposal.optionalQuestions.relatedKBaseRes}}
     md-dialog-actions(layout='row')
-      md-input-container(ng-if='appDetailCtrl.isAdmin()' layout='row')
+      md-input-container(ng-if='appDetailCtrl.isAdmin()' layout='row' layout-align="space-between center" layout-wrap)
         md-switch.cplant-status-switch(ng-if='appDetailCtrl.isAdmin()' ng-model='appDetailCtrl.proposalStatus' ng-disabled='appDetailCtrl.isCompletedAccept()||appDetailCtrl.proposal.status === "ACCEPTED"' ng-true-value="'ACCEPTED'" ng-false-value="'NEW'" ) ACCEPT
         md-switch.cplant-status-switch(ng-if='appDetailCtrl.isAdmin()' ng-model='appDetailCtrl.proposalStatus' ng-disabled='appDetailCtrl.isCompletedAccept()||appDetailCtrl.proposal.status === "REJECTED"' ng-true-value="'REJECTED'" ng-false-value="'NEW'" ) REJECT
-        div.cplant-reason-container
-          md-input-container(ng-required='true' ng-hide = "appDetailCtrl.proposalStatus !== 'REJECTED'||appDetailCtrl.proposal.status === 'REJECTED'" ng-disabled='reportDetailCtrl.report.status === "REJECTED"')
-            input(ng-model="appDetailCtrl.rejectReason" placeholder='Reason')
-      md-button(ng-if='appDetailCtrl.isAdmin()', ng-click='appDetailCtrl.updateStatus()' ng-disabled='appDetailCtrl.proposalStatus === appDetailCtrl.proposal.status || appDetailCtrl.disableConfirm || appDetailCtrl.proposalStatus === "NEW"') Change Status           
-      md-button(ng-click='appDetailCtrl.edit($event)', ng-disabled='appDetailCtrl.isCompletedAccept()') Edit
+        form.cplant-proposal-reason-container(name='reason')
+          md-label(style="float:left;position:absolute;top:30%;left:45%" ng-hide="appDetailCtrl.proposalStatus === 'REJECTED'&&appDetailCtrl.proposal.status != 'REJECTED'") {{appDetailCtrl.proposal.rejectReason}}
+          md-input-container(ng-hide = "appDetailCtrl.proposalStatus != 'REJECTED'||appDetailCtrl.proposal.status === 'REJECTED'" ng-disabled='reportDetailCtrl.report.status === "REJECTED"')
+            input(ng-model="appDetailCtrl.rejectReason" placeholder='Reason' ng-required="appDetailCtrl.proposalStatus === 'REJECTED'")
+        md-button(ng-if='appDetailCtrl.isAdmin()', ng-click='appDetailCtrl.updateStatus()' ng-disabled='(reason.$invalid)||(appDetailCtrl.proposalStatus === appDetailCtrl.proposal.status || appDetailCtrl.disableConfirm || appDetailCtrl.proposalStatus === "NEW")') Change Status           
+        md-button(ng-click='appDetailCtrl.edit($event)', ng-disabled='appDetailCtrl.isCompletedAccept()') Edit

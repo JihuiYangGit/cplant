@@ -1,0 +1,17 @@
+.md-dialog-container.cplant-dialog-form-container.admin-dialog#listAdminDialog(ng-controller='menuDialogCtrl as menuDialogCtrl')
+    md-dialog(aria-label='Add Admin')
+        md-toolbar.md-toolbar-tools
+            h2 Admin List
+            span(flex)
+            md-button.md-icon-button(ng-click='menuDialogCtrl.cancel()')
+                md-icon(md-svg-src='assets/images/ic-exit.svg')
+        md-dialog-content
+            .md-dialog-content
+                md-list(flex="") 
+                    md-list-item.md-3-line(ng-repeat='item in adminlist')
+                        div.md-list-item-text(layout='column')
+                            h3 {{ item.name }}            
+                            h4 {{ item.kerberosid }} 
+                            h4 {{ item.email }}          
+                            br
+

@@ -1,0 +1,37 @@
+
+  .cplant-nav-avatar-container {
+    #cplant-nav-avatar {
+      margin-right: 10px;
+      cursor: pointer;
+      width: 90px;
+      height: 40px;
+      border-radius: 5px;
+      box-shadow: 1px 1px 3px grey;
+      &:hover { box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.6);}
+
+    }
+  }
+
+  .cplant-dialog-form-container.admin-dialog md-dialog {
+    width: 45vmin;
+  
+    md-radio-button input {
+      pointer-events: all;
+    }
+  
+    .md-subheader {
+      background: transparent;
+    }
+  
+    .cplant-checkbox-container {
+      margin: 18px 0;
+  
+      md-input-container {
+        margin: 0;
+      }
+    }
+  
+    .md-toolbar-tools {
+      color: rgba(0, 0, 0, .54);
+    }
+  }

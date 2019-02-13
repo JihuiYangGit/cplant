@@ -62,7 +62,7 @@ angular.module('cplantApp').controller('newBugCtrl', ['$scope','$mdDialog', '$md
   var self = this;
   self.apps = [];
   self.startProgress = false;
-  
+  self.isfetching = true;
   labsService.all().then(function (data) {// search for the json file
       var appdata = data.rss.channel.item;
       var tmpArr = [];
@@ -78,9 +78,10 @@ angular.module('cplantApp').controller('newBugCtrl', ['$scope','$mdDialog', '$md
         return (item.lang === 'en');
       });
       self.apps = tmpArr;
+      self.isfetching = false;
   });
 
-  function init() {   
+  function init() {  
     if(self.locals && self.locals.report) {
       self.report = Object.assign({}, self.locals.report);
       self.selectedApp = self.report.app;
@@ -103,7 +104,7 @@ angular.module('cplantApp').controller('newBugCtrl', ['$scope','$mdDialog', '$md
     query = query || '';
     query = query.toLowerCase();
     return query ? self.apps.filter(function (item) {
-      return item && (item.title.toLowerCase().indexOf(query) !== -1 || item.id.toLowerCase().indexOf(query) !== -1);
+      return item && (item.name.toLowerCase().indexOf(query) !== -1 || item.id.toLowerCase().indexOf(query) !== -1);
     }) : self.apps;
     
   };

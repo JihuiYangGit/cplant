@@ -4,6 +4,7 @@ angular.module('cplantApp').controller('reportDetailCtrl', ['$mdDialog', '$mdToa
 
   self.report = self.locals.report;
   self.reportStatus = self.report.status;
+  console.log(self.reportStatus);
   self.startProgress = false;
   self.disableConfirm = false;
   self.rejectReason = '';
@@ -107,7 +108,7 @@ angular.module('cplantApp').controller('reportDetailCtrl', ['$mdDialog', '$mdToa
   self.edit = function (ev) {
     $mdDialog.show({
       controller: 'newReportCtrl',
-      templateUrl: 'app/nomination/report/' + (self.report.type === 'FEATURE' ? 'feature' : 'bug') + '-form.html',
+      templateUrl: 'app/main/nomination/report/' + (self.report.type === 'FEATURE' ? 'feature' : 'bug') + '-form.html',
       parent: angular.element('body'),
       locals: {report: self.report},
       bindToController: true,
